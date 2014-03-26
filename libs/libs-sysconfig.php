@@ -25,6 +25,7 @@ include_once(APP_ROOT_PATH."libs/libs-main.php");
 $mainfunc_class = class_exists("MAINFUNC_NEW")?"MAINFUNC_NEW":"MAINFUNC";
 $main = new $mainfunc_class;
 include_once(APP_ROOT_PATH."TP/class.TemplatePower.inc.php");
+include_once(APP_ROOT_PATH."conf/sms.php");
 include_once(APP_ROOT_PATH."lang/".$cms_cfg['language']."-utf8.php");
 //處理串接購物車模組
 if($cms_cfg['ws_module']['ws_shopping_cart_module']){
