@@ -1,0 +1,207 @@
+    <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="formtable">
+        <tr>
+            <th colspan="2"  valign="top" class="table_title_color">訂單內容</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="producttable">
+                    <tr>
+                        <th width="5%"> No.</th>
+                        <th width="15%"> 產品圖</th>
+                        <th width="14%"> 貨號</th>
+                        <th width="24%"> 產品</th>
+                        <th width="10%"> 數量</th>
+                        <th width="16%"> 價格</th>
+                        <th width="16%"> 小計</th>
+                    </tr>
+                    <!-- START BLOCK : ORDER_ITEMS_LIST -->
+                    <tr>
+                        <td>
+                            {VALUE_P_SERIAL}
+                        </td>
+                        <td><img src="{VALUE_P_SMALL_IMG}" width="90"/></td>
+                        <td>{P_SERIAL}</td>
+                        <td>
+                            {VALUE_P_NAME}
+                        </td>
+                        <td class="nums">
+                            {VALUE_P_AMOUNT}
+                        </td>
+                        <td class="nums">
+                            {VALUE_P_SELL_PRICE}
+                        </td>
+                        <td class="nums">
+                            {VALUE_P_SUBTOTAL_PRICE}
+                        </td>
+                    </tr>
+                    <!-- END BLOCK : ORDER_ITEMS_LIST -->
+                    <tr>
+                        <td colspan="6">
+                            <div align="right"> 小計:&nbsp;</div>
+                        </td>
+                        <td class="nums">
+                        {VALUE_O_SUBTOTAL_PRICE}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div align="right"> 運費:&nbsp;</div>
+                        </td>
+                        <td class="nums">
+                        {VALUE_O_PLUS_PRICE}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div align="right"> 手續費:&nbsp;</div>
+                        </td>
+                        <td class="nums">
+                        {VALUE_O_CHARGE_FEE}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="6">
+                            <div align="right"> 合計:&nbsp;</div>
+                        </th>
+                        <th class="nums"> 
+                        {VALUE_O_TOTAL_PRICE}
+                        </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>        
+        <tr>
+            <th colspan="2" class="table_title_color">訂單資訊</th>
+        </tr>        
+        <tr>
+            <th>訂單編號:</th>
+            <td>
+                {VALUE_O_ID}
+            </td>
+        </tr>
+        <tr>
+            <th>訂單狀態:</th>
+            <td>{VALUE_O_STATUS}</td>
+        </tr>
+        <tr>
+            <th>付款方式:</th>
+            <td>
+                {VALUE_O_PAYMENT_TYPE}
+            </td>
+        </tr>
+        <tr>
+            <th>匯款後五碼</th>
+            <td>{VALUE_O_ATM_LAST5}</td>
+        </tr>
+        <tr>
+            <th>送貨區域</th>
+            <td>{VALUE_O_SHIPPMENT_TYPE}</td>
+        </tr>
+        <!-- START BLOCK : DELIVERY_TIMESEC -->
+        <tr>
+            <th>配送日期及時段</th>
+            <td>{VALUE_O_DELIVERY_STR}</td>
+        </tr>
+        <!-- END BLOCK : DELIVERY_TIMESEC -->        
+        <!-- START BLOCK : ATM_DATA -->
+        <tr>
+            <th>ATM虛擬帳號:</th>
+            <td>
+                {VALUE_O_VIRTUAL_ACCOUNT}</td>
+        </tr>
+        <tr>
+            <th>匯款金額:</th>
+            <td>
+                {VALUE_O_CURAMT}</td>
+        </tr>
+        <!-- END BLOCK : ATM_DATA -->        
+        <tr>
+            <th>問答內容:</th>
+            <td>
+                &nbsp;{VALUE_O_CONTENT}</td>
+        </tr>         
+        <tr>
+            <th colspan="2" class="table_title_color">發票資訊</th>
+        </tr>
+        <tr>
+            <th>發票類型:</th>
+            <td>
+                {VALUE_O_INVOICE_TYPE}</td>
+        </tr>
+        <tr>
+            <th>公司:</th>
+            <td>
+                {VALUE_O_COMPANY_NAME}</td>
+        </tr>
+        <tr>
+            <th>統一編號:</th>
+            <td>
+                {VALUE_O_VAT_NUMBER}</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="table_title_color">訂購者資訊</th>
+        </tr>
+        <tr>
+            <th>姓名:</th>
+            <td>
+                {VALUE_O_NAME}</td>
+        </tr>
+        <tr>
+            <th>電話:</th>
+            <td>
+                {VALUE_O_TEL}</td>
+        </tr>
+        <tr>
+            <th>手機:</th>
+            <td>
+                {VALUE_O_CELLPHONE}</td>
+        </tr>
+        <tr>
+            <th>郵遞區號:</th>
+            <td>
+                {VALUE_O_ZIP}</td>
+        </tr>
+        <tr>
+            <th>住址:</th>
+            <td>
+                {VALUE_O_ADDRESS}</td>
+        </tr>
+        <tr>
+            <th>e-mail:</th>
+            <td>
+                {VALUE_O_EMAIL}</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="table_title_color">收件者資訊</th>
+        </tr>
+        <tr>
+            <th>姓名:</th>
+            <td>
+                {VALUE_O_RECI_NAME}</td>
+        </tr>
+        <tr>
+            <th>電話:</th>
+            <td>
+                {VALUE_O_RECI_TEL}</td>
+        </tr>
+        <tr>
+            <th>手機:</th>
+            <td>
+                {VALUE_O_RECI_CELLPHONE}</td>
+        </tr>
+        <tr>
+            <th>郵遞區號:</th>
+            <td>
+                {VALUE_O_RECI_ZIP}</td>
+        </tr>
+        <tr>
+            <th>住址:</th>
+            <td>
+                {VALUE_O_RECI_ADDRESS}</td>
+        </tr>
+        <tr>
+            <th>e-mail:</th>
+            <td>
+                {VALUE_O_RECI_EMAIL}</td>
+        </tr>        
+    </table>
