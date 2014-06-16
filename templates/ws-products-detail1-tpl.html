@@ -72,8 +72,13 @@
             <div class="icon01 video"><a href="{VALUE_P_MV_URL}" target="_blank">VIDEO</a></div>       
             <!-- END BLOCK : BTN_LINK_MV_SHOW -->            
             <!-- START BLOCK : CART_TYPE_SHOPPING -->
-            <div>{MSG_PRODUCT_LIST_PRICE}:<s>{VALUE_P_LIST_PRICE}</s></div>
-            <div>{MSG_PRODUCT_SPECIAL_PRICE}:<span class="red">{VALUE_P_SPECIAL_PRICE}</span></div>
+            <!-- START BLOCK : SINGLE_PRICE -->
+            {MSG_PRODUCT_LIST_PRICE}:<span class="cash">{VALUE_P_LIST_PRICE}</span>
+            <!-- END BLOCK : SINGLE_PRICE -->
+            <!-- START BLOCK : FULL_PRICE -->
+            {MSG_PRODUCT_LIST_PRICE}:<s>{VALUE_P_LIST_PRICE}</s><br/>
+            {MSG_PRODUCT_SPECIAL_PRICE}:<span class="cash">{VALUE_P_SPECIAL_PRICE}</span>
+            <!-- END BLOCK : FULL_PRICE -->
             <!-- END BLOCK : CART_TYPE_SHOPPING -->
 
             <!-- START BLOCK : SHOW_DISCOUNT -->

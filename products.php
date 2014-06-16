@@ -539,8 +539,6 @@ class PRODUCTS{
                                           "VALUE_P_NAME_ALIAS" => $row["p_name_alias"],
                                           "VALUE_P_CUSTOM" => $row["p_custom"],
                                           "VALUE_P_SERIAL" => $row["p_serial"],
-                                          "VALUE_P_LIST_PRICE" => $row["p_list_price"],
-                                          "VALUE_P_SPECIAL_PRICE" => $row["p_special_price"],
                                           "VALUE_SMALL_IMG" => (trim($row["p_small_img"])=="")?$cms_cfg['default_preview_pic']:$cms_cfg["file_root"].$row["p_small_img"],
                                           "VALUE_P_SEO_SHORT_DESC" => $row["p_seo_short_desc"],
                                           "VALUE_P_CROSS_CATE" => $row["p_cross_cate"],
@@ -582,6 +580,18 @@ class PRODUCTS{
                     $tpl->assignGlobal("MSG_JOIN_CART",$TPLMSG["JOIN"].$TPLMSG["SHOPPING_CART"]);
                     $tpl->assignGlobal("VALUE_P_CART_TYPE","shopping");
                     $tpl->assignGlobal("CART_ADD",$TPLMSG['CART_ADD'].$TPLMSG['CART_SHOPPING']);
+                    if($row["p_list_price"]>0 && $row["p_special_price"]>0){
+                        $tpl->newBlock("FULL_PRICE");
+                        $tpl->assign(array(
+                            "VALUE_P_LIST_PRICE" => $row["p_list_price"],
+                            "VALUE_P_SPECIAL_PRICE" => $row["p_special_price"],                        
+                        ));
+                    }else{
+                        $tpl->newBlock("SINGLE_PRICE");
+                        $tpl->assign(array(
+                            "VALUE_P_LIST_PRICE" => $row["p_list_price"],                      
+                        ));
+                    }
                     //$tpl->gotoBlock("BIG_IMG".$this->template_str);
                 }
                 //影片
