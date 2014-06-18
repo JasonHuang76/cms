@@ -16,7 +16,7 @@
     <td class="no">{VALUE_P_SERIAL}</td>
     <td><center><a href="{VALUE_P_SMALL_IMG}" rel="lightbox[roadtrip]" ><img src="{VALUE_P_SMALL_IMG}" width="60" alt="{VALUE_P_NAME}" border="0"/></a></center></td>
     <td class="title"><a href="{VALUE_P_LINK}" target="_blank">{VALUE_P_NAME}</a></td>
-    <td><input type="text" name="shop_value[{VALUE_P_ID}]" value="{VALUE_P_AMOUNT}" class="form-input"  size="2" maxlength="4"></td>
+    <td><input type="text" name="shop_value[{VALUE_P_ID}]" value="{VALUE_P_AMOUNT}" size="2" class="spinner" readonly/></td>
     <td><a href="#" onClick="javascript:ConfirmMSG('{TAG_DELETE_CHECK_STR}','cart.php?func=c_del&p_id={VALUE_P_ID}')"><img src="{TAG_THEME_PATH}ws-table-delete.gif" border="0" height="20" width="20" /></a></td>
 </tr>
 <!-- END BLOCK : INQUIRY_CART_LIST -->
@@ -24,7 +24,7 @@
 <table width="90%" border="0" cellpadding="2" cellspacing="2">
 <tr>
     <td width="55%">&nbsp;</td>
-    <td width="15%"><input type="button" id="btn_modify_amount" value="{VALUE_MODIFY_AMOUNT}" /></td>
+    <td width="15%">&nbsp;</td>
     <td width="15%"><input type="button" name="back" onClick="javascript:cart_continue(this.form,'{LINK_CONTINUE}');" value="{MSG_CONTINUE_INQUIRY}" /></td>
     <td width="15%"><input type="button" name="finish" onclick="javascript:cart_finish(this.form);" value="{MSG_FINISH_INQUIRY}" /></td>
 </tr>
@@ -42,6 +42,25 @@
                    //location.href = "cart.php";
                },'json');
            });
+            $(".spinner").spinner({
+                min: 1,
+                spin: function( event, ui ) {
+                    var cur = $(this).val();
+                    var elm = $(this);
+                    var data = "via_ajax=1&"+$(this).attr("name")+"="+ui.value;
+                    if(cur != ui.value){
+                        $.post("{TAG_ROOT_PATH}cart.php?func=c_mod",data,function(req){
+                            if(req.code != '1'){
+                                alert('error occure!');
+                                elm.val(cur);
+                            }else{
+                            }
+                        },'json');
+                    }
+                },
+                change: function( event, ui ) {
+                }
+            });
     });
 </script>
 <!-- END BLOCK : INQUIRY_CART_ZONE -->
