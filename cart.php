@@ -376,9 +376,11 @@ class CART{
             $tpl->assignGlobal("TAG_MAIN_FUNC" , $TPLMSG['CART_INQUIRY']);
             $tpl->assignGlobal("TAG_DISPLAY" , "style='display:none'");
             $tpl->newBlock( "INQUIRY_CART_ZONE" );
-            $tpl->assign( array("MSG_CONTINUE_INQUIRY"  => $TPLMSG['CART_CONTINUE_INQUIRY'],
-                                "MSG_FINISH_INQUIRY"  => $TPLMSG['CART_FINISH_INQUIRY'],
-                                "LINK_CONTINUE" => $_SESSION[$cms_cfg['sess_cookie_name']]['CONTINUE_SHOPPING_URL']
+            $tpl->assign( array(
+                "MSG_CONTINUE_INQUIRY"  => $TPLMSG['CART_CONTINUE_INQUIRY'],
+                "MSG_FINISH_INQUIRY"  => $TPLMSG['CART_FINISH_INQUIRY'],
+                "LINK_CONTINUE" => $_SESSION[$cms_cfg['sess_cookie_name']]['CONTINUE_SHOPPING_URL'],
+                "MSG_QUANTITY_UPDATED" => $TPLMSG["INQUIRY_QUANTITY_UPDATED"],
             ));
             for($i=0;$i<count($inquiry);$i++){
                 $tpl->newBlock( "INQUIRY_CART_LIST" );

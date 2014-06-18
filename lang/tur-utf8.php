@@ -214,6 +214,7 @@ $TPLMSG["PAYMENT_CASH_ON_DELIVERY"]="Teslimde Nakit";
 $TPLMSG["INQUIRY_ID"]="Sorgulama Kimliği";
 $TPLMSG["INQUIRY_DETAIL"]="Detay";
 $TPLMSG["INQUIRY_CONTENT"]="İçerik";
+$TPLMSG["INQUIRY_QUANTITY_UPDATED"]="Quantity updated!";
 
 //DOWNLOAD
 $TPLMSG["DOWNLOAD"]="Yükle";

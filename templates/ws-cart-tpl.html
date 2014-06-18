@@ -189,11 +189,11 @@
                var serial_data = $("#formID").serialize();
                serial_data += "&via_ajax=1";
                $.post("cart.php?func=c_mod",serial_data,function(req){
-                   if(req=='1'){
-                        alert("已更新數量");
+                   if(req.code=='1'){
+                        alert("{MSG_QUANTITY_UPDATED}");
                    }
                    //location.href = "cart.php";
-               });
+               },'json');
            });
     });
 </script>

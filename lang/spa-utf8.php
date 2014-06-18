@@ -214,6 +214,7 @@ $TPLMSG["PAYMENT_CASH_ON_DELIVERY"]="dinero en efectivo entrega";
 $TPLMSG["INQUIRY_ID"]="investigación ID";
 $TPLMSG["INQUIRY_DETAIL"]="Detalle";
 $TPLMSG["INQUIRY_CONTENT"]="Contenido";
+$TPLMSG["INQUIRY_QUANTITY_UPDATED"]="Quantity updated!";
 
 //DOWNLOAD
 $TPLMSG["DOWNLOAD"]="Descarga";

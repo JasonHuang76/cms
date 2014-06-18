@@ -214,6 +214,7 @@ $TPLMSG["PAYMENT_CASH_ON_DELIVERY"]="Nachnahme Lieferung";
 $TPLMSG["INQUIRY_ID"]="Anfrage-ID";
 $TPLMSG["INQUIRY_DETAIL"]="Detail";
 $TPLMSG["INQUIRY_CONTENT"]="Inhalt";
+$TPLMSG["INQUIRY_QUANTITY_UPDATED"]="Quantity updated!";
 
 //DOWNLOAD
 $TPLMSG["DOWNLOAD"]="Download";

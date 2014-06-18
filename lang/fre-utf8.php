@@ -214,6 +214,7 @@ $TPLMSG["PAYMENT_CASH_ON_DELIVERY"]="comptant sur ​​la livraison";
 $TPLMSG["INQUIRY_ID"]="ID enquête";
 $TPLMSG["INQUIRY_DETAIL"]="détail";
 $TPLMSG["INQUIRY_CONTENT"]="Contenu";
+$TPLMSG["INQUIRY_QUANTITY_UPDATED"]="Quantity updated!";
 
 //DOWNLOAD
 $TPLMSG["DOWNLOAD"]="Télécharger";

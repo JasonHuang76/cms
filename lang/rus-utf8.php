@@ -207,6 +207,8 @@ $TPLMSG["PAYMENT_CASH_ON_DELIVERY"]="Денежные средства дост�
 $TPLMSG["INQUIRY_ID"]="Запрос ID";
 $TPLMSG["INQUIRY_DETAIL"]="Подробнее";
 $TPLMSG["INQUIRY_CONTENT"]="Содержание";
+$TPLMSG["INQUIRY_QUANTITY_UPDATED"]="Quantity updated!";
+
 //DOWNLOAD
 $TPLMSG["DOWNLOAD"]="Загрузить";
 
