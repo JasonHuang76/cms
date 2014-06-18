@@ -17,7 +17,7 @@ class CART{
                 $this->ajax_show_ship_price();
                 break;
             case "c_list"://購物車列表
-                $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -27,7 +27,7 @@ class CART{
                 break;
             case "c_add"://新增購物項目
                 if(!$_POST['via_ajax']){
-                    $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                    $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $tpl->newBlock("JS_MAIN");
                     $tpl->newBlock("JS_POP_IMG");
@@ -37,14 +37,14 @@ class CART{
                 $this->cart_add($_POST['via_ajax']);
                 break;
             case "c_list_add"://新增購物項目(產品列表)
-                $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $this->cart_list_add();
                 $this->ws_tpl_type=1;
                 break;
             case "c_quick_add"://快速購物項目
-                $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -53,7 +53,7 @@ class CART{
                 break;
             case "c_mod"://購物車列表
                 if(!$_POST['via_ajax']){
-                    $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                    $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $tpl->newBlock("JS_MAIN");
                     $tpl->newBlock("JS_POP_IMG");
@@ -62,7 +62,7 @@ class CART{
                 $this->cart_modify($_POST['via_ajax']);
                 break;
             case "c_del"://刪除購物項目
-                $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -113,7 +113,7 @@ class CART{
                 $this->inquiry_replace();
                 break;
             default: //購物車列表
-                $this->ws_tpl_file = "templates/ws-cart-tpl.html";
+                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
