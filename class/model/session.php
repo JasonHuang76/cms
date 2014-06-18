@@ -27,6 +27,9 @@ class Model_Session implements arrayaccess {
     function __set($name,$value){
         $this->_session[$name] = $value;
     }
+    function __isset($name) {
+        return isset($this->_session[$name]);
+    }
     static function factory($sess_cookie_name){
         if(self::$_handler === null){
             self::$_handler = new self($sess_cookie_name);
