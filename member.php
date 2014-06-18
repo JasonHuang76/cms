@@ -633,7 +633,7 @@ class MEMBER{
                                 "MSG_MODIFYDATE" => $TPLMSG['MODIFYDATE'],
                                 "MSG_VIEWS" => $TPLMSG['VIEWS'],
             ));
-            $sql="select * from ".$cms_cfg['tb_prefix']."_inquiry where m_id='".$this->m_id."'";
+            $sql="select * from ".$cms_cfg['tb_prefix']."_inquiry where m_id='".$this->m_id."'  order by i_createdate desc ";
             //取得總筆數
             $selectrs = $db->query($sql);
             $total_records = $db->numRows($selectrs);
