@@ -177,6 +177,7 @@ $TPLMSG['CART_CONTINUE_INQUIRY'] = "Continue";
 $TPLMSG['CART_FINISH_SHOPPING'] = "Finish";
 $TPLMSG['CART_FINISH_INQUIRY'] = "Finish";
 $TPLMSG['CART_DELETE_CHECK'] = "Are You Sure To Delete Data?";
+$TPLMSG['CART_EMPTY'] = "The cart is empty!";
 $TPLMSG['SHIPPING_PRICE'] = "Shipping Costs";
 //SERVICE TERM
 $TPLMSG["SERVICE_CENTER"] = "Service Center";

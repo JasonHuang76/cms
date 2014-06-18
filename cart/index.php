@@ -178,7 +178,7 @@
 		function cart_list() {
 			global $cms_cfg, $tpl, $TPLMSG, $ws_array;
 			if (empty($_SESSION[$cms_cfg['sess_cookie_name']]["id"])) {//空購物車時，回到前一頁
-				App::getHelper('main') -> js_notice("目前購物車是空的!", $cms_cfg['base_root'] . "products.htm");
+				App::getHelper('main') -> js_notice($TPLMSG['CART_EMPTY'], $cms_cfg['base_root'] . "products.htm");
 				die();
 			}
 			$tpl -> assignGlobal(array(

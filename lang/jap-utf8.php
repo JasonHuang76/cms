@@ -178,6 +178,7 @@ $TPLMSG['CART_CONTINUE_INQUIRY'] = "元の商品ページに戻る";
 $TPLMSG['CART_FINISH_SHOPPING'] = "完了";
 $TPLMSG['CART_FINISH_INQUIRY'] = "完了";
 $TPLMSG['CART_DELETE_CHECK'] = "あなたはデータを削除してもよろしいですか？";
+$TPLMSG['CART_EMPTY'] = "The cart is empty!";
 $TPLMSG['SHIPPING_PRICE'] = "配送費";
 //SERVICE TERM
 $TPLMSG["SERVICE_CENTER"] = "サービスセンター";

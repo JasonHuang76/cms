@@ -177,6 +177,7 @@ $TPLMSG['CART_CONTINUE_INQUIRY'] = "Devam et";
 $TPLMSG['CART_FINISH_SHOPPING'] = "bitirmek";
 $TPLMSG['CART_FINISH_INQUIRY'] = "bitirmek";
 $TPLMSG['CART_DELETE_CHECK'] = "Veri Silme için Emin misiniz?";
+$TPLMSG['CART_EMPTY'] = "The cart is empty!";
 $TPLMSG['SHIPPING_PRICE'] = "Nakliye Ücretleri";
 //SERVICE TERM
 $TPLMSG["SERVICE_CENTER"] = "Hizmet Merkezi";

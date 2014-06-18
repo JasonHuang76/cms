@@ -170,6 +170,7 @@ $TPLMSG['CART_CONTINUE_INQUIRY'] = "Продолжить";
 $TPLMSG['CART_FINISH_SHOPPING'] = "Готово";
 $TPLMSG['CART_FINISH_INQUIRY'] = "Готово";
 $TPLMSG['CART_DELETE_CHECK'] = "Вы действительно хотите удалить данные?";
+$TPLMSG['CART_EMPTY'] = "The cart is empty!";
 $TPLMSG['SHIPPING_PRICE'] = "стоимость пересылки";
 //SERVICE TERM
 $TPLMSG["SERVICE_CENTER"] = "Сервисный центр";

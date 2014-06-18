@@ -222,7 +222,7 @@ class CART{
     function cart_list(){
         global $db,$tpl,$TPLMSG,$ws_array,$shopping,$inquiry,$cms_cfg,$main;
         if(empty($_SESSION[$cms_cfg['sess_cookie_name']]["CART_PID"])){ //空購物車時，回到前一頁
-            $main->js_notice("目前購物車是空的!",$cms_cfg['base_root']."products.htm");
+            $main->js_notice($TPLMSG['CART_EMPTY'],$cms_cfg['base_root']."products.htm");
             die();
         }             
         //取得目前的 cart type，以及運費相關欄位

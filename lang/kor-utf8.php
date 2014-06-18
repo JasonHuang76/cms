@@ -177,6 +177,7 @@ $TPLMSG['CART_CONTINUE_INQUIRY'] = "계속";
 $TPLMSG['CART_FINISH_SHOPPING'] = "완료";
 $TPLMSG['CART_FINISH_INQUIRY'] = "완료";
 $TPLMSG['CART_DELETE_CHECK'] = "당신이 데이터를 삭제하려면시겠습니까?";
+$TPLMSG['CART_EMPTY'] = "The cart is empty!";
 $TPLMSG['SHIPPING_PRICE'] = "배송 비용";
 //SERVICE TERM
 $TPLMSG["SERVICE_CENTER"] = "서비스 센터";
