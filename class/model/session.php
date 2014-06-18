@@ -21,7 +21,7 @@ class Model_Session implements arrayaccess {
         }
         $this->_session =&$_SESSION[$sess_cookie_name];
     }
-    function __get($name){
+    function &__get($name){
         return $this->_session[$name];
     }
     function __set($name,$value){
