@@ -1091,6 +1091,8 @@ class MAINFUNC{
                     '%('.$cms_cfg['file_root'].')((upload_files/|tiny_mce/|tinymce/)[^\s"><]+\.(html|htm|php|png|gif|jpg|jpeg|js|css))%i',
                     '%('.$cms_cfg['base_root'].')([^\s"><]+\.(html|htm|php|png|gif|jpg|jpeg))%i',
                     '%('.$cms_cfg['file_root'].')([^\s"><]+\.(html|htm|php|png|gif|jpg|jpeg))%i',
+                    '%(["\'])(\.\./)*(upload_files/[^"\']+)%i',
+                    '%(["\'])(images/[^"\']+)%i',
                 ),
                 'replace' => array(
                     '{TAG_SECURE_SCHEME}{TAG_SERVER}{TAG_FILE_ROOT}$4',
@@ -1102,6 +1104,8 @@ class MAINFUNC{
                     '{TAG_FILE_ROOT}$2',
                     '{TAG_ROOT_PATH}$2',
                     '{TAG_FILE_ROOT}$2',
+                    '$1{TAG_FILE_ROOT}$3',
+                    '$1{TAG_ROOT_PATH}$2',
                 )
             ),
             'out' => array(
@@ -1111,6 +1115,8 @@ class MAINFUNC{
                     '%{TAG_SERVER}%',
                     '%{TAG_SCHEME}%',
                     '%{TAG_SECURE_SCHEME}%',
+                    '%(["\'])(\.\./)*(upload_files/[^"\']+)%i',
+                    '%(["\'])(images/[^"\']+)%i',
                 ),
                 'replace' => array(
                     $cms_cfg['base_root'],
@@ -1118,6 +1124,8 @@ class MAINFUNC{
                     $cms_cfg['server_name'],
                     "http://",
                     "https://",
+                    '$1'.$cms_cfg['file_root'].'$3',
+                    '$1'.$cms_cfg['base_root'].'$2',
                 )
             )
         );
