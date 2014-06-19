@@ -96,6 +96,7 @@ $TPLMSG['CONTACT_US_SITE']="Sitio Web";
 $TPLMSG['CONTACT_US_COUNTRY']="País";
 $TPLMSG['CONTACT_US_CITY']="Ciudad";
 $TPLMSG['CONTACT_US_SUBJECT']="Asunto";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="Thank you for your letter,  we will reply as soon as possible , thank you for your support for %s again";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "Suscribirse";

@@ -104,6 +104,7 @@ $TPLMSG['CONTACT_US_SITE']="企業網站";
 $TPLMSG['CONTACT_US_COUNTRY']="國家";
 $TPLMSG['CONTACT_US_CITY']="城市";
 $TPLMSG['CONTACT_US_SUBJECT']="專案名稱";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="感謝您的來信，您的問題我們會儘快以 Email方式回覆，再次感謝您對%s的支持～";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "訂閱電子報";

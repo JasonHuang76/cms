@@ -88,7 +88,15 @@ $TPLMSG["CONTACT_US_DETAIL"]="Подробнее";
 $TPLMSG["CONTACT_US_REPLY"]="Ответить";
 $TPLMSG["CONTACT_US_REPLY_CONTENT"]="Содержание";
 $TPLMSG["CONTACT_US_REPLY_TIME"]="Ответил Время";
-$TPLMSG['EMAIL']="электронной почты";
+$TPLMSG['CONTACT_US_COMPANY_NAME']="Company Name";
+$TPLMSG['CONTACT_US_TITLE']="Title";
+$TPLMSG['CONTACT_US_FAX']="Fax";
+$TPLMSG['CONTACT_US_MOBIL']="Mobil";
+$TPLMSG['CONTACT_US_SITE']="Web site";
+$TPLMSG['CONTACT_US_COUNTRY']="Country";
+$TPLMSG['CONTACT_US_CITY']="City";
+$TPLMSG['CONTACT_US_SUBJECT']="Subject";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="Thank you for your letter,  we will reply as soon as possible , thank you for your support for %s again";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "Подписаться";

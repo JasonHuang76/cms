@@ -96,6 +96,7 @@ $TPLMSG['CONTACT_US_SITE']="Web sitesi";
 $TPLMSG['CONTACT_US_COUNTRY']="Ülke";
 $TPLMSG['CONTACT_US_CITY']="Şehir";
 $TPLMSG['CONTACT_US_SUBJECT']="Konu";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="Thank you for your letter,  we will reply as soon as possible , thank you for your support for %s again";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "Abone ol";

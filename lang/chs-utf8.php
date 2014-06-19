@@ -97,6 +97,7 @@ $TPLMSG['CONTACT_US_SITE']="企业网站";
 $TPLMSG['CONTACT_US_COUNTRY']="国家";
 $TPLMSG['CONTACT_US_CITY']="城市";
 $TPLMSG['CONTACT_US_SUBJECT']="专案名称";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="感谢您的来信，您的问题我们会尽快以 Email方式回覆，再次感谢您对%s的支持～";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "订阅电子报";

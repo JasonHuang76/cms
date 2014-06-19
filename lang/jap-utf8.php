@@ -96,7 +96,7 @@ $TPLMSG['CONTACT_US_SITE']="ウェブサイト";
 $TPLMSG['CONTACT_US_COUNTRY']="国";
 $TPLMSG['CONTACT_US_CITY']="市";
 $TPLMSG['CONTACT_US_SUBJECT']="題目";
-$TPLMSG['EMAIL']="メールアドレス";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="Thank you for your letter,  we will reply as soon as possible , thank you for your support for %s again";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "チャンネル登録";

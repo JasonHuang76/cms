@@ -96,6 +96,7 @@ $TPLMSG['CONTACT_US_SITE']="웹사이트";
 $TPLMSG['CONTACT_US_COUNTRY']="국가";
 $TPLMSG['CONTACT_US_CITY']="도시";
 $TPLMSG['CONTACT_US_SUBJECT']="제목";
+$TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE']="Thank you for your letter,  we will reply as soon as possible , thank you for your support for %s again";
 
 //EPAPER
 $TPLMSG['SUBSCRIBE'] = "구독하기";

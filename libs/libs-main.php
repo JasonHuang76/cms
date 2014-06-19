@@ -2075,6 +2075,7 @@ class MAINFUNC{
         if(file_exists($_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/".$template.".html")){
             $tpl = new TemplatePower( $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/template.html" );
             $tpl->assignInclude( "MAIN", $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/".$template.".html"); //主功能顯示區
+            $tpl->assignInclude( "FOOTER", $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/".$cms_cfg['language']."/footer.html"); //頁腳
             $tpl->prepare();
             //初始化重要樣版變數
             $tpl->assignGlobal("MSG_HOME",$TPLMSG['HOME']);

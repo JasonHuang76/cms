@@ -224,6 +224,10 @@ class CONTACTUS{
                 if ( $db_msg == "" ) {
                     unset($_SESSION[$cms_cfg['sess_cookie_name']]["contactus"]);
                     //新增完成寄送確認信
+                    //全域內容
+                    $tpl->assignGlobal(array(
+                        "TOP_MESSAGE" => sprintf($TPLMSG['CONTACT_US_MAIL_TOP_MESSAGE'],App::getHelper('session')->sc_company),
+                    ));
                     //寄送訊息
                     $tpl->newBlock("CONTACTUS_MAIL");
                     $tpl->assign(array(
