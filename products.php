@@ -166,16 +166,14 @@ class PRODUCTS{
                 }
                 $this->layer_link($row);
                 $seo_H1=$row["pc_name"];//預設h1
-                //第一頁才顯示設定的meta,第二頁以後抓分類名稱或產品名稱做為meta title
-                if(empty($_REQUEST["nowp"])){
-                    $meta_array=array("meta_title"=>$row["pc_seo_title"],
-                                      "meta_keyword"=>$row["pc_seo_keyword"],
-                                      "meta_description"=>$row["pc_seo_description"],
-                    );
-                    $seo_H1=(trim($row["pc_seo_h1"])!="")?$row["pc_seo_h1"]:$row["pc_name"];
-                    $sec_page_meta_title = $row["pc_seo_title"];
-                    $main->header_footer($meta_array,$seo_H1);
-                }
+                //第一頁才顯示設定的meta,第二頁以後清空
+                $meta_array=array(
+                    "meta_title"       => $row["pc_seo_title"],
+                    "meta_keyword"     => (empty($_REQUEST["nowp"]))?$row["pc_seo_keyword"]:'',
+                    "meta_description" => (empty($_REQUEST["nowp"]))?$row["pc_seo_description"]:'',
+                );
+                $seo_H1=(trim($row["pc_seo_h1"])!="")?$row["pc_seo_h1"]:$row["pc_name"];
+                $main->header_footer($meta_array,$seo_H1);
                 if(!empty($row["pc_id"])){
                     $this->parent=$row["pc_id"];
                 }
@@ -444,15 +442,6 @@ class PRODUCTS{
                         $tpl->assign("TAG_PRODUCTS_TRTD","</tr><tr>");
                     }
                 }
-            }
-            //顯示第二頁以後的meta title
-            if(!empty($_REQUEST["nowp"])){
-                $meta_array=array("meta_title"=>$sec_page_meta_title,
-                                  "meta_keyword"=> '',
-                                  "meta_description"=> '',
-                );
-                //$seo_H1  預設抓分類名稱
-                $main->header_footer($meta_array,$seo_H1);
             }
         }
     }
