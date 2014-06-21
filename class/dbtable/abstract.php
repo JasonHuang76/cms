@@ -244,7 +244,26 @@ abstract class Dbtable_Abstract {
             $origin_row[$this->sort_col] = $this->get_max_sort_value();
         }
         $this->writeData($origin_row);
-    }    
+    }
+    //取得items dbtable
+    function items(){
+        $item_class = str_replace("Dbtable_","",get_class($this))."_items";
+        return App::getHelper('dbtable')->getDbtable($item_class);
+    }
+    //與items一起寫入資料
+    function writeDataWithItems($post,$items){
+        $this->writeData($post);
+        $pk = ($post[$this->pk])?$post[$this->pk]:$this->get_insert_id();
+        if(empty($pk)){
+            throw new Exception("should be ".$this->pk." value write with items");
+        }
+        foreach($items as $item){
+            $item[$this->pk] = $pk;
+            $this->items()->writeData($item);
+        }
+        
+    }
+    
 }
 
 ?>
