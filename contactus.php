@@ -276,17 +276,17 @@ class CONTACTUS{
                         //載入對照語言語系檔
                         include "lang/eng-utf8.php";
                         $tpl->assignGlobal(array(
-                                "MSG_COMPANY_NAME"   => sprintf("<br/>(%s)",$TPLMSG['COMPANY_NAME']),
-                                "MSG_CATE"           => sprintf("<br/>(%s)",$TPLMSG['CATE']),
-                                "MSG_ADDRESS"        => sprintf("<br/>(%s)",$TPLMSG['ADDRESS']),
-                                "MSG_TEL"            => sprintf("<br/>(%s)",$TPLMSG['TEL']),
-                                "MSG_FAX"            => sprintf("<br/>(%s)",$TPLMSG['FAX']),
-                                "MSG_CONTENT"        => sprintf("<br/>(%s)",$TPLMSG['CONTENT']),
-                                "MSG_ATTACH_FILES"   => sprintf("<br/>(%s)",$TPLMSG['CONTACT_US_ATTACH_FILES']),
-                                "MSG_CONTACT_PERSON" => sprintf("<br/>(%s)",$TPLMSG['CONTACT_PERSON']),     
-                                "MSG_COUNTRY"        => sprintf("<br/>(%s)",$TPLMSG['COUNTRY']),        
-                                "MSG_PRODUCT_LIST"   => sprintf("<br/>(%s)",$TPLMSG['CONTACTUS_PRODUCT_LIST']),
-                                "MSG_POSITION"       => sprintf("<br/>(%s)",$TPLMSG['CONTACTUS_POSITION']),                        
+                                "MSG_COMPANY_NAME_MAPPED"   => sprintf("<br/>(%s)",$TPLMSG['COMPANY_NAME']),
+                                "MSG_CATE_MAPPED"           => sprintf("<br/>(%s)",$TPLMSG['CATE']),
+                                "MSG_ADDRESS_MAPPED"        => sprintf("<br/>(%s)",$TPLMSG['ADDRESS']),
+                                "MSG_TEL_MAPPED"            => sprintf("<br/>(%s)",$TPLMSG['TEL']),
+                                "MSG_FAX_MAPPED"            => sprintf("<br/>(%s)",$TPLMSG['FAX']),
+                                "MSG_CONTENT_MAPPED"        => sprintf("<br/>(%s)",$TPLMSG['CONTENT']),
+                                "MSG_ATTACH_FILES_MAPPED"   => sprintf("<br/>(%s)",$TPLMSG['CONTACT_US_ATTACH_FILES']),
+                                "MSG_CONTACT_PERSON_MAPPED" => sprintf("<br/>(%s)",$TPLMSG['CONTACT_PERSON']),     
+                                "MSG_COUNTRY_MAPPED"        => sprintf("<br/>(%s)",$TPLMSG['COUNTRY']),        
+                                "MSG_PRODUCT_LIST_MAPPED"   => sprintf("<br/>(%s)",$TPLMSG['CONTACTUS_PRODUCT_LIST']),
+                                "MSG_POSITION_MAPPED"       => sprintf("<br/>(%s)",$TPLMSG['CONTACTUS_POSITION']),                        
                         ));
                     }
                     $mail_content=$tpl->getOutputContent();
