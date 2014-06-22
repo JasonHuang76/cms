@@ -98,6 +98,7 @@ $cms_cfg["ws_module"]=array(
         "ws_sitemap_product"=>1,    //sitemap 是否顯示產品連結
         "ws_security"=>1,           //驗証碼(聯絡我們、留言版)
         "ws_country"=>1,            //國家下拉選單(會員,聯絡我們,詢價車,購物車)
+        "ws_address_type"=>'tw',    //表單地址欄位格式，tw是使用台灣區域，其餘為單一地址欄位
         "ws_left_menu_effects"=>1,  //左方產品選單下拉開合特效
         "ws_left_menu_type"=>1,     //0=>over menu,1=>click menu (左方menu顯示產品次分類時啟用)
         "ws_on_contextmenu"=>0,     //禁滑鼠右鍵

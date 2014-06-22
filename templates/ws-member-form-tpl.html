@@ -62,14 +62,38 @@
                     </td>
             </tr>
             <!-- END BLOCK : MOD_EMAIL -->
+            <!-- START BLOCK : SINGLE_ADDRESS -->
+            <tr>
+                <th>{MSG_ADDRESS}</th>
+                <td>
+                    {MSG_ZIP}<input name="m_zip" type="text" class="form-textfield" id="m_zip" value="{VALUE_M_ZIP}" size="10" >&nbsp;<br/>
+                    <input name="m_address" type="text" class="ipt2" id="m_address" value="{VALUE_M_ADDRESS}" size="50" >
+                </td>
+            </tr>
+            <!-- END BLOCK : SINGLE_ADDRESS -->
+            <!-- START BLOCK : TW_ADDRESS -->
             <tr id="m_zone_row">
-                <th>
-                    {MSG_ADDRESS}</th>
+                <th>{MSG_ADDRESS}</th>
                 <td>
                     <select name="m_city" id="m_city"></select><select name="m_area" id="m_area"></select>&nbsp;
                     {MSG_ZIP}<input name="m_zip" type="text" class="form-textfield" id="m_zip" value="{VALUE_M_ZIP}" size="10" >&nbsp;<br/>
-                    <input name="m_address" type="text" class="ipt2" id="m_address" value="{VALUE_M_ADDRESS}" size="50" ></td>
+                    <input name="m_address" type="text" class="ipt2" id="m_address" value="{VALUE_M_ADDRESS}" size="50" >
+                    <script type="text/javascript" src="{TAG_ROOT_PATH}js/zone_box.js"></script>
+                    <script type="text/javascript">
+                        jQuery(function($){
+                           //設定城市挑選器
+                            $("#m_zone_row").zone_box({
+                                    MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
+                                    SUB_ID : "m_area", // 區域元素 ID (select 元素)
+                                    ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
+                                    ZIP_GET : "", // 輸入郵遞區號
+                            });     
+                            $("#m_zip").trigger("keyup");
+                        });
+                    </script>                
+                </td>
             </tr>
+            <!-- END BLOCK : TW_ADDRESS -->
             <tr>
                 <th>
                     <font color="#ff0000">*</font>{MSG_TEL}</th>
@@ -124,18 +148,5 @@
     
         <input type="hidden" name="action_mode" value="{VALUE_ACTION_MODE}" />
 </form>
-<script type="text/javascript" src="{TAG_ROOT_PATH}js/zone_box.js"></script>
-<script type="text/javascript">
-    jQuery(function($){
-       //設定城市挑選器
-        $("#m_zone_row").zone_box({
-                MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
-                SUB_ID : "m_area", // 區域元素 ID (select 元素)
-                ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
-                ZIP_GET : "", // 輸入郵遞區號
-        });     
-        $("#m_zip").trigger("keyup");
-    });
-</script>
 
 

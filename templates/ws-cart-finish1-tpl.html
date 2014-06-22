@@ -195,14 +195,37 @@
                     </select></td>
             </tr>
             <!-- END BLOCK : SELECT_COUNTRY -->
+            <!-- START BLOCK : SINGLE_ADDRESS -->
+            <tr>
+                <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
+                <td>
+                    {MSG_ZIP}<input name="m_zip" id="m_zip" type="text"   value="{VALUE_M_ZIP}" size="5"  >
+                    <input name="m_address" class="validate[required]" type="text"   value="{VALUE_M_ADDRESS}" style="width:98%" ></td>
+            </tr>
+            <!-- END BLOCK : SINGLE_ADDRESS -->
+            <!-- START BLOCK : TW_ADDRESS -->
             <tr id="m_zone_row">
                 <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
                 <td>
                     <select name="m_city" id="m_city"></select>
                     <select name="m_area" id="m_area"></select>  
                     {MSG_ZIP}<input name="m_zip" id="m_zip" type="text"   value="{VALUE_M_ZIP}" size="5"  >
-                    <input name="m_address" class="validate[required]" type="text"   value="{VALUE_M_ADDRESS}" style="width:98%" ></td>
+                    <input name="m_address" class="validate[required]" type="text"   value="{VALUE_M_ADDRESS}" style="width:98%" >
+                    <script type="text/javascript">
+                       //設定城市挑選器
+                       jQuery(function($){
+                            $("#m_zone_row").zone_box({
+                                    MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
+                                    SUB_ID : "m_area", // 區域元素 ID (select 元素)
+                                    ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
+                                    ZIP_GET : "", // 輸入郵遞區號
+                            });
+                            $("#m_zip").trigger('keyup');
+                       });
+                    </script>
+                </td>
             </tr>
+            <!-- END BLOCK : TW_ADDRESS -->
             <tr>
                 <th><font color="#ff0000">*</font>{MSG_TEL}</th>
                 <td>
@@ -240,14 +263,37 @@
                         <input name="m_reci_email" type="text" id="m_reci_email" class="validate[required,custom[email]]"   value="" size="30" >
                         </td>
                 </tr>
+                <!-- START BLOCK : SINGLE_ADDRESS_RECI -->
+                <tr>
+                    <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
+                    <td>
+                        {MSG_ZIP}<input name="m_reci_zip" id="m_reci_zip" type="text"   value=""  size="5"  />                    
+                        <input name="m_reci_address" id="m_reci_address" class="validate[required]" type="text"   value="" style="width:98%">
+                    </td>
+                </tr>
+                <!-- END BLOCK : SINGLE_ADDRESS_RECI -->
+                <!-- START BLOCK : TW_ADDRESS_RECI -->
                 <tr id="m_reci_zone_row">
                     <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
                     <td>
                         <select name="m_reci_city" id="m_reci_city"></select>
                         <select name="m_reci_area" id="m_reci_area"></select>  
                         {MSG_ZIP}<input name="m_reci_zip" id="m_reci_zip" type="text"   value=""  size="5"  />                    
-                        <input name="m_reci_address" id="m_reci_address" class="validate[required]" type="text"   value="" style="width:98%"></td>
+                        <input name="m_reci_address" id="m_reci_address" class="validate[required]" type="text"   value="" style="width:98%">
+                        <script type="text/javascript">
+                            jQuery(function($){
+                                $("#m_reci_zone_row").zone_box({
+                                        MAIN_ID : "m_reci_city", // 縣市元素 ID (select 元素)
+                                        SUB_ID : "m_reci_area", // 區域元素 ID (select 元素)
+                                        ZIP_ID : "m_reci_zip", // 郵遞區號 ID (input 元素)
+                                        ZIP_GET : "", // 輸入郵遞區號
+                                });
+                                $("#m_reci_zip").trigger('keyup');
+                            });
+                        </script>
+                    </td>
                 </tr>
+                <!-- END BLOCK : TW_ADDRESS_RECI -->
                 <tr>
                     <th><font color="#ff0000">*</font>{MSG_TEL}</th>
                     <td>
@@ -317,23 +363,27 @@
             var _to = ['m_reci_contact_s','m_reci_name','m_reci_email','m_reci_city','m_reci_area','m_reci_zip','m_reci_address','m_reci_tel','m_reci_cellphone'];
             if(checked){//核取
                  for(var i=0;i<_from.length;i++){
-                     if(form[_to[i]].tagName.toUpperCase()=='SELECT'){
-                         form[_to[i]].selectedIndex = form[_from[i]].selectedIndex;
-                     }else{
-                         form[_to[i]].value = form[_from[i]].value;
-                     }
-                     if(_to[i]=="m_reci_zip"){
-                         jQuery(form[_to[i]]).trigger('keyup');
-                     }else{
-                         jQuery(form[_to[i]]).trigger('blur');
+                     if(typeof form[_from[i]] !='undefined' && typeof form[_to[i]] !='undefined' ){
+                         if(form[_to[i]].tagName.toUpperCase()=='SELECT'){
+                             form[_to[i]].selectedIndex = form[_from[i]].selectedIndex;
+                         }else{
+                             form[_to[i]].value = form[_from[i]].value;
+                         }
+                         if(_to[i]=="m_reci_zip"){
+                             jQuery(form[_to[i]]).trigger('keyup');
+                         }else{
+                             jQuery(form[_to[i]]).trigger('blur');
+                         }
                      }
                  }
             }else{//非核取
                  for(var i=0;i<_to.length;i++){
-                     if(form[_to[i]].tagName.toUpperCase()=='SELECT'){
-                         form[_to[i]].selectedIndex=0;
-                     }else{
-                         form[_to[i]].value = '';
+                     if(typeof form[_to[i]] !='undefined' ){
+                         if(form[_to[i]].tagName.toUpperCase()=='SELECT'){
+                             form[_to[i]].selectedIndex=0;
+                         }else{
+                             form[_to[i]].value = '';
+                         }
                      }
                  }
             }
@@ -437,20 +487,6 @@
 //                       $("#formID2").trigger("submit");
 //                   }
                });
-               //設定城市挑選器
-                $("#m_zone_row").zone_box({
-			MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
-			SUB_ID : "m_area", // 區域元素 ID (select 元素)
-			ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
-			ZIP_GET : "", // 輸入郵遞區號
-                });
-                $("#m_reci_zone_row").zone_box({
-			MAIN_ID : "m_reci_city", // 縣市元素 ID (select 元素)
-			SUB_ID : "m_reci_area", // 區域元素 ID (select 元素)
-			ZIP_ID : "m_reci_zip", // 郵遞區號 ID (input 元素)
-			ZIP_GET : "", // 輸入郵遞區號
-                });
-                $("#m_zip").trigger('keyup');
                 $(".sw_delivery").disabler({
                     disable:true
                 });

@@ -86,7 +86,7 @@ class CART{
                     $tpl->newBlock("JS_FORMVALID");
                     $tpl->newBlock("JQUERY_UI_SCRIPT");
                     $tpl->newBlock("DATEPICKER_SCRIPT_IN_CART");
-                    $main->jQuery_init("zone");
+                    if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->jQuery_init("zone");
                     $this->cart_finish();
                 }
                 $this->ws_tpl_type=1;
@@ -517,7 +517,19 @@ class CART{
         //稱謂下拉選單
         $tpl->assignGlobal("TAG_CONTACT_WITH_S",$main->contact_s_select_r($_SESSION[$cms_cfg['sess_cookie_name']]["contactus"]["cu_contact_s"],"CART"));
         $tpl->assignGlobal("TAG_CONTACTR_WITH_S",$main->contact_s_select_r($_SESSION[$cms_cfg['sess_cookie_name']]["contactus"]["cu_contact_s"],"CARTR"));
+        //地址欄位格式
+        if($cms_cfg['ws_module']['ws_address_type']=='tw'){
+            $tpl->newBlock("TW_ADDRESS");
+        }else{
+            $tpl->newBlock("SINGLE_ADDRESS");
+        }
         if(!empty($shopping)){
+            //收件者地址欄位格式
+            if($cms_cfg['ws_module']['ws_address_type']=='tw'){
+                $tpl->newBlock("TW_ADDRESS_RECI");
+            }else{
+                $tpl->newBlock("SINGLE_ADDRESS_RECI");
+            }              
             //運送區域
             $tpl->assignGlobal("VALUE_SHIPMENT_TYPE",$_SESSION[$cms_cfg['sess_cookie_name']]["shipment_type"]);
             $tpl->assignGlobal("VALUE_SHIPMENT_ZONE",$ws_array["shippment_type"][$_SESSION[$cms_cfg['sess_cookie_name']]["shipment_type"]]);
@@ -544,7 +556,7 @@ class CART{
             }
             //付款說明
             $this->load_term($tpl);
-        }
+        }    
     }
     //載入付款說明
     function load_term($tpl){

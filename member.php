@@ -266,6 +266,12 @@ class MEMBER{
             $main->country_select($row["m_country"]);
         }
         $main->contact_s_select($row['m_contact_s'],$zone="MEMBER");
+        //地址欄位格式
+        if($cms_cfg['ws_module']['ws_address_type']=='tw'){
+            $tpl->newBlock("TW_ADDRESS");
+        }else{
+            $tpl->newBlock("SINGLE_ADDRESS");
+        }
     }
     //會員管理--資料更新================================================================
     function member_replace(){

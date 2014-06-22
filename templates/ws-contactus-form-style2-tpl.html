@@ -35,10 +35,34 @@
               <td>{MSG_COMPANY_NAME}</td>
               <td><input name="cu_company_name"  value="{VALUE_CU_COMPANY_NAME}" type="text" /></td>
             </tr>          
+          <!-- START BLOCK : SINGLE_ADDRESS -->
           <tr class="altrow">
             <td>{MSG_ADDRESS}</td>
             <td><input name="cu_address" type="text" class="input" value="{VALUE_CU_ADDRESS}" ></td>
-          </tr>            
+          </tr>    
+          <!-- END BLOCK : SINGLE_ADDRESS -->
+          <!-- START BLOCK : TW_ADDRESS -->
+          <tr id="m_zone_row">
+            <td>{MSG_ADDRESS}</td>
+            <td>
+                <select name="cu_city" id="cu_city" style="width:60px"></select>&nbsp;<select name="cu_area" id="cu_area" style="width:60px"></select>&nbsp;{MSG_ZIP}<input name="cu_zip" id="cu_zip" type="text" class="input" style="width:60px" value="{VALUE_CU_ZIP}" size="5"><br/>
+                <input name="cu_address" type="text" class="input" value="{VALUE_CU_ADDRESS}" >
+                    <script type="text/javascript" src="{TAG_ROOT_PATH}js/zone_box.js"></script>
+                    <script type="text/javascript">
+                        jQuery(function($){
+                           //設定城市挑選器
+                            $("#m_zone_row").zone_box({
+                                    MAIN_ID : "cu_city", // 縣市元素 ID (select 元素)
+                                    SUB_ID : "cu_area", // 區域元素 ID (select 元素)
+                                    ZIP_ID : "cu_zip", // 郵遞區號 ID (input 元素)
+                                    ZIP_GET : "", // 輸入郵遞區號
+                            });     
+                            $("#cu_zip").trigger("keyup");
+                        });
+                    </script>                 
+            </td>
+          </tr>
+          <!-- END BLOCK : TW_ADDRESS -->          
           <tr class="altrow">
             <td>{MSG_TEL}</td>
             <td><input name="cu_tel" type="text" class="input" value="{VALUE_CU_TEL}" ></td>
