@@ -33,7 +33,7 @@ class Model_Session implements arrayaccess {
     function __unset($name) {
         unset($this->_session[$name]);
     }
-    static function factory($sess_cookie_name,$options){
+    static function factory($sess_cookie_name){
         if(self::$_handler === null){
             self::$_handler = new self($sess_cookie_name);
         }
