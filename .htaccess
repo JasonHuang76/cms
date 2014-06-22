@@ -52,6 +52,13 @@ RewriteRule ^.*$ - [NC,L]
 #RewriteRule ^(showroom)/([^/]+).html$  aboutus.php?au_cate=$1&f=$2 [L]
 #RewriteRule ^(showroom)-(\d+).html$  aboutus.php?au_cate=$1&au_id=$2 [L]
 
+#獨立news類別
+#RewriteRule ^(uniq1|uniq2).htm$  news2.php?filename=$1 [L]
+#RewriteRule ^(uniq1|uniq2)/(\w+).htm$  news2.php?filename=$1&func=n_list&f=$2 [L]
+#RewriteRule ^(uniq1|uniq2)-(\d+).htm$  news2.php?filename=$1&func=n_list&nc_id=$2 [L]
+#RewriteRule ^(uniq1|uniq2)/(\w+).html$  news2.php?filename=$1&func=n_show&f=$2 [L]
+#RewriteRule ^(uniq1|uniq2)-(\d+)-(\d+).html$  news2.php?filename=$1&func=n_show&nc_id=$2&n_id=$3 [L]
+
 RewriteRule ^new-products.htm$  products.php?func=p_new [L]
 RewriteRule ^pro-products.htm$  products.php?func=p_pro [L]
 RewriteRule ^hot-products.htm$  products.php?func=p_hot [L]

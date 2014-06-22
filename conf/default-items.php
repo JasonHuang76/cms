@@ -65,7 +65,7 @@ $ws_array["main"]=array("aboutus" => $TPLMSG["ABOUT_US"],
                         "service" => $TPLMSG["SERVICE"],
                         "contactus" => $TPLMSG["CONTACT_US"],
                         "guestbook" => $TPLMSG['GUESTBOOK'],
-                        "sitemap" => $TPLMSG["SITEMAP"]
+                        "sitemap" => $TPLMSG["SITEMAP"],
                     );
 $ws_array["left"]=array("aboutus" => $TPLMSG["ABOUT_US"],
                         "products" => $TPLMSG["PRODUCTS"],
@@ -79,7 +79,7 @@ $ws_array["left"]=array("aboutus" => $TPLMSG["ABOUT_US"],
                         "service" => $TPLMSG["SERVICE"],
                         "contactus" => $TPLMSG["CONTACT_US"],
                         "guestbook" => $TPLMSG['GUESTBOOK'],
-                        "sitemap" => $TPLMSG["SITEMAP"]
+                        "sitemap" => $TPLMSG["SITEMAP"],
                     );
 $ws_array["left_desc"]=array("aboutus" => $TPLMSG["ABOUT_US_CATE_DESC"],
                         "products" => $TPLMSG["PRODUCTS_CATE_DESC"],
@@ -93,7 +93,7 @@ $ws_array["left_desc"]=array("aboutus" => $TPLMSG["ABOUT_US_CATE_DESC"],
                         "service" => $TPLMSG["SERVICE_CATE_DESC"],
                         "contactus" => $TPLMSG["CONTACT_US_CATE_DESC"],
                         "guestbook" => $TPLMSG['GUESTBOOK_CATE_DESC'],
-                        "sitemap" => $TPLMSG["SITEMAP_CATE_DESC"]
+                        "sitemap" => $TPLMSG["SITEMAP_CATE_DESC"],
                     );
 $ws_array['products_info_fields_title'] = array();//例如：array('自訂1','自訂2')
 $ws_array['products_info_fields_sort'] = array();//因為內建欄位是3個，所以原則上從4開始編, 例如：array(4,5)

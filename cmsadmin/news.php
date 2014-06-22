@@ -21,6 +21,31 @@ class NEWS{
                 }    
                 $this->ws_tpl_type=0;
                 break;
+            case "nc_indep_add"://新增獨立類別
+            case "nc_indep_mod"://編輯獨立類別
+                $this->current_class="ND";
+                $this->ws_tpl_file = "templates/ws-manage-news-indep-cate-form-tpl.html";
+                $this->ws_load_tp($this->ws_tpl_file);
+                $tpl->newBlock("JS_JQ_UI");
+                $tpl->newBlock("JS_MAIN");
+                $tpl->newBlock("JS_FORMVALID");
+                $this->news_indep_cate_form();
+                $this->ws_tpl_type=1;                
+                break;
+            case "nc_indep_list"://獨立類別管理列表
+                $this->current_class="ND";
+                $this->ws_tpl_file = "templates/ws-manage-news-indep-cate-list-tpl.html";
+                $this->ws_load_tp($this->ws_tpl_file);
+                $tpl->newBlock("JS_MAIN");
+                $this->news_indep_cate_list();
+                $this->ws_tpl_type=1;
+                break;
+            case "nc_indep_replace"://寫入獨立類別
+                $this->nc_indep_replace();
+                break;            
+            case "nc_indep_del"://刪除獨立類別
+                $this->nc_indep_del();
+                break;            
             case "nc_list"://最新消息分類列表
                 $this->current_class="NC";
                 $this->ws_tpl_file = "templates/ws-manage-news-cate-list-tpl.html";
@@ -231,8 +256,6 @@ class NEWS{
                                           "VALUE_NC_SUBJECT" => $row["nc_subject"],
                                           "STR_NC_STATUS_CK1" => ($row["nc_status"])?"checked":"",
                                           "STR_NC_STATUS_CK0" => ($row["nc_status"])?"":"checked",
-                                          "STR_NC_INDEP_CK1" => ($row["nc_indep"])?"checked":"",
-                                          "STR_NC_INDEP_CK0" => ($row["nc_indep"])?"":"checked",
                                           "MSG_MODE" => $TPLMSG['MODIFY']
                 ));
                 if($this->seo){
@@ -246,70 +269,29 @@ class NEWS{
                 }
             }else{
                 header("location : news.php?func=nc_list");
+                die();
             }
+        }
+        //獨立類別設定
+        if($cms_cfg['ws_module']['ws_news_unique_cate']){
+            $tpl->newBlock("UNIQUE_CATE_OPTION");
+            $tpl->assign(array(
+                "STR_NC_INDEP_CK1" => ($row["nc_indep"])?"checked":"",
+                "STR_NC_INDEP_CK0" => ($row["nc_indep"])?"":"checked",
+            ));
         }
     }
     //最新消息分類--資料更新
     function news_cate_replace(){
         global $db,$tpl,$cms_cfg,$TPLMSG;
-        if($this->seo){
-            $add_field_str="nc_seo_title,
-                            nc_seo_keyword,
-                            nc_seo_description,
-                            nc_seo_filename,
-                            nc_seo_h1,
-                            nc_seo_short_desc,";
-            $add_value_str="'".htmlspecialchars($_REQUEST["nc_seo_title"])."',
-                            '".htmlspecialchars($_REQUEST["nc_seo_keyword"])."',
-                            '".htmlspecialchars($_REQUEST["nc_seo_description"])."',
-                            '".htmlspecialchars($_REQUEST["nc_seo_filename"])."',
-                            '".htmlspecialchars($_REQUEST["nc_seo_h1"])."',
-                            '".htmlspecialchars($_REQUEST["nc_seo_short_desc"])."',";
-            $update_str="nc_seo_title='".htmlspecialchars($_REQUEST["nc_seo_title"])."',
-                         nc_seo_keyword='".htmlspecialchars($_REQUEST["nc_seo_keyword"])."',
-                         nc_seo_description='".htmlspecialchars($_REQUEST["nc_seo_description"])."',
-                         nc_seo_filename='".htmlspecialchars($_REQUEST["nc_seo_filename"])."',
-                         nc_seo_h1='".htmlspecialchars($_REQUEST["nc_seo_h1"])."',
-                         nc_seo_short_desc='".htmlspecialchars($_REQUEST["nc_seo_short_desc"])."',";
-        }
-        switch ($_REQUEST["action_mode"]){
-            case "add":
-                $sql="
-                    insert into ".$cms_cfg['tb_prefix']."_news_cate (
-                        nc_status,
-                        nc_indep,
-                        nc_sort,
-                        ".$add_field_str."
-                        nc_subject
-                    ) values (
-                        ".$_REQUEST["nc_status"].",
-                        ".$_REQUEST["nc_indep"].",
-                        '".$_REQUEST["nc_sort"]."',
-                        ".$add_value_str."
-                        '".htmlspecialchars($_REQUEST["nc_subject"])."'
-                    )";
-                break;
-            case "mod":
-                $sql="
-                    update ".$cms_cfg['tb_prefix']."_news_cate set
-                        nc_status=".$_REQUEST["nc_status"].",
-                        nc_indep=".$_REQUEST["nc_indep"].",
-                        nc_sort='".$_REQUEST["nc_sort"]."',
-                        ".$update_str."
-                        nc_subject='".htmlspecialchars($_REQUEST["nc_subject"])."'
-                    where nc_id='".$_REQUEST["nc_id"]."'";
-                break;
-        }
-        if(!empty($sql)){
-            $rs = $db->query($sql);
-            $db_msg = $db->report();
-            if ( $db_msg == "" ) {
-                $tpl->assignGlobal( "MSG_ACTION_TERM" , $TPLMSG["ACTION_TERM"]);
-                $goto_url=$cms_cfg["manage_url"]."news.php?func=nc_list&nc_id=".$_REQUEST["nc_id"]."&st=".$_REQUEST["st"]."&sk=".$_REQUEST["sk"]."&nowp=".$_REQUEST["nowp"]."&jp=".$_REQUEST["jp"];
-                $this->goto_target_page($goto_url);
-            }else{
-                $tpl->assignGlobal( "MSG_ACTION_TERM" , "DB Error: $db_msg, please contact MIS");
-            }
+        App::getHelper('dbtable')->news_cate->writeData($_POST);
+        $db_msg = App::getHelper('dbtable')->news_cate->report();
+        if ( $db_msg == "" ) {
+            $tpl->assignGlobal( "MSG_ACTION_TERM" , $TPLMSG["ACTION_TERM"]);
+            $goto_url=$cms_cfg["manage_url"]."news.php?func=nc_list&nc_id=".$_REQUEST["nc_id"]."&st=".$_REQUEST["st"]."&sk=".$_REQUEST["sk"]."&nowp=".$_REQUEST["nowp"]."&jp=".$_REQUEST["jp"];
+            $this->goto_target_page($goto_url);
+        }else{
+            $tpl->assignGlobal( "MSG_ACTION_TERM" , "DB Error: $db_msg, please contact MIS");
         }
     }
     //最新消息分類--刪除
@@ -945,6 +927,97 @@ class NEWS{
                 echo 1;
             }
         }
+    }
+    //獨立類別列表
+    function news_indep_cate_list(){
+        global $cms_cfg,$tpl,$ws_array,$TPLMSG;
+        $tpl->assignGlobal( array(
+            'TAG_DELETE_CHECK_STR' => '確定刪除?',
+        ));
+        $db = App::getHelper('db');
+        $sql = "select * from ".$db->prefix('news_cate_class')." order by filename ".$cms_cfg['sort_pos'];
+        $res = $db->query($sql);
+        $i=0;
+        while($row = $db->fetch_array($res,1)){
+            $i++;
+            $tpl->newBlock("NEWS_INDEP_CATE_LIST");
+            $tpl->assign(array(
+                "ID"   => $row['id'],
+                "NAME" => $ws_array["main"][$row['filename']],
+                "FILENAME" => $row['filename'],
+                'TAG_SERIAL' => $i,
+            ));
+        }
+    }
+    //獨立類別編輯表單
+    function news_indep_cate_form(){
+        global $db,$tpl,$cms_cfg,$TPLMSG,$main;        
+        //欄位名稱
+        $tpl->assignGlobal( array(
+            "MSG_MODE" => $TPLMSG['ADD'],
+        ));
+        if($_GET['id']){
+            $sql = "select * from ".$db->prefix("news_cate_class")." where id='".$_GET['id']."'";
+            $row = $db->query_firstrow($sql);
+            if(!$row){
+                die('record not find!');
+            }else{
+                $tpl->assignGlobal( array(
+                    "MSG_MODE" => $TPLMSG['MODIFY'],
+                    "VALUE_ID" => $row['id'],
+                    "VALUE_NAME" => $row['name'],
+                    "VALUE_FILENAME" => $row['filename'],
+                ));
+            }
+        }
+        //取得獨立類別
+        $sql = "select nc_id,nc_subject,nc_indep_id from ".$db->prefix("news_cate")." where nc_indep='1' order by nc_sort ".$cms_cfg['sort_pos'];
+        $res = $db->query($sql,true);
+        while($tmp = $db->fetch_array($res,1)){
+            if($tmp['nc_indep_id']==$row['id']){
+                $tpl->newBlock("CURRENT_SETS_LIST");
+            }else{
+                $tpl->newBlock("OTHER_SETS_LIST");
+            }
+            $tpl->assign(array(
+                "VALUE_NC_ID" => $tmp['nc_id'],
+                "VALUE_NC_SUBJECT" => $tmp['nc_subject'],
+            ));
+        }
+    }
+    //寫入獨立類別
+    function nc_indep_replace(){
+        global $db,$tpl,$cms_cfg,$TPLMSG,$main;
+        App::getHelper('dbtable')->news_cate_class->writeData($_POST);
+        $nc_indep_id = $_POST['id']?$_POST['id']:App::getHelper('dbtable')->news_cate_class->get_insert_id();
+        if($_POST['current_sets'] && is_array($_POST['current_sets'])){
+            $nc_sort = 1;
+            foreach($_POST['current_sets'] as $nc_id){
+                $data_to_write = array(
+                    'nc_id'       => $nc_id,
+                    'nc_sort'     => $nc_sort++,
+                    'nc_indep_id' => $nc_indep_id,
+                );
+                App::getHelper('dbtable')->news_cate->writeData($data_to_write);
+            }
+        }
+        if($_POST['other_sets'] && is_array($_POST['other_sets'])){
+            foreach($_POST['other_sets'] as $nc_id){
+                $data_to_write = array(
+                    'nc_id'       => $nc_id,
+                    'nc_indep_id' => 0,
+                );
+                App::getHelper('dbtable')->news_cate->writeData($data_to_write);
+            }
+        }
+        header('location:news.php?func=nc_indep_mod&id='.$nc_indep_id);
+    }
+    //刪除獨立類別
+    function nc_indep_del(){
+        if($_GET['id']){
+            App::getHelper('dbtable')->news_cate_class->delete($_GET['id']);
+        }
+        header('location:'.$_SERVER['HTTP_REFERER']);
     }
 }
 //ob_end_flush();

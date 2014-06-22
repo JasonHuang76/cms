@@ -1,0 +1,73 @@
+<!-- INCLUDE BLOCK : HEADER -->
+<div id="man_zone">
+<h1>最新消息獨立分類集合{MSG_MODE}</h1>
+<form name="myform" method="post" action="news.php?func=nc_indep_replace"  class="formular" id="formID">
+    <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="formtable">
+        <tr>
+            <th width="20%"><font color="red">*</font>檔名:</th>
+            <td width="80%">
+                <input name="filename" id="filename" type="text" class="validate[required]"  value="{VALUE_FILENAME}" size="60" maxlength="255">
+                <div class="desc">
+                    類似aboutus的au_cate，需於default-items.php裡的$ws_array["main"]再作設定。
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>獨立類別列表</th>
+            <td>
+                <table width="400" >
+                    <tr>
+                        <th width="200">本集合類別</th>
+                        <th width="200">其他獨立類別</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul id="current_indep_cate" class="connectedSortable">
+                                <!-- START BLOCK : CURRENT_SETS_LIST -->
+                                <li><input type="hidden" name="current_sets[]" value="{VALUE_NC_ID}"/>{VALUE_NC_SUBJECT}</li>
+                                <!-- END BLOCK : CURRENT_SETS_LIST -->
+                            </ul>
+                        </td>
+                        <td>
+                            <ul id="other_indep_cate" class="connectedSortable">
+                                <!-- START BLOCK : OTHER_SETS_LIST -->
+                                <li><input type="hidden" name="other_sets[]" value="{VALUE_NC_ID}"/>{VALUE_NC_SUBJECT}</li>
+                                <!-- END BLOCK : OTHER_SETS_LIST -->
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <div class="desc">*請使用滑鼠拖曳方塊</div>
+                <script>
+                    jQuery(function($){
+                        $( "#current_indep_cate, #other_indep_cate" ).sortable({
+                            placeholder: "ui-state-highlight",
+                            connectWith: ".connectedSortable",
+                            forceHelperSize: true,
+                            start:function(evt,ui){
+                                ui.item.addClass("ui-state-dropping");
+                            },
+                            stop:function(evt,ui){
+                                ui.item.removeClass("ui-state-dropping");
+                            }
+                        }).disableSelection();    
+                        $( "#current_indep_cate" ).on( "sortreceive", function( event, ui ) {
+                            ui.item.find(":hidden:first").attr('name','current_sets[]');
+                        } );
+                        $( "#other_indep_cate" ).on( "sortreceive", function( event, ui ) {
+                            ui.item.find(":hidden:first").attr('name','other_sets[]');
+                        } );
+                    });
+                </script>
+            </td>
+        </tr> 
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+                <input type="submit" name="submit" value="{MSG_MODE}" />&nbsp;&nbsp;&nbsp;<input type="button" name="back" value="回列表頁" onclick="location.href='news.php?func=nc_indep_list'" /></td>
+        </tr>
+    </table>
+    <input type="hidden" name="id" value="{VALUE_ID}">
+</form>
+</div>
+<!-- INCLUDE BLOCK : FOOTER -->

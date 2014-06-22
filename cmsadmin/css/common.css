@@ -659,3 +659,25 @@ span.current{color:#f00}
 .app_chk_box{float:left;margin:5px;border:1px solid grey;padding:4px;line-height:20px;}
 .app_chk_box input{margin:0}
 .app_chk_box .child{margin:0 0 0 20px;float:none;border:none;padding:0}
+.connectedSortable{
+    list-style: none;
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:30px;
+}
+.connectedSortable li,.connectedSortable .ui-state-highlight{
+    display:block;
+    border:1px solid grey;
+    padding: 5px 3px;
+    height:20px;
+    margin:3px 0;
+    background-color: #fff;
+}
+.connectedSortable .ui-state-highlight{
+    border:1px solid #0f0;
+    
+}
+.connectedSortable .ui-state-dropping{
+    border-color: #980203;
+}

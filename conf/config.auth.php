@@ -34,6 +34,7 @@ $cms_cfg["ws_module"]=array(
         "ws_inquiry"=>1,            //詢問信管理
         "ws_inquiry_type"=>0,       //0=>批次詢問車, 1=>單一詢問車
         "ws_news"=>1,               //最新消息
+        "ws_news_unique_cate"=>0,   //最新消息獨立類別，類似au_cate，將特定news類別集合為獨立頁面
         "ws_news_upfiles"=>0,       //最新消息上傳附檔
         "ws_new_product"=>0,        //最新產品
         "ws_products"=>1,           //產品管理
