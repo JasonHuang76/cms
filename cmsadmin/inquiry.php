@@ -186,7 +186,7 @@ class INQUIRY{
                                           "VALUE_I_TEL" => $row["i_tel"],
                                           "VALUE_I_CELLPHONE" => $row["i_cellphone"],
                                           "VALUE_I_ZIP" => $row["i_zip"],
-                                          "VALUE_I_ADDRESS" => $row["i_address"],
+                                          "VALUE_I_ADDRESS" => $row["i_city"].$row["i_area"].$row["i_address"],
                                           "VALUE_I_EMAIL" => $row["i_email"],
                                           "VALUE_I_CONTENT" => $row["i_content"],
                                           "VALUE_I_REPLY" => $row["i_reply"],
