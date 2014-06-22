@@ -185,48 +185,21 @@ class CONTACTUS{
                 if(is_array($_POST['cu_pid'])){
                     $pid_str = implode(",",$_POST['cu_pid']);
                 }
-                $sql="
-                    insert into ".$cms_cfg['tb_prefix']."_contactus (
-                        m_id,
-                        cu_cate,
-                        cu_status,
-                        cu_company_name,
-                        cu_contact_s,
-                        cu_name,
-                        cu_position,
-                        cu_tel,
-                        cu_fax,
-                        cu_country,
-                        cu_address,
-                        cu_email,
-                        cu_content,
-                        cu_file,
-                        cu_ip,
-                        cu_ip_country,                        
-                        cu_pid_str,                        
-                        cu_modifydate
-                    ) values (
-                        '".$this->m_id."',
-                        '".mysql_real_escape_string($_REQUEST["cu_cate"])."',
-                        '0',
-                        '".mysql_real_escape_string($_REQUEST["cu_company_name"])."',
-                        '".$ws_array["contactus_s"][$_REQUEST["cu_contact_s"]]."',
-                        '".mysql_real_escape_string($_REQUEST["cu_name"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_position"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_tel"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_fax"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_country"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_address"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_email"])."',
-                        '".mysql_real_escape_string($_REQUEST["cu_content"])."',
-                        '".$file."',
-                        '".$ip_country['address']."',
-                        '".$ip_country['country']."',                            
-                        '".$pid_str."',                            
-                        '".date("Y-m-d H:i:s")."'
-                    )";
-                $rs = $db->query($sql);
-                $db_msg = $db->report();
+                $contactusData = array(
+                    'cu_pid_str'    => $pid_str,
+                    'cu_status'     => 0,                    
+                    'cu_contact_s'  => $ws_array["contactus_s"][$_REQUEST["cu_contact_s"]],
+                );
+                if($file){
+                    $contactusData['cu_file'] = $file;
+                }
+                if($ip_country){
+                    $contactusData['cu_ip'] = $ip_country['address'];
+                    $contactusData['cu_ip_country'] = $ip_country['country'];
+                    
+                }           
+                App::getHelper('dbtable')->contactus->writeData($contactusData);
+                $db_msg = App::getHelper('dbtable')->contactus->report();
                 if ( $db_msg == "" ) {
                     unset(App::getHelper('session')->contactus);
                     //新增完成寄送確認信
