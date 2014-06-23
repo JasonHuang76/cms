@@ -720,8 +720,6 @@ class CART{
                             "VALUE_M_RECI_EMAIL" => $_REQUEST["m_reci_email"],
                             "VALUE_M_RECI_CELLPHONE" => $_REQUEST["m_reci_cellphone"],
                             "VALUE_CONTENT" => nl2br($_REQUEST["content"]),
-                            "VALUE_O_ID" => $this->o_id,
-                            "VALUE_SHIPPMENT_TYPE" => $ws_array["shippment_type"][$_SESSION[$cms_cfg['sess_cookie_name']]["shipment_type"]],
                             "VALUE_O_INVOICE_TYPE" => $ws_array['invoice_type'][$_REQUEST['o_invoice_type']],
         ));
         //訂購人
@@ -824,7 +822,12 @@ class CART{
             if($billList['charge_fee']){    
                 $tpl->newBlock("CHARGE_FEE_ROW");
                 $tpl->assign("VALUE_CHARGE_FEE",$billList['charge_fee']);
-            }          
+            }
+            $tpl->gotoBlock( "MEMBER_DATA_FORM" );
+            $tpl->assign(array(
+                "VALUE_O_ID" => $oid,
+                "VALUE_SHIPPMENT_TYPE" => $ws_array["shippment_type"][$_SESSION[$cms_cfg['sess_cookie_name']]["shipment_type"]],                
+            ));
             $ts = time();
             $tpl->gotoBlock("SHOPPING_CART_ZONE");            
             $tpl->assign("VALUE_TOTAL",$billList['total_price']);            
