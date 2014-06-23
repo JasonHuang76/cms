@@ -274,7 +274,7 @@ class CONTACTUS{
                     }
                     if($cms_cfg['ws_module']['ws_contactus_mail_title_mapto']){
                         //載入對照語言語系檔
-                        include "lang/eng-utf8.php";
+                        include "lang/".$cms_cfg['ws_module']['ws_contactus_mail_title_mapto']."-utf8.php";
                         $tpl->assignGlobal(array(
                                 "MSG_COMPANY_NAME_MAPPED"   => sprintf("<br/>(%s)",$TPLMSG['COMPANY_NAME']),
                                 "MSG_CATE_MAPPED"           => sprintf("<br/>(%s)",$TPLMSG['CATE']),
