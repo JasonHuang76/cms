@@ -53,6 +53,7 @@ class SITEMAP{
         ($cms_cfg["ws_module"]["ws_guestbook"])?$tpl->newBlock( "SITEMAP_GUESTBOOK" ):"";
         ($cms_cfg["ws_module"]["ws_stores"])?$tpl->newBlock( "SITEMAP_STORES" ):"";
         ($cms_cfg["ws_module"]["ws_factory"])?$tpl->newBlock( "SITEMAP_FACTORY" ):"";
+        ($cms_cfg["ws_module"]["ws_gallery"])?$tpl->newBlock( "SITEMAP_GALLERY" ):"";
         $tpl->assignGlobal(array("VALUE_STR_ABOUTUS" =>$TPLMSG["ABOUT_US"],
                                  "VALUE_STR_DOWNLOAD" =>$TPLMSG["DOWNLOAD"],
                                  "VALUE_STR_FAQ" =>$TPLMSG["FAQ"],
@@ -60,6 +61,7 @@ class SITEMAP{
                                  "VALUE_STR_EBOOK" =>$TPLMSG["EBOOK"],
                                  "VALUE_STR_GUESTBOOK" =>$TPLMSG["GUESTBOOK"],
                                  "VALUE_STR_STORES" =>$TPLMSG["STORES"],
+            
                                  "VALUE_STR_FACTORY" =>$TPLMSG["FACTORY"],
                                  "VALUE_STR_NEWS" =>$TPLMSG["NEWS"],
                                  "VALUE_STR_PRODUCTS" =>$TPLMSG["PRODUCTS"],
@@ -68,6 +70,7 @@ class SITEMAP{
                                  "VALUE_STR_HOT_PRODUCT" =>$TPLMSG["PRODUCT_HOT"],
                                  "VALUE_STR_PRO_PRODUCT" =>$TPLMSG["PRODUCT_PROMOTION"],
                                  "VALUE_STR_SITEMAP" =>$TPLMSG["SITEMAP"],
+                                 "VALUE_STR_GALLERY" =>$TPLMSG["GALLERY"],
                                  "VALUE_STR_CONTACTUS" =>$TPLMSG["CONTACT_US"],
                                  "VALUE_STR_HOME" =>$TPLMSG["HOME"],
                                  "VALUE_ABOUTUS_LINK" =>$cms_cfg["base_root"]."aboutus".$ext,
@@ -87,6 +90,7 @@ class SITEMAP{
                                  "VALUE_PRO_PRODUCT_LINK" =>$cms_cfg["base_root"]."pro-products.htm",
                                  "VALUE_SITEMAP_LINK" =>$cms_cfg["base_root"]."sitemap".$ext,
                                  "VALUE_CONTACTUS_LINK" =>$cms_cfg["base_root"]."contactus".$ext,
+                                 "VALUE_GALLERY_LINK" =>$cms_cfg["base_root"]."gallery".$ext,
         ));
 
         //主分類
