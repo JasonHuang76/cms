@@ -408,7 +408,7 @@ class MEMBER{
                                               "VALUE_M_BIRTHDAY" => $_REQUEST["m_birthday"],
                                               "VALUE_M_SEX" => ($_REQUEST["m_sex"]==1)?$TPLMSG["MALE"]:$TPLMSG["FEMALE"],
                                               "VALUE_M_ZIP" => $_REQUEST["m_zip"],
-                                              "VALUE_M_ADDRESS" => $_REQUEST["m_address"],
+                                              "VALUE_M_ADDRESS" => $_REQUEST["m_city"].$_REQUEST["m_area"].$_REQUEST["m_address"],
                                               "VALUE_M_TEL" => $_REQUEST["m_tel"],
                                               "VALUE_M_FAX" => $_REQUEST["m_fax"],
                                               "VALUE_M_EMAIL" => $_REQUEST["m_account"],
