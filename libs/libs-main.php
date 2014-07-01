@@ -2174,5 +2174,11 @@ class MAINFUNC{
 			$tpl->assignGlobal("TAG_CSS_INCLUDE",$css_insert);
 		}
 	}
+    //判斷pc_id是否等於parent_id，或是其子類別 
+    function is_current_or_child_cate($pc_id,$parent_id){
+        $sql = "SELECT (select pc_layer from ".App::getHelper('db')->prefix("products_cate")." where pc_id='".$pc_id."') regexp concat('^',(select pc_layer from ".App::getHelper('db')->prefix("products_cate")." where pc_id='".$parent_id."'),'(-[0-9]+)*$')";
+        list($gg) = App::getHelper('db')->query_firstRow($sql,false);
+        return (int)$gg;
+    }
 }
 ?>
