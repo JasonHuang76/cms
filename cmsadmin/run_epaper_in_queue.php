@@ -42,16 +42,16 @@ if($db->numRows($res)){
             if(!empty($mx_arr)){
                 //取得電子報內容
                 $mail_subject=$qRow["e_subject"];
-                $mail_content=preg_replace('%([-\w\.:]*/)*(upload_files/([-\w\.]+/)*[-\w\.]+)%i', $cms_cfg['file_url']."$2", $qRow["eq_content"]);                
-                $mail_content=preg_replace('%([-\w\.:]*/)*(images/([-\w\.]+/)*[-\w\.]+)%i', $cms_cfg['file_url']."$2", $mail_content);                            
+//                $mail_content=preg_replace('%([-\w\.:]*/)*(upload_files/([-\w\.]+/)*[-\w\.]+)%i', $cms_cfg['file_url']."$2", $qRow["eq_content"]);                
+//                $mail_content=preg_replace('%([-\w\.:]*/)*(images/([-\w\.]+/)*[-\w\.]+)%i', $cms_cfg['file_url']."$2", $mail_content);                            
                 //初始化電子報樣版
                 $mtpl = new TemplatePower('./templates/ws-manage-epaper-template-tpl.html');
                 $mtpl->prepare();
                 //取得電子報頁首、頁尾
                 $sql = "select st_epaper_header,st_epaper_footer from ".$cms_cfg['tb_prefix']."_service_term where st_id='1'";
                 list($e_header,$e_footer) = $db->query_firstrow($sql,0);
-                $mtpl->assignGlobal("MSG_EPAPER_HEADER",$e_header);
-                $mtpl->assignGlobal("MSG_EPAPER_FOOTER",$e_footer);                
+                $mtpl->assignGlobal("MSG_EPAPER_HEADER",App::getHelper('main')->content_file_str_replace($e_header,'out'));
+                $mtpl->assignGlobal("MSG_EPAPER_FOOTER",App::getHelper('main')->content_file_str_replace($e_footer,'out'));            
                 $mtpl->assignGlobal("MSG_COMPANY",$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company']);
                 $mtpl->assignGlobal("MSG_HOME",$TPLMSG['HOME']);
                 $mtpl->assignGlobal("MSG_CONTACTUS",$TPLMSG['CONTACT_US']);

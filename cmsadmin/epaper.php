@@ -533,8 +533,8 @@ class EPAPER{
                 //取得電子報頁首、頁尾
                 $sql = "select st_epaper_header,st_epaper_footer from ".$cms_cfg['tb_prefix']."_service_term where st_id='1'";
                 list($e_header,$e_footer) = $db->query_firstrow($sql,0);
-                $tpl->assignGlobal("MSG_EPAPER_HEADER",$e_header);
-                $tpl->assignGlobal("MSG_EPAPER_FOOTER",$e_footer);
+                $tpl->assignGlobal("MSG_EPAPER_HEADER",App::getHelper('main')->content_file_str_replace($e_header,'out'));
+                $tpl->assignGlobal("MSG_EPAPER_FOOTER",App::getHelper('main')->content_file_str_replace($e_footer,'out'));
                 $tpl->assignGlobal("MSG_COMPANY",$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company']);
                 $tpl->assignGlobal("MSG_HOME",$TPLMSG['HOME']);
                 $tpl->assignGlobal("MSG_CONTACTUS",$TPLMSG['CONTACT_US']);
@@ -569,7 +569,7 @@ class EPAPER{
                         '".$_REQUEST["e_status"]."',
                         '".$_REQUEST["e_sort"]."',
                         '".$_REQUEST["e_subject"]."',
-                        '".$_REQUEST["e_content"]."',
+                        '".App::getHelper('main')->content_file_str_replace($_REQUEST["e_content"],'in')."',
                         '".date("Y-m-d H:i:s")."'
                     )";
                 break;
@@ -580,7 +580,7 @@ class EPAPER{
                         e_status='".$_REQUEST["e_status"]."',
                         e_sort='".$_REQUEST["e_sort"]."',
                         e_subject='".$_REQUEST["e_subject"]."',
-                        e_content='".$_REQUEST["e_content"]."',
+                        e_content='".App::getHelper('main')->content_file_str_replace($_REQUEST["e_content"],'in')."',
                         e_modifydate='".date("Y-m-d H:i:s")."'
                     where e_id='".$_REQUEST["e_id"]."'";
                 break;
@@ -617,7 +617,7 @@ class EPAPER{
                         $goto_url=$cms_cfg["manage_url"]."epaper.php?func=e_list";
                         if($rsnum > 0){
                             $mail_subject=$row["e_subject"];
-                            $mail_content=str_replace("=\"../upload_files/","=\"".$cms_cfg['file_url']."upload_files/",  mysql_real_escape_string($row["e_content"]));
+                            $mail_content=App::getHelper('main')->content_file_str_replace($row["e_content"],'out');
                             $p_id_str = is_array($_POST['attach_p_id'])?  mysql_real_escape_string(implode(',',$_POST['attach_p_id'])):'';
                             //寫入佇列
                             $sql="
@@ -683,16 +683,15 @@ class EPAPER{
                         $goto_url=$cms_cfg["manage_url"]."epaper.php?func=e_list";
                         if($rsnum > 0){
                             $mail_subject=$row["e_subject"];
-                            $mail_content=preg_replace('%([-\w\.:]*/)*(upload_files/([-\w\.]+/)*[-\w\.]+)%i', $cms_cfg['file_url']."$2", $row["e_content"]);
-                            $mail_content=preg_replace('%([-\w\.:]*/)*(images/([-\w\.]+/)*[-\w\.]+)%i', $cms_cfg['file_url']."$2", $mail_content);                            
+                            $mail_content=App::getHelper('main')->content_file_str_replace($row["e_content"],'out');
                             //初始化電子報樣版
                             $mtpl = new TemplatePower('./templates/ws-manage-epaper-template-tpl.html');
                             $mtpl->prepare();
                             //取得電子報頁首、頁尾
                             $sql = "select st_epaper_header,st_epaper_footer from ".$cms_cfg['tb_prefix']."_service_term where st_id='1'";
                             list($e_header,$e_footer) = $db->query_firstrow($sql,0);
-                            $mtpl->assignGlobal("MSG_EPAPER_HEADER",$e_header);
-                            $mtpl->assignGlobal("MSG_EPAPER_FOOTER",$e_footer);                               
+                            $mtpl->assignGlobal("MSG_EPAPER_HEADER",App::getHelper('main')->content_file_str_replace($e_header,'out'));
+                            $mtpl->assignGlobal("MSG_EPAPER_FOOTER",App::getHelper('main')->content_file_str_replace($e_footer,'out'));
                             $mtpl->assignGlobal("MSG_COMPANY",$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company']);
                             $mtpl->assignGlobal("MSG_HOME",$TPLMSG['HOME']);
                             $mtpl->assignGlobal("MSG_CONTACTUS",$TPLMSG['CONTACT_US']);

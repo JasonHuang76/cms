@@ -85,7 +85,7 @@ class SERVICE{
             if($cms_cfg["ws_module"]["ws_wysiwyg"]=="tinymce"){
                 $tpl->newBlock("TINYMCE_JS");
                 $tpl->newBlock("WYSIWYG_TINYMCE1");
-                $tpl->assign( "VALUE_TERM_CONTENT" , $row[$term_type] );
+                $tpl->assign( "VALUE_TERM_CONTENT" , App::getHelper('main')->content_file_str_replace($row[$term_type],'out') );
             }
             $tpl->assignGlobal( "VALUE_ACTION_MODE" , "term");
             $tpl->assignGlobal( "VALUE_TERM_TYPE" , $term_type);
