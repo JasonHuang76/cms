@@ -224,7 +224,7 @@ class ORDER{
                                           "VALUE_O_RECI_TEL" => $row["o_reci_tel"],
                                           "VALUE_O_RECI_CELLPHONE" => $row["o_reci_cellphone"],
                                           "VALUE_O_RECI_ZIP" => $row["o_reci_zip"],
-                                          "VALUE_O_RECI_ADDRESS" => $row["o_reci_city"].$row["o_reci_area"].$row["o_reci_address"],
+                                          "VALUE_O_RECI_ADDRESS" => $row["o_reci_address"],
                                           "VALUE_O_RECI_EMAIL" => $row["o_reci_email"],
                                           "VALUE_O_CONTENT" => $row["o_content"],
                                           "VALUE_O_PLUS_PRICE" => $row["o_plus_price"],
@@ -241,6 +241,8 @@ class ORDER{
                                           "VALUE_O_COMPANY_NAME" => $row["o_company_name"],
                                           "VALUE_O_VAT_NUMBER" => $row["o_vat_number"],
                 ));
+                //發票類型
+                $main->multiple_radio("invoice_type",$ws_array['invoice_type'],$row['o_invoice_type']);
                 if($cms_cfg["ws_module"]["ws_vaccount"] & $row["o_virtual_account"]) {
                 $tpl->newBlock("ATM_DATA");
                     $tpl->assignGlobal( array(
@@ -263,6 +265,12 @@ class ORDER{
                         $tpl->assign("TAG_STATUS_CHECKED","checked");
                     }
                 }
+                //地址欄位格式
+                if($cms_cfg['ws_module']['ws_address_type']=='tw'){
+                    $tpl->newBlock("TW_ADDRESS");
+                }else{
+                    $tpl->newBlock("SINGLE_ADDRESS");
+                }                
                 //訂購產品列表
                 $sql="select * from ".$cms_cfg['tb_prefix']."_order_items where o_id='".$_REQUEST["o_id"]."' and del='0' ";
                 $selectrs = $db->query($sql);
@@ -289,9 +297,10 @@ class ORDER{
 //訂單回覆--資料更新================================================================
     function order_replace(){
         global $db,$tpl,$cms_cfg,$TPLMSG;
-        $sql="update ".$cms_cfg['tb_prefix']."_order set o_status='".$_REQUEST["o_status"]."' , o_modifydate='".date("Y-m-d H:i:s")."' where o_id='".$_REQUEST["o_id"]."'";
-        $rs = $db->query($sql);
-        $db_msg = $db->report();
+//        $sql="update ".$cms_cfg['tb_prefix']."_order set o_status='".$_REQUEST["o_status"]."' , o_modifydate='".date("Y-m-d H:i:s")."' where o_id='".$_REQUEST["o_id"]."'";
+//        $rs = $db->query($sql);
+        App::getHelper('dbtable')->order->writeData($_POST);
+        $db_msg = App::getHelper('dbtable')->order->report();
         if ( $db_msg == "" ) {
             if($_REQUEST["o_status"] == 2){
                 $this->mail_delivery_notice($_REQUEST["o_id"]); //寄送出貨通知信                

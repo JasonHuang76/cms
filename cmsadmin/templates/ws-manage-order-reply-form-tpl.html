@@ -64,17 +64,20 @@
         <tr>
             <th>發票類型:</th>
             <td>
-                {VALUE_O_INVOICE_TYPE}</td>
+                <!-- START BLOCK : INVOICE_TYPE_RADIO -->
+                <label><input type="radio" name="o_invoice_type" value="{VALUE_INVOICE_TYPE_KEY}" {CHECKED}/>{VALUE_INVOICE_TYPE_NAME}</label>
+                <!-- END BLOCK : INVOICE_TYPE_RADIO -->
+            </td>
         </tr>
         <tr>
             <th>公司:</th>
             <td>
-                {VALUE_O_COMPANY_NAME}</td>
+                <input type="text" name="o_company_name" id="o_company_name" value="{VALUE_O_COMPANY_NAME}"/></td>
         </tr>
         <tr>
             <th>統一編號:</th>
             <td>
-                {VALUE_O_VAT_NUMBER}</td>
+                <input type="text" name="o_vat_number" id="o_vat_number" value="{VALUE_O_VAT_NUMBER}" maxlength="8"/></td>
         </tr>
         <tr>
             <th colspan="2" class="table_title_color">訂購者資訊</th>
@@ -115,32 +118,52 @@
         <tr>
             <th>姓名:</th>
             <td>
-                {VALUE_O_RECI_NAME}</td>
+                <input type="text" name="o_reci_name" value="{VALUE_O_RECI_NAME}"/></td>
         </tr>
         <tr>
             <th>電話:</th>
             <td>
-                {VALUE_O_RECI_TEL}</td>
+                <input type="text" name="o_reci_tel" value="{VALUE_O_RECI_TEL}"/></td>
         </tr>
         <tr>
             <th>手機:</th>
             <td>
-                {VALUE_O_RECI_CELLPHONE}</td>
+                <input type="text" name="o_reci_cellphone" value="{VALUE_O_RECI_CELLPHONE}"/></td>
         </tr>
-        <tr>
-            <th>郵遞區號:</th>
-            <td>
-                {VALUE_O_RECI_ZIP}</td>
-        </tr>
+        <!-- START BLOCK : SINGLE_ADDRESS -->
         <tr>
             <th>住址:</th>
             <td>
-                {VALUE_O_RECI_ADDRESS}</td>
+                郵遞區號<input type="text" name="o_reci_zip" id="o_reci_zip" value="{VALUE_O_RECI_ZIP}" size="3"/><input type="text" name="o_reci_address" id="o_reci_address" value="{VALUE_O_RECI_ADDRESS}" size="50"/>
+            </td>
         </tr>
+        <!-- END BLOCK : SINGLE_ADDRESS -->
+        <!-- START BLOCK : TW_ADDRESS -->
+        <tr id="m_zone_row">
+            <th>住址:</th>
+            <td>
+                郵遞區號<input type="text" name="o_reci_zip" id="o_reci_zip" value="{VALUE_O_RECI_ZIP}"/><br/>
+                <select name="o_reci_city" id="o_reci_city"></select><select name="o_reci_area" id="o_reci_area"></select><input type="text" name="o_reci_address" value="{VALUE_O_RECI_ADDRESS}" size="50"/>
+                <script type="text/javascript" src="{TAG_ROOT_PATH}js/zone_box.js"></script>
+                <script type="text/javascript">
+                    jQuery(function($){
+                       //設定城市挑選器
+                        $("#m_zone_row").zone_box({
+                                MAIN_ID : "o_reci_city", // 縣市元素 ID (select 元素)
+                                SUB_ID : "o_reci_area", // 區域元素 ID (select 元素)
+                                ZIP_ID : "o_reci_zip", // 郵遞區號 ID (input 元素)
+                                ZIP_GET : "", // 輸入郵遞區號
+                        });     
+                        $("#o_reci_zip").trigger("keyup");
+                    });
+                </script>
+            </td>
+        </tr>
+        <!-- END BLOCK : TW_ADDRESS -->
         <tr>
             <th>e-mail:</th>
             <td>
-                {VALUE_O_RECI_EMAIL}</td>
+                <input type="text" name="o_reci_email" value="{VALUE_O_RECI_EMAIL}"/></td>
         </tr>        
         <tr>
             <th colspan="2"  valign="top" class="table_title_color">訂單內容</th>
