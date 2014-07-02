@@ -59,7 +59,6 @@ class MEMBER{
                 break;
             case "m_forget"://忘記密碼
                 $this->member_forget_password();
-                $this->ws_tpl_type=1;
                 break;
             case "m_sps"://密碼寄送完成顯示訊息
                 $this->ws_tpl_file = "templates/ws-member-forget-tpl.html";
@@ -888,6 +887,7 @@ class MEMBER{
             $tpl->newBlock("REGISTER_FORGET_PASSWORD");
             $tpl->newBlock("LANG_".strtoupper( $cms_cfg['language']) );
             $main->security_zone();
+            $this->ws_tpl_type=1;            
         }else{
             require_once("./libs/libs-security-image.php");
             $si = new securityImage();  
