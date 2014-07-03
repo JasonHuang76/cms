@@ -1,0 +1,360 @@
+    <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="formtable">
+        <tr>
+            <th colspan="2" class="table_title_color">訂單內容</th>
+        </tr>           
+        <tr>
+            <td colspan="2">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="producttable">
+                    <tr>
+                        <th width="5%"> No.</th>
+                        <th width="40%"> 產品</th>
+                        <th width="10%"> 數量</th>
+                        <th width="25%"> 價格</th>
+                        <th width="20%"> 小計</th>
+                    </tr>
+                    <!-- START BLOCK : ORDER_ITEMS_LIST -->
+                    <tr>
+                        <td>
+                            {VALUE_P_SERIAL}
+                        </td>
+                        <td>
+                            {VALUE_P_NAME}
+                        </td>
+                        <td class="nums">
+                            {VALUE_P_AMOUNT}
+                        </td>
+                        <td class="nums">
+                            {VALUE_P_SELL_PRICE}
+                        </td>
+                        <td class="nums">
+                            {VALUE_P_SUBTOTAL_PRICE}
+                        </td>
+                    </tr>
+                    <!-- END BLOCK : ORDER_ITEMS_LIST -->
+                    <tr>
+                        <td colspan="4">
+                            <div align="right"> 小計:&nbsp;</div>
+                        </td>
+                        <td class="nums">
+                        {VALUE_O_SUBTOTAL_PRICE}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <div align="right"> 運費:&nbsp;</div>
+                        </td>
+                        <td class="nums">
+                        {VALUE_O_SHIP_PRICE}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <div align="right"> 手續費:&nbsp;</div>
+                        </td>
+                        <td class="nums">
+                        {VALUE_O_FEE_PRICE}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">
+                            <div align="right"> 合計:&nbsp;</div>
+                        </th>
+                        <th class="nums"> 
+                        {VALUE_O_TOTAL_PRICE}
+                        </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>        
+        <tr>
+            <th colspan="2" class="table_title_color">訂單資訊</th>
+        </tr>        
+        <tr>
+            <th width="15%">訂單編號:</th>
+            <td width="85%">
+                {VALUE_O_ID}
+            </td>
+        </tr>
+        <tr>
+            <th>訂單狀態:</th>
+            <td>
+                {VALUE_O_STATUS}
+            </td>
+        </tr>
+        <tr>
+            <th>付款方式:</th>
+            <td>
+                {VALUE_O_PAYMENT_TYPE}
+            </td>
+        </tr>
+        <tr>
+            <th>到貨日期</th>
+            <td>{VALUE_O_ARRIVAL_TIME}</td>
+        </tr>
+        <tr>
+            <th>內容:</th>
+            <td>
+                &nbsp;{VALUE_O_CONTENT}</td>
+        </tr>              
+        <!-- START BLOCK : NOTCART_INFO -->
+        <tr>
+            <th colspan="2" class="table_title_color">非信用卡付款資訊</th>
+        </tr> 
+        <tr>
+            <th>{Msg_RtnCode}</th>
+            <td>{Val_RtnCode}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_RtnMsg}</th>
+            <td>{Val_RtnMsg}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_TradeNo}</th>
+            <td>{Val_TradeNo}</td>
+        </tr>          
+        <tr>
+            <th>{Msg_TradeAmt}</th>
+            <td>{Val_TradeAmt}</td>
+        </tr>           
+        <tr>
+            <th>{Msg_PaymentType}</th>
+            <td>{Val_PaymentType}</td>
+        </tr>          
+        <tr>
+            <th>{Msg_TradeDate}</th>
+            <td>{Val_TradeDate}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_BankCode}</th>
+            <td>{Val_BankCode}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_vAccount}</th>
+            <td>{Val_vAccount}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_PaymentNo}</th>
+            <td>{Val_PaymentNo}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_Barcode1}</th>
+            <td>{Val_Barcode1}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_Barcode2}</th>
+            <td>{Val_Barcode2}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_Barcode3}</th>
+            <td>{Val_Barcode3}</td>
+        </tr>                 
+        <tr>
+            <th>{Msg_ExpireDate}</th>
+            <td>{Val_ExpireDate}</td>
+        </tr>                 
+        <!-- END BLOCK : NOTCART_INFO -->
+        <!-- START BLOCK : CART_INFO -->
+        <tr>
+            <th colspan="2" class="table_title_color">實際付款資訊</th>
+        </tr> 
+        <tr>
+            <th>{Msg_RtnCode}</th>
+            <td>{Val_RtnCode}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_RtnMsg}</th>
+            <td>{Val_RtnMsg}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_TradeNo}</th>
+            <td>{Val_TradeNo}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_TradeAmt}</th>
+            <td>{Val_TradeAmt}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_PaymentDate}</th>
+            <td>{Val_PaymentDate}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_PaymentType}</th>
+            <td>{Val_PaymentType}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_PaymentTypeChargeFee}</th>
+            <td>{Val_PaymentTypeChargeFee}</td>
+        </tr>         
+        <tr>
+            <th>{Msg_TradeDate}</th>
+            <td>{Val_TradeDate}</td>
+        </tr>         
+        <!-- END BLOCK : CART_INFO -->   
+        <tr>
+            <th colspan="2" class="table_title_color">發票資訊</th>
+        </tr>
+        <tr>
+            <th>發票類型:</th>
+            <td>
+                {VALUE_INVOICE_TYPE}
+            </td>
+        </tr>
+        <tr>
+            <th>公司:</th>
+            <td>{VALUE_O_INVOICE_NAME}</td>
+        </tr>
+        <tr>
+            <th>統一編號:</th>
+            <td>{VALUE_O_INVOICE_VAT}</td>
+        </tr>
+        <tr>
+            <th>發票文字</th>
+            <td>{VALUE_O_INVOICE_TEXT}</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="table_title_color">訂購者資訊</th>
+        </tr>
+        <tr>
+            <th>姓名:</th>
+            <td>
+                {VALUE_O_NAME}</td>
+        </tr>
+        <tr>
+            <th>公司名稱:</th>
+            <td>
+                {VALUE_O_COMPANY_NAME}</td>
+        </tr>
+        <tr>
+            <th>電話:</th>
+            <td>
+                {VALUE_O_TEL}</td>
+        </tr>
+        <tr>
+            <th>傳真:</th>
+            <td>
+                {VALUE_O_FAX}</td>
+        </tr>
+        <tr>
+            <th>手機:</th>
+            <td>
+                {VALUE_O_CELLPHONE}</td>
+        </tr>
+        <tr>
+            <th>郵遞區號:</th>
+            <td>
+                {VALUE_O_ZIP}</td>
+        </tr>
+        <tr>
+            <th>住址:</th>
+            <td>
+                {VALUE_O_ADDRESS}</td>
+        </tr>
+        <tr>
+            <th>E-mail:</th>
+            <td>
+                {VALUE_O_EMAIL}</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="table_title_color">收件者資訊</th>
+        </tr>
+        <tr>
+            <th>姓名:</th>
+            <td>{VALUE_O_ADD_NAME}</td>
+        </tr>
+        <tr>
+            <th>電話:</th>
+            <td>{VALUE_O_ADD_TEL}</td>
+        </tr>
+        <tr>
+            <th>手機:</th>
+            <td>{VALUE_O_ADD_CELLPHONE}</td>
+        </tr>
+        <tr>
+            <th>住址:</th>
+            <td>{VALUE_O_ADD_ADDRESS}</td>
+        </tr>
+        <tr>
+            <th>E-mail:</th>
+            <td>{VALUE_O_ADD_MAIL}</td>
+        </tr>
+        <!-- START BLOCK : ALI_TABLE -->
+        <tr>
+        	<th colspan="2">支付寶、財富通 訂單訊息</th>
+        </tr>
+        <tr>
+        	<th>訂單編號</th>
+            <td>{VALUE_ALI_PNO}</td>
+        </tr>
+        <tr>
+        	<th>平臺訂單號</th>
+            <td>{VALUE_ALI_ORDER_NO}</td>
+        </tr>
+        <tr>
+        	<th>支付平臺</th>
+            <td>{VALUE_ALI_CHANNEL}</td>
+        </tr>
+        <!--
+        <tr>
+        	<th>平臺交易編號</th>
+            <td>{VALUE_ALI_CHANNEL_NO}</td>
+        </tr>
+        -->
+        <tr>
+        	<th>訂單總價</th>
+            <td>{VALUE_ALI_PRICE}</td>
+        </tr>
+        <tr>
+        	<th>訂單原始價格</th>
+            <td>{VALUE_ALI_O_PRICE}</td>
+        </tr>
+        <tr>
+        	<th>收件人名稱</th>
+            <td>{VALUE_ALI_NAME}</td>
+        </tr>
+        <tr>
+        	<th>收件人電話</th>
+            <td>{VALUE_ALI_TEL}</td>
+        </tr>
+        <tr>
+        	<th>收件人電話 2</th>
+            <td>{VALUE_ALI_TEL_2}</td>
+        </tr>
+        <tr>
+        	<th>收件人E-mail</th>
+            <td>{VALUE_ALI_MAIL}</td>
+        </tr>
+        <tr>
+        	<th>收件地區代碼</th>
+            <td>{VALUE_ALI_ZONE}</td>
+        </tr>
+        <tr>
+        	<th>收件地址</th>
+            <td>{VALUE_ALI_ADDRESS}</td>
+        </tr>
+        <tr>
+        	<th>買方負擔運費</th>
+            <td>{VALUE_ALI_SHIPAY}</td>
+        </tr>
+        <tr>
+        	<th>貨運狀態</th>
+            <td>{VALUE_ALI_SHIP_DESC}</td>
+        </tr>
+        <tr>
+        	<th>訂單狀態</th>
+            <td>{VALUE_ALI_STATUS}</td>
+        </tr>
+        <tr>
+        	<th>狀態說明</th>
+            <td>{VALUE_ALI_DESC}</td>
+        </tr>
+        <!-- END BLOCK : ALI_TABLE -->
+        <!-- START BLOCK : ALI_ERROR -->
+        <tr>
+        	<th colspan="2">支付寶、財富通 訂單查尋失敗</th>
+        </tr>
+        <tr>
+        	<th>查詢失敗</th>
+            <td>無法查詢交易資料，此筆訂單並未交易完成。</td>
+        </tr>
+        <!-- END BLOCK : ALI_ERROR -->
+    </table>
