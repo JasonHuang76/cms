@@ -7,8 +7,8 @@
             <th colspan="2" class="table_title_color">訂單資訊</th>
         </tr>        
         <tr>
-            <th>訂單編號:</th>
-            <td>
+            <th width="15%">訂單編號:</th>
+            <td width="85%">
                 {VALUE_O_ID}
             </td>
         </tr>
@@ -136,22 +136,25 @@
         <tr>
             <th>發票類型:</th>
             <td>
-                {VALUE_O_INVOICE_TYPE}</td>
+                <!-- START BLOCK : INVOICE_TYPE_RADIO -->
+                <label><input  type="radio" name="o_invoice_type" value="{VALUE_INVOICE_TYPE_KEY}" {CHECKED}>{VALUE_INVOICE_TYPE_NAME}</label>
+                <!-- END BLOCK : INVOICE_TYPE_RADIO -->
+            </td>
         </tr>
         <tr>
             <th>公司:</th>
             <td>
-                {VALUE_O_INVOICE_NAME}</td>
+                <input type="text" name="o_invoice_name" value="{VALUE_O_INVOICE_NAME}"/></td>
         </tr>
         <tr>
             <th>統一編號:</th>
             <td>
-                {VALUE_O_INVOICE_VAT}</td>
+                <input type="text" name="o_invoice_vat" value="{VALUE_O_INVOICE_VAT}" maxlength="8"/></td>
         </tr>
         <tr>
             <th>發票文字</th>
             <td>
-                {VALUE_O_INVOICE_TEXT}</td>
+                <textarea type="text" name="o_invoice_text" rows="5" cols="60">{VALUE_O_INVOICE_TEXT}</textarea></td>
         </tr>
         <tr>
             <th colspan="2" class="table_title_color">訂購者資訊</th>
@@ -202,27 +205,27 @@
         <tr>
             <th>姓名:</th>
             <td>
-                {VALUE_O_ADD_NAME}</td>
+                <input type="text" name="o_add_name" value="{VALUE_O_ADD_NAME}"/></td>
         </tr>
         <tr>
             <th>電話:</th>
             <td>
-                {VALUE_O_ADD_TEL}</td>
+                <input type="text" name="o_add_tel" value="{VALUE_O_ADD_TEL}"/></td>
         </tr>
         <tr>
             <th>手機:</th>
             <td>
-                {VALUE_O_ADD_CELLPHONE}</td>
+                <input type="text" name="o_add_cellphone" value="{VALUE_O_ADD_CELLPHONE}"/></td>
         </tr>
         <tr>
             <th>住址:</th>
             <td>
-                {VALUE_O_ADD_ADDRESS}</td>
+                <input type="text" name="o_add_address" value="{VALUE_O_ADD_ADDRESS}" size="50"/></td>
         </tr>
         <tr>
             <th>E-mail:</th>
             <td>
-                {VALUE_O_ADD_MAIL}</td>
+                <input type="text" name="o_add_mail" value="{VALUE_O_ADD_MAIL}"/></td>
         </tr>        
         <tr>
             <th colspan="2"  valign="top" class="table_title_color">訂單內容</th>
