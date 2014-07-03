@@ -549,7 +549,13 @@ class MEMBER{
         //國家下拉選單
         if($cms_cfg["ws_module"]["ws_member_country"]==1) {
             $main->country_select($row["m_country"]);
-        }        
+        }
+        //地址欄位格式
+        if($cms_cfg['ws_module']['ws_address_type']=='tw'){
+            $tpl->newBlock("TW_ADDRESS");
+        }else{
+            $tpl->newBlock("SINGLE_ADDRESS");
+        }            
         $main->contact_s_select($row['m_contact_s'],$zone="MEMBER");        
         $this->member_cate_select($row['mc_id']);
         if($this->member_download && $this->download_on=="member"){

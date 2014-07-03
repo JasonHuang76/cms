@@ -112,13 +112,36 @@
                   <input type="text" name="m_birthday" id="m_birthday" size="20" value="{VALUE_M_BIRTHDAY}" class="datepicker"/>
               </td>
           </tr>  
+        <!-- START BLOCK : SINGLE_ADDRESS -->
+        <tr>
+            <th>住址:</th>
+            <td colspan="3">
+                郵遞區號:<input name="m_zip" type="text" class="form-textfield" id="m_zip" value="{VALUE_M_ZIP}" size="3" ><input type="text" name="m_address" id="m_address" size="50" value="{VALUE_M_ADDRESS}" />
+            </td>
+        </tr>  
+        <!-- END BLOCK : SINGLE_ADDRESS -->
+        <!-- START BLOCK : TW_ADDRESS -->
         <tr>
             <th>住址:</th>
             <td colspan="3">
                 <select name="m_city" id="m_city"></select><select name="m_area" id="m_area"></select>&nbsp;郵遞區號:<input name="m_zip" type="text" class="form-textfield" id="m_zip" value="{VALUE_M_ZIP}" size="10" >&nbsp;<br/>
                 <input name="m_address" type="text"  value="{VALUE_M_ADDRESS}" size="80" >
+                <script type="text/javascript" src="{TAG_ROOT_PATH}js/zone_box.js"></script>
+                <script type="text/javascript">
+                    jQuery(function($){
+                       //設定城市挑選器
+                        $("#m_zone_row").zone_box({
+                                MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
+                                SUB_ID : "m_area", // 區域元素 ID (select 元素)
+                                ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
+                                ZIP_GET : "", // 輸入郵遞區號
+                        });     
+                        $("#m_zip").trigger("keyup");
+                    });
+                </script>                
             </td>
         </tr>
+        <!-- END BLOCK : TW_ADDRESS -->        
         <tr>
             <th><font color="red">*</font>電話:</th>
             <td>
@@ -159,16 +182,3 @@
 </form>
 </div>
 <!-- INCLUDE BLOCK : FOOTER -->
-<script type="text/javascript" src="{TAG_ROOT_PATH}js/zone_box.js"></script>
-<script type="text/javascript">
-    jQuery(function($){
-       //設定城市挑選器
-        $("#m_zone_row").zone_box({
-                MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
-                SUB_ID : "m_area", // 區域元素 ID (select 元素)
-                ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
-                ZIP_GET : "", // 輸入郵遞區號
-        });     
-        $("#m_zip").trigger("keyup");
-    });
-</script>
