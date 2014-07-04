@@ -76,23 +76,17 @@ abstract class Dbtable_Abstract {
     protected function _retrieve_cols($post){
         $this->values = array();
         $this->con = array();
+        App::getHelper('main')->magic_gpc($post);
         foreach($post as $k=>$v){
-            if(get_magic_quotes_gpc()){
-                $v = stripslashes($v);
-            }
             if(isset($this->post_cols[$k])){
                 if(is_array($v)){
                     $this->values[$k] = implode(',',$v);
                 }else{
-                    if(!is_null($v)){
-                        $v = trim($v);
-                        if(preg_match("/(seo_title|seo_keyword|seo_description|seo_filename|seo_h1)$/i", $k)){
-                            $v = htmlspecialchars($v);
-                        }
-                        $this->values[$k] = $this->db->quote($v);
-                    }else{
-                        $this->values[$k] = null;
+                    $v = trim($v);
+                    if(preg_match("/(seo_title|seo_keyword|seo_description|seo_filename|seo_h1)$/i", $k)){
+                        $v = htmlspecialchars($v);
                     }
+                    $this->values[$k] = $this->db->quote($v);
                 }
             }
         }
@@ -109,7 +103,7 @@ abstract class Dbtable_Abstract {
         $sql_tpl = "insert into ".$this->tablename()."(%s)values(%s)";
         foreach($this->values as $k=>$v){
             $columns[]=sprintf("`%s`",$k);
-            $values[]=sprintf("'%s'",$v);
+            $values[]=$this->_getValueWithFieldProperty($k,$v);
         }
         return sprintf($sql_tpl,implode(',',$columns),implode(',',$values));
         
@@ -120,11 +114,7 @@ abstract class Dbtable_Abstract {
         $sql_tpl = "update ".$this->tablename()." set %s where %s";
         foreach($this->values as $k=>$v){
             if($k!=$this->pk){
-                if(is_null($v)){
-                    $updates[] = sprintf("`%s`=null",$k);
-                }else{
-                    $updates[] = sprintf("`%s`='%s'",$k,$v);
-                }
+                $updates[] = sprintf("`%s`= %s",$k,$this->_getValueWithFieldProperty($k,$v));
             }
         }
         return sprintf($sql_tpl,implode(',',$updates),implode(' and ',$this->con));
@@ -263,7 +253,13 @@ abstract class Dbtable_Abstract {
         }
         
     }
-    
+    protected function _getValueWithFieldProperty($field,$value){
+        if(empty($value)){
+            return ($this->post_cols[$field]['Null']=='YES')?"null":"''";
+        }else{
+            return "'".$value."'";
+        }
+    }
 }
 
 ?>
