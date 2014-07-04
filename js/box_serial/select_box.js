@@ -5,6 +5,8 @@
 	$(".class or #id").select_box({
 		OPTION : 20, // 單個選項顯示高度 (px)
 		SHOW : 8, // 一次顯示選項數量
+	},function(DATA){
+		// 回傳選擇值
 	});
 
 	**********************************************************************
@@ -13,7 +15,7 @@
 */
 
 (function($){
-	$.fn.select_box = function(OPTION){
+	$.fn.select_box = function(OPTION,CALLBACK){
 		var SELECT = jQuery.extend({
 			OPTION : 20, // 單個選項顯示高度 (px)
 			SHOW : 8, // 一次顯示選項數量
@@ -44,11 +46,13 @@
 			$('#'+ ID).find("li").click(function(){
 				var CLICK_NUM = $('#'+ ID).find("li").index(this);
 				var CLICK_TEXT = $(this).html();
+				var CLICK_VAL = $('#'+ ID).prev("select").find("option:eq("+ CLICK_NUM +")").val();
 				
 				$('#'+ ID).prev("select").find("option:eq("+ CLICK_NUM +")").attr("selected","selected");
 				$('#'+ ID).find("ul.select_box_option").slideUp('fast');
 				$('#'+ ID).children("span").html(CLICK_TEXT);
 				
+				CALLBACK(CLICK_VAL);
 				return false;
 			});
 			
@@ -79,6 +83,7 @@
 			
 			var OPTION_STR = "";
 			var INIT_TEXT = "";
+			var OPTION_NUM = 0;
 			
 			// 讀取數據
 			OBJ.find("option").each(function(KEY){
@@ -90,6 +95,7 @@
 				} 
 				
 				OPTION_STR += '<li rel="'+ OPTION_VAL +'">'+ OPTION_TEXT +'</li>';
+				OPTION_NUM++;
 			});
 			
 			// 載入標籤
@@ -111,11 +117,13 @@
 				"padding-left": "5%",
 			});
 			
+			var OPTION_REL_NUM = (OPTION_NUM < SELECT.SHOW)?OPTION_NUM:SELECT.SHOW;
+			
 			OBJ.next(".select_box").find(".select_box_option").css({
 				"display": "none",
 				"position": "absolute",
 				"z-index": "99",
-				"height": SELECT.OPTION * SELECT.SHOW +"px",
+				"height": SELECT.OPTION * OPTION_REL_NUM +"px",
 				"overflow-x": "hidden",
 				"overflow-y": "scroll",
 			});
