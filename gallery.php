@@ -61,7 +61,7 @@ class GALLERY{
         $tpl->assignGlobal( "TAG_CATE_DESC", $TPLMSG['GALLERY_CATE_DESC']);
         $tpl->assignGlobal( "TAG_MAIN_CLASS" , "album"); //主要顯示區域的css設定
         $tpl->assignGlobal( "TAG_SUBMENU_TITLE_IMG" , $cms_cfg['default_theme']."left-title-activity.png"); //選單標題圖檔
-        $main->header_footer("",$TPLMSG['GALLERY']);
+        $main->header_footer("gallery",$TPLMSG['GALLERY']);
         $this->left_cate_list();
     }
 
@@ -177,7 +177,7 @@ class GALLERY{
                     );
                     $main->header_footer($meta_array,$row["gc_subject"]);
                 }else{
-                    $main->header_footer("",$row["gc_subject"]);
+                    $main->header_footer("gallery",$row["gc_subject"]);
                 }                 
             }
         }        
