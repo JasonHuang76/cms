@@ -407,4 +407,20 @@ $TPLMSG['READ_MORE'] = "详全文";
 
 //关闭网站
 $TPLMSG['WEB_CLOSE_MSG'] = "很抱歉，我们的网站目前暂时关闭.";
+
+$TPLMSG['ATTACH'] = "附加档案";
+$TPLMSG['MAX_UPLOAD_SIZE'] = "最大可上传档案大小: %s";
+$TPLMSG['COMMENT_NOTIFY_SUBJECT'] = "有评论";
+$TPLMSG['COMMENT_NOTIFICATION'] = '您在此<a href="%1$s">%1$s</a>有评论';
+$TPLMSG['COMMENT_VALID_TAGS'] = "可用html标签: &lt;b&gt;, &lt;p&gt;, &lt;br&gt;, &lt;a&gt;";
+$TPLMSG['COMMENT_GUEST'] = "游客";
+$TPLMSG['COMMENT_ADMIN'] = "管理者";
+$TPLMSG['COMMENT_ROLE_WRAPPER1'] = "<span class='role'>%s</span>";
+$TPLMSG['COMMENT_ROLE_WRAPPER2'] = "<span class='role-user'>%s</span>";
+$TPLMSG['COMMENT_ROLE_WRAPPER3'] = "<span class='role-admin'>%s</span>";
+$TPLMSG['COMMENT_ROLE'] = "身份: ".$TPLMSG['COMMENT_ROLE_WRAPPER1'];
+$TPLMSG['COMMENT_FORM_VALID_MSG'] = "请在红框栏位填入资料";
+$TPLMSG['COMMENT_UPLOAD_DESCRIPTION'] = "您可以上传图片，但非必要";
+$TPLMSG['COMMENT_LIST_TITLE'] = "评论标题";
+$TPLMSG['COMMENT_LIST_PUBLISH_DATE'] = "发布时间";
 ?>

@@ -19,6 +19,7 @@ $cms_cfg["ws_module"]=array(
         "ws_contactus_inquiry" =>0,    //聯絡我們表單也顯示產品
         "ws_contactus_position"=>0,    //聯絡我們表單顯示職稱&部門欄位
         "ws_contactus_mail_title_mapto" =>"",  //聯絡我們通知信標題對應語系，留空不使用對應文字，以lang/eng-utf8.php為例，填入eng即可使用
+        "ws_comment"           =>0,    //評論管理
         "ws_download"          =>0,    //檔案下載
         "ws_download_thumb"    =>0,    //檔案下載顯示縮圖
         "ws_ebook"=>0,              //電子型錄管理

@@ -403,4 +403,20 @@ $TPLMSG['READ_MORE'] = "More";
 
 //關閉網站
 $TPLMSG['WEB_CLOSE_MSG'] = "Sorry, Our Website closed temporarily";
+
+$TPLMSG['ATTACH'] = "Attach file";
+$TPLMSG['MAX_UPLOAD_SIZE'] = "Max upload file size: %s";
+$TPLMSG['COMMENT_NOTIFY_SUBJECT'] = "You got comment";
+$TPLMSG['COMMENT_NOTIFICATION'] = 'You got comment in <a href="%1$s">%1$s</a>';
+$TPLMSG['COMMENT_VALID_TAGS'] = "valid html tags: &lt;b&gt;, &lt;p&gt;, &lt;br&gt;, &lt;a&gt;";
+$TPLMSG['COMMENT_GUEST'] = "Guest";
+$TPLMSG['COMMENT_ADMIN'] = "Admin";
+$TPLMSG['COMMENT_ROLE_WRAPPER1'] = "<span class='role'>%s</span>";
+$TPLMSG['COMMENT_ROLE_WRAPPER2'] = "<span class='role-user'>%s</span>";
+$TPLMSG['COMMENT_ROLE_WRAPPER3'] = "<span class='role-admin'>%s</span>";
+$TPLMSG['COMMENT_ROLE'] = "Role: ".$TPLMSG['COMMENT_ROLE_WRAPPER1'];
+$TPLMSG['COMMENT_FORM_VALID_MSG'] = "please fill data into fields with red border";
+$TPLMSG['COMMENT_UPLOAD_DESCRIPTION'] = "You could upload images, but not required.";
+$TPLMSG['COMMENT_LIST_TITLE'] = "Comment Title";
+$TPLMSG['COMMENT_LIST_PUBLISH_DATE'] = "Date of publication";
 ?>

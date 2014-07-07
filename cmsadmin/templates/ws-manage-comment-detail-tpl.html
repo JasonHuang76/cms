@@ -1,0 +1,57 @@
+<!-- INCLUDE BLOCK : HEADER -->
+<div id="man_zone">
+<h1>評論管理</h1>
+<form name="myform" method="post" action="comment.php?func=reply"  class="formular" id="formID">
+    <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="formtable">
+        <tr>
+            <th>標題:</th>
+            <td>{SUBJECT}</td>
+        </tr>
+        <tr>
+            <th>內容:</th>
+            <td>{CONTENT}
+            </td>
+        </tr>
+        <!-- START BLOCK : ATTACH_ZONE -->
+        <tr>
+            <th>附圖:</th>
+            <td>
+                <!-- START BLOCK : ATTACH_LIST -->
+                <a href="{FILE}" target="bigImg"><img src="{FILE}" width="400"/></a><br/>
+                <!-- END BLOCK : ATTACH_LIST -->
+            </td>
+        </tr>
+        <!-- END BLOCK : ATTACH_ZONE -->
+        <tr>
+            <th>管理者回覆:</th>
+            <td>
+                <textarea name="content" id="content" rows="5" cols="50"></textarea><br/>
+                <input type="submit" value="回覆"/>
+            </td>
+        </tr>
+        <tr>
+            <th>回覆歷程</th>
+            <td>
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th width="25%">回覆時間</th>
+                        <th width="75%">回覆內容</th>
+                    </tr>
+                    <!-- START BLOCK : REPLY_LIST -->
+                    <tr>
+                        <td>{REPLY_DATE}</td>
+                        <td>{CONTENT}</td>
+                    </tr>
+                    <!-- END BLOCK : REPLY_LIST -->
+                </table>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="comment_id" value="{ID}">
+    <input name="st" type="hidden" id="st" value="{VALUE_SEARCH_TARGET}">
+    <input name="sk" type="hidden" id="sk" value="{VALUE_SEARCH_KEYWORD}">
+    <input name="nowp" type="hidden" id="nowp" value="{VALUE_NOW_PAGE}">
+    <input name="jp" type="hidden" id="jp" value="{VALUE_JUMP_PAGE}">
+</form>
+</div>
+<!-- INCLUDE BLOCK : FOOTER -->
