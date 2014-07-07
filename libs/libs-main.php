@@ -2180,5 +2180,11 @@ class MAINFUNC{
         list($gg) = App::getHelper('db')->query_firstRow($sql,false);
         return (int)$gg;
     }
+    //計算pc_id下的產品數量
+    function products_nums($pc_id){
+        $sql = "SELECT count(*) as nums from ".App::getHelper('db')->prefix("products")." where  pc_layer  regexp concat('^',(select pc_layer from ".App::getHelper('db')->prefix("products_cate")." where pc_id='".$pc_id."'),'(-[0-9]+)*$')";
+        list($gg) = App::getHelper('db')->query_firstRow($sql,false);
+        return (int)$gg;
+    }
 }
 ?>
