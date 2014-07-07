@@ -701,8 +701,8 @@ class EPAPER{
                             $mtpl->assignGlobal("TAG_FILE_ROOT" , $cms_cfg['file_root']);
                             $mtpl->assignGlobal("TAG_BASE_URL" ,$cms_cfg["base_url"]);
                             $mtpl->assignGlobal("TAG_LANG",$cms_cfg['language']);                              
-                            $mtpl->assign("_ROOT.EPAPER_PAGE_TITLE",$qRow["e_subject"]);
-                            $mtpl->assign("_ROOT.EPAPER_TITLE",$qRow["e_subject"]);
+                            $mtpl->assign("_ROOT.EPAPER_PAGE_TITLE",$row["e_subject"]);
+                            $mtpl->assign("_ROOT.EPAPER_TITLE",$row["e_subject"]);
                             $mtpl->assign("_ROOT.EPAPER_CONTENT",$mail_content);
                             if(is_array($_POST['attach_p_id'])){
                                 $sql = "select p.*,pc.pc_seo_filename from ".$cms_cfg['tb_prefix']."_products as p left join ".$cms_cfg['tb_prefix']."_products_cate as pc on p.pc_id=pc.pc_id where p_status='1' and p_id in(".implode(',',$_POST['attach_p_id']).")";
