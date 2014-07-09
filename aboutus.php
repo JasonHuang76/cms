@@ -72,10 +72,11 @@ class ABOUTUS{
         $i=0;
         while ( $row = $db->fetch_array($selectrs,1) ) {
             $i++;
+            $menuItem = array();
             $menuItem['name'] = $row['au_subject'];
             $menuItem['link'] = ($i==1)?$cms_cfg["base_root"].$this->au_cate.".htm":$this->get_link($row);
             if(($i==1 && $sel_top_record) || ($_REQUEST["au_id"]==$row["au_id"]) || ($this->ws_seo && ($_REQUEST["f"] && $_REQUEST["f"]==$row["au_seo_filename"]))){
-                //$menuItem['tag_cur'] = "class='current'";
+                $menuItem['tag_cur'] = "class='current'";
                 $current_row = $row;
                 if($this->ws_seo){
                     $meta_array=array("meta_title"=>$row["au_seo_title"],
@@ -94,6 +95,9 @@ class ABOUTUS{
                         if(!isset($left_menu[$row['au_subcate']])){
                             $left_menu[$row['au_subcate']]['name'] = $row['au_subcate'];
                             $left_menu[$row['au_subcate']]['link'] = '#';
+                        }
+                        if(isset($menuItem['tag_cur'])){
+                            $left_menu[$row['au_subcate']]['tag_cur'] = "class='current'";
                         }
                         $left_menu[$row['au_subcate']]['sub'][]=$menuItem;
                     }else{
