@@ -55,14 +55,15 @@
 <!-- START BLOCK : JS_LEFT_AU_SUBCATE -->
 <script type="text/javascript">
     jQuery(function($){
-        $(".menu_head").each(function(idx,elm){
-            $(elm).find("a:first").attr('orderIndex',idx);
-        });
-        $(".menu_head > a").click(function(evt){
-            evt.preventDefault();
-            var orderIndex = $(this).attr('orderIndex');
-            $(".menu_body").hide();
-            $(".menu_body").eq(orderIndex).show();
+        $(".menu_head > a").each(function(){
+            if($(this).attr('href')=='#'){
+                $(this).click(function(evt){
+                    evt.preventDefault();
+                    $(".menu_body").hide();
+                    $(this).parent().find(".menu_body").show();
+                });
+                
+            }
         });
     });
 </script>
