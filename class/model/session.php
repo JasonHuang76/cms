@@ -11,7 +11,7 @@
  *
  * @author Administrator
  */
-class Model_Session implements arrayaccess {
+class Model_Session extends Model_Modules implements arrayaccess {
     //put your code here
     static protected $_handler;
     protected $_session;
