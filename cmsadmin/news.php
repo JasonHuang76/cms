@@ -1001,13 +1001,15 @@ class NEWS{
                 App::getHelper('dbtable')->news_cate->writeData($data_to_write);
             }
         }
-        if($_POST['other_sets'] && is_array($_POST['other_sets'])){
-            foreach($_POST['other_sets'] as $nc_id){
-                $data_to_write = array(
-                    'nc_id'       => $nc_id,
-                    'nc_indep_id' => 0,
-                );
-                App::getHelper('dbtable')->news_cate->writeData($data_to_write);
+        //設定取消為本獨立類別的項目
+        $current_sets_str = implode(',',$_POST['current_sets']);
+        if($current_sets_str){
+            $other_sets = App::getHelper('dbtable')->news_cate->getDataList(" nc_indep_id='".$nc_indep_id."' and nc_id not in(".$current_sets_str.")","nc_id,nc_indep_id");
+            if($other_sets){
+                foreach($other_sets as $nc_row){
+                    $nc_row['nc_indep_id'] = 0;
+                    App::getHelper('dbtable')->news_cate->writeData($nc_row);
+                }
             }
         }
         header('location:news.php?func=nc_indep_mod&id='.$nc_indep_id);
