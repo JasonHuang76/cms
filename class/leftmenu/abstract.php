@@ -1,6 +1,7 @@
 <?php
 abstract class Leftmenu_Abstract {
     public $tpl;
+    public $currentRow;
     protected $menuItems;
     protected $subul1 = array(
         "CATE"    => "<ul class=\"menu_body\">",
