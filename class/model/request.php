@@ -11,7 +11,7 @@
  *
  * @author Administrator
  */
-class Model_Request {
+class Model_Request extends Model_Modules{
     //put your code here
     protected $_get;
     protected $_post;
