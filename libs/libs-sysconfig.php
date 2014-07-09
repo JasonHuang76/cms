@@ -45,6 +45,9 @@ include_once(APP_ROOT_PATH."conf/default-items.php");
 require APP_ROOT_PATH."class/autoloader.php";
 $autoloader = new autoloader();
 spl_autoload_register(array($autoloader,"load"));
+//儲存設定
+App::configs($cms_cfg);
+App::defaults($ws_array);
 //session handler
 $sessHandler = Model_Session::factory($cms_cfg['sess_cookie_name']);
 //helper機制
