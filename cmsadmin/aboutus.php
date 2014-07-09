@@ -137,7 +137,7 @@ class ABOUTUS{
                 $tpl->assignGlobal("TAG_COLUMN_NUMS",9);
             }
         }
-        $i=$page["start_serial"];
+        $i=$main->get_pagination_offset($cms_cfg["op_limit"]);
         while ( $row = $db->fetch_array($selectrs,1) ) {
             $i++;
             $tpl->newBlock( "ABOUTUS_LIST" );
