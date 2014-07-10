@@ -48,7 +48,7 @@ $TPLMSG['VIEWS'] = "Ver";
 $TPLMSG['FILE'] = "Archivo";
 $TPLMSG['PUBLISH_ON'] = "Restante del Cargo";
 $TPLMSG['PUBLISH_OFF'] = "Caducado";
-$TPLMSG['PAGE_BACK'] = "vuelta";
+$TPLMSG['PAGE_BACK'] = "anterior";
 $TPLMSG['EMAIL'] = "E-mail";
 //CONFIG
 $TPLMSG["CUSTOM_INDEX_PAGE"]="index.htm";
@@ -109,7 +109,7 @@ $TPLMSG['SEX']="";
 $TPLMSG['MALE']="masculina";
 $TPLMSG['FEMALE']="mujeres";
 $TPLMSG['ADDRESS']="Dirección";
-$TPLMSG['TEL']="Tel";
+$TPLMSG['TEL']="Teléfono";
 $TPLMSG['FAX']="Fax";
 $TPLMSG['CONTACT_PERSON']="Persona de contacto";
 $TPLMSG['COMPANY_NAME']="Nombre de la empresa";
