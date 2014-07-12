@@ -681,3 +681,6 @@ span.current{color:#f00}
 .connectedSortable .ui-state-dropping{
     border-color: #980203;
 }
+#mainfunc-list{padding:5px 0;margin:5px 0;font-size:13px;}
+#mainfunc-list ul{list-style: none;}
+#mainfunc-list ul li{float:left;margin:0 4px;}

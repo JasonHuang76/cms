@@ -14,6 +14,9 @@ class METATITLE{
         global $db,$cms_cfg,$tpl;
         $this->current_class="MT";
         switch($_REQUEST["func"]){
+            case "addmeta"://新増meta項目
+                $this->addmeta();
+                break;
             case "mt_setup":  //各項seo設定
                 $this->ws_tpl_file = "templates/ws-manage-meta-title-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
@@ -81,6 +84,7 @@ class METATITLE{
                 ));
             }
         }
+        $this->mainfunc_meta_list();
     }
     //資料更新
     function meta_title_replace(){
@@ -115,6 +119,35 @@ class METATITLE{
             $tpl->assignGlobal( "TAG_META_REFRESH" , "<meta http-equiv=\"refresh\" content=\"$sec;URL=$url\">");
         }
     }
+    function mainfunc_meta_list(){
+        global $tpl;
+        foreach(App::defaults()->main as $k => $v){
+            if(!$this->is_exists($k)){
+                $new_mt_name_list[$k] = $v;
+            }
+        }
+        if($new_mt_name_list){
+            $tpl->newBlock("META_NAME");
+            foreach($new_mt_name_list as $mt_name => $mainfunc){
+                $tpl->newBlock("META_NAME_LIST");
+                $tpl->assign("MT_NAME_KEY",$mt_name);
+                $tpl->assign("MT_NAME_VALUE",$mainfunc);
+            }
+        }
+    }
+    function addmeta(){
+        if(isset(App::defaults()->main[$_GET['mt_name']]) && !$this->is_exists($_GET['mt_name'])){
+            $data['mt_name'] = $_GET['mt_name'];
+            App::getHelper('dbtable')->metatitle->insert($data);
+        }
+        header("location:".$_SERVER['HTTP_REFERER']);
+    }
+    
+    function is_exists($mt_name){
+        $row = App::getHelper('dbtable')->metatitle->getData($mt_name)->getDataRow('mt_name');
+        return empty($row)?false:true;
+    }
+    
 }
 //ob_end_flush();
 ?>
