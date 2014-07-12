@@ -57,8 +57,10 @@ abstract class Dbtable_Abstract {
             $cols = explode(",",$cols);
             $new_values = array();
             foreach($cols as $k=>$v){
-                $v = trim($v);
-                $new_values[$v] = $this->values[$v];
+                if(isset($this->values[$v])){
+                    $v = trim($v);
+                    $new_values[$v] = $this->values[$v];
+                }
             }
             return $new_values;
         }else{
