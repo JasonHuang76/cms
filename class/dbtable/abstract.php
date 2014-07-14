@@ -78,7 +78,7 @@ abstract class Dbtable_Abstract {
     protected function _retrieve_cols($post){
         $this->values = array();
         $this->con = array();
-        App::getHelper('main')->magic_gpc($post);
+        //App::getHelper('main')->magic_gpc($post);
         foreach($post as $k=>$v){
             if(isset($this->post_cols[$k])){
                 if(is_array($v)){
