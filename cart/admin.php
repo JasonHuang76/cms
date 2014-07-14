@@ -242,14 +242,17 @@ class ORDER{
                                           "VALUE_O_INVOICE_NAME" => $row["o_invoice_name"],
                                           "VALUE_O_INVOICE_VAT" => $row["o_invoice_vat"],
                                           "VALUE_O_INVOICE_TEXT" => $row["o_invoice_text"],
+                                          "ORIGIN_STATUS" => $row["o_status"],
                 ));
                 //訂單狀態
                 foreach($ws_array["order_status"] as $key =>$value){
                     $i++;
                     $tpl->newBlock( "ORDER_STATUS_LIST" );
-                    $tpl->assign( array("VALUE_O_STATUS_SUBJECT"  => $value,
-                                        "VALUE_O_STATUS" => $key,
-                                        "VALUE_O_SERIAL" => $i,
+                    $tpl->assign( array(
+                        "VALUE_O_STATUS_SUBJECT"  => $value,
+                        "VALUE_O_STATUS" => $key,
+                        "VALUE_O_SERIAL" => $i,
+                        "TAG_DISABLED"   => $row['o_status']>=3?"disabled":'',
                     ));
                     if($i%4==0){
                         $tpl->assign("TAG_BR","<br>");
