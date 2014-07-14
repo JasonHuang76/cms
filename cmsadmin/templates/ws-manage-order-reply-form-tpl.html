@@ -15,10 +15,25 @@
         <tr>
             <th>訂單狀態:</th>
             <td>
+                <input type="hidden" name="origin_status" id="origin_status" value="{ORIGIN_STATUS}">
             <!-- START BLOCK : ORDER_STATUS_LIST -->
-                <input type="radio" name="o_status" value="{VALUE_O_STATUS}" {TAG_STATUS_CHECKED}>{VALUE_O_STATUS_SUBJECT}&nbsp;&nbsp;{TAG_BR}
+                <input type="radio" name="o_status" value="{VALUE_O_STATUS}" {TAG_STATUS_CHECKED} {TAG_DISABLED}>{VALUE_O_STATUS_SUBJECT}&nbsp;&nbsp;{TAG_BR}
             <!-- END BLOCK : ORDER_STATUS_LIST -->
-                <input type="submit" value="{MSG_MODE}">
+                <input type="button" id="changeorder" value="{MSG_MODE}"/>
+                <script type="text/javascript">
+                    jQuery(function($){
+                        $("#changeorder").click(function(evt){
+                            if($(":radio:checked").val()!=$("#origin_status").val()){
+                                if($(":radio:checked").val()>=3){
+                                    if(!confirm("訂單狀態更改後無法再修改，確定繼續嗎？")){
+                                        return false;
+                                    }
+                                }
+                            }
+                            $(myform).trigger('submit');
+                        });
+                    });
+                </script>
             </td>
         </tr>
         <tr>

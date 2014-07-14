@@ -240,6 +240,7 @@ class ORDER{
                                           "VALUE_O_DELIVERY_STR" => sprintf("%s %s",date("Y年m月d日",$dts),$ws_array["deliery_timesec"][$row['o_deliver_time_sec']]),
                                           "VALUE_O_COMPANY_NAME" => $row["o_company_name"],
                                           "VALUE_O_VAT_NUMBER" => $row["o_vat_number"],
+                                          "ORIGIN_STATUS" => $row['o_status'],
                 ));
                 //發票類型
                 $main->multiple_radio("invoice_type",$ws_array['invoice_type'],$row['o_invoice_type']);
@@ -254,9 +255,11 @@ class ORDER{
                 foreach($ws_array["order_status"] as $key =>$value){
                     $i++;
                     $tpl->newBlock( "ORDER_STATUS_LIST" );
-                    $tpl->assign( array("VALUE_O_STATUS_SUBJECT"  => $value,
-                                        "VALUE_O_STATUS" => $key,
-                                        "VALUE_O_SERIAL" => $i,
+                    $tpl->assign( array(
+                        "VALUE_O_STATUS_SUBJECT"  => $value,
+                        "VALUE_O_STATUS" => $key,
+                        "VALUE_O_SERIAL" => $i,
+                        "TAG_DISABLED"   => $row['o_status']>=3?"disabled":'',
                     ));
                     if($i%4==0){
                         $tpl->assign("TAG_BR","<br>");
