@@ -256,7 +256,7 @@ abstract class Dbtable_Abstract {
         
     }
     protected function _getValueWithFieldProperty($field,$value){
-        if(empty($value)){
+        if($value===''){
             return ($this->post_cols[$field]['Null']=='YES')?"null":"''";
         }else{
             return "'".$value."'";
