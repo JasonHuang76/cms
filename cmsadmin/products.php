@@ -363,7 +363,7 @@ class PRODUCTS{
         }else{
             $and_str .= " and pc_parent='".$this->parent."'";
         }
-        $sql .= $and_str." order by pc_sort ".$cms_cfg['sort_pos'].",pc_modifydate desc ";
+        $sql .= $and_str." order by pc_up_sort desc,pc_sort ".$cms_cfg['sort_pos'].",pc_modifydate desc ";
         //取得總筆數
         $total_records=$main->count_total_records($sql);
         //取得分頁連結
