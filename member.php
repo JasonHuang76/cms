@@ -502,7 +502,7 @@ class MEMBER{
                         "VALUE_O_ID" => $row['o_id']
                     ));
                 }
-                if($row['o_status']==0){
+                if($row['o_status']==0 && $cms_cfg['ws_module']['ws_order_cancel']){
                     $tpl->newBlock("BTN_CANCEL_ORDER");
                     $tpl->assign("VALUE_O_ID",$row['o_id']);
                 }
