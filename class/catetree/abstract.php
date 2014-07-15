@@ -37,7 +37,7 @@ class catetree_abstract {
         }
     }
     public function get_sub_id($parent=0){
-        $sql = "select ".$this->_formated_column("id").",".$this->_formated_catename()." from ".$this->_db->prefix($this->_cate_table). " where ".$this->_formated_column("status")."='1' and ".$this->_formated_parent(). "='".$parent."' order by ".$this->_formated_column("sort");
+        $sql = "select ".$this->_formated_column("id").",".$this->_formated_catename()." from ".$this->_db->prefix($this->_cate_table). " where ".$this->_formated_column("status")."='1' and ".$this->_formated_parent(). "='".$parent."' order by ".$this->orderfields();
         $res = $this->_db->query($sql,true);
         if($this->_db->numRows($res)){
             $id_arr = array();
@@ -112,6 +112,10 @@ class catetree_abstract {
     public function print_tree(){
         $this->_build_tree();
         echo  $this->_tree_structure;
+    }
+    
+    public function orderfields(){
+        return $this->_formated_column("sort");
     }
 }
 

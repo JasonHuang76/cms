@@ -24,7 +24,10 @@ class catetree_productsCate extends catetree_abstract {
     protected $_cate_link_str = "";
     protected $_build = false;
     protected $_varname = "pc_parent";
- 
+   
+    public function orderfields() {
+        return "pc_up_sort desc,  ". parent::orderfields();
+    }
 }
 
 ?>
