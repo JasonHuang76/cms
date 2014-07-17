@@ -6,6 +6,7 @@ $TPLMSG['LANG_CHS'] = "簡體中文版";
 $TPLMSG['LANG_ENG'] = "英文版";
 $TPLMSG['LANG_JAP'] = "日文版";
 $TPLMSG['LANG_SPA'] = "西班牙文版";
+$TPLMSG['LANG_FRE'] = "法文版";
 $TPLMSG['ALL'] = "全部";
 $TPLMSG['FORM'] = "表單";
 $TPLMSG['SUBJECT'] = "標題";
