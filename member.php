@@ -381,9 +381,6 @@ class MEMBER{
                     $selectrs = $db->query($sql);
                     $row = $db->fetch_array($selectrs,1);
                     //如果有詢問信管理，顯示公司及傳真欄位
-                    if($cms_cfg["ws_module"]["ws_inquiry"] || App::configs()->ws_module->ws_member_company){
-                        $mtpl->newBlock( "COMPANY_ZONE" );
-                    }
                     $mtpl->newBlock( "MEMBER_MAIL" );
                     $mtpl->assignGlobal( array("MSG_MEMBER_NAME"  => $TPLMSG['MEMBER_NAME'],
                                               "MSG_ACCOUNT" => $TPLMSG["LOGIN_ACCOUNT"],
@@ -414,6 +411,9 @@ class MEMBER{
                                               "VALUE_M_CELLPHONE" => $_REQUEST["m_cellphone"],
                                               "VALUE_M_EPAPER" => ($_REQUEST["m_epaper"]==1)?$TPLMSG["YES"]:$TPLMSG["NO"],
                     ));
+                    if($cms_cfg["ws_module"]["ws_inquiry"] || App::configs()->ws_module->ws_member_company){
+                        $mtpl->newBlock( "COMPANY_ZONE" );
+                    }                    
                     //國家欄位
                     if($cms_cfg["ws_module"]["ws_country"]==1) {
                         $mtpl->newBlock("MEMBER_COUNTRY_ZONE");
