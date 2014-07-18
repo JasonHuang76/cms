@@ -80,6 +80,7 @@ $cms_cfg["ws_module"]=array(
         "ws_member_show_discount" => 0, //後台會員類別不顯示折扣欄位
         "ws_member_multi_cate"    => 0, //會員使用多重類別
         "ws_member_join_validation"  => "", //會員加入驗證，留空不驗證,manual是手動驗證(驗證預設動作),email是指驗證email
+        "ws_member_company"       => 1, //會員公司欄位
         "ws_cart_login"=>0,             //購物車或詢價車是否需要會員登入
 //        'ws_shopping_cart_module' => 'cart+allpay.index',  //購物車功能模組，留空使用預設值，以+組合字串，+前是購物車模組資料夾，+後是使用的類別路徑
         'ws_shopping_cart_module' => '',  //購物車功能模組，留空使用預設值，以+組合字串，+前是購物車模組資料夾，+後是使用的類別路徑

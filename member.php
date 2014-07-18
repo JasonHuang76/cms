@@ -213,7 +213,7 @@ class MEMBER{
                                   "VALUE_ACTION_MODE" => $action_mode
         ));
         //如果有詢問信管理，顯示公司及傳真欄位
-        if($cms_cfg["ws_module"]["ws_inquiry"]){
+        if($cms_cfg["ws_module"]["ws_inquiry"] || App::configs()->ws_module->ws_member_company){
             $tpl->newBlock( "COMPANY_ZONE" );
         }
         //如果為修改模式,帶入資料庫資料
@@ -381,7 +381,7 @@ class MEMBER{
                     $selectrs = $db->query($sql);
                     $row = $db->fetch_array($selectrs,1);
                     //如果有詢問信管理，顯示公司及傳真欄位
-                    if($cms_cfg["ws_module"]["ws_inquiry"]){
+                    if($cms_cfg["ws_module"]["ws_inquiry"] || App::configs()->ws_module->ws_member_company){
                         $mtpl->newBlock( "COMPANY_ZONE" );
                     }
                     $mtpl->newBlock( "MEMBER_MAIL" );
