@@ -116,6 +116,8 @@ class MEMBER{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         if(!empty($this->m_id)){
             $tpl->assignInclude( "LEFT", $cms_cfg['base_left_member_tpl']); //左方會員專區表單
+        }else{
+            $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般選單
         }
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
         $tpl->assignInclude( "CONTACT_S", "templates/ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
@@ -144,6 +146,11 @@ class MEMBER{
             $tpl->newBlock("INDEX_LOGIN_ZONE");
         }else{
             $tpl->newBlock("INDEX_LOGOUT_ZONE");
+        }
+        //未登入會員左選單
+        if(empty($this->m_id)){
+            $leftMenu = new Leftmenu_Nonemember($tpl);
+            $leftMenu->make();
         }
     }
 
