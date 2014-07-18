@@ -658,7 +658,7 @@ class MEMBER{
             if($m_id && ($_POST['m_status']==1 && $_POST['old_m_status']=='0')){
                 $sql = "select m_account from ".$db->prefix("member")." where m_id='".$m_id."'";
                 list($m_account) = $db->query_firstrow($sql,false);
-                $main->ws_mail_send_simple($_SESSION[$cms_cfg['sess_cookie_name']]['sc_email'],$_REQUEST["m_email"],sprintf($TPLMSG['MEMBER_APPROV_NOTIFICATION_CONTENT'],$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company'],$m_account),sprintf($TPLMSG['MEMBER_APPROV_NOTIFICATION_SUBJECT'],$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company']));
+                App::getHelper('main')->ws_mail_send_simple($_SESSION[$cms_cfg['sess_cookie_name']]['sc_email'],$_REQUEST["m_email"],sprintf($TPLMSG['MEMBER_APPROV_NOTIFICATION_CONTENT'],$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company'],$m_account),sprintf($TPLMSG['MEMBER_APPROV_NOTIFICATION_SUBJECT'],$_SESSION[$cms_cfg['sess_cookie_name']]['sc_company']));
             }
             if ( $db_msg == "" ) {
                 $tpl->assignGlobal( "MSG_ACTION_TERM" , $TPLMSG["ACTION_TERM"]);
