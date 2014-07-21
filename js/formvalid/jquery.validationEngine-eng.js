@@ -297,10 +297,7 @@ $.validationEngine = {
         if ($.validationEngine.isError == true){
             
             radioHackOpen();
-            if ($.validationEngine.isError == true){ // show only one
-
-                ($("div."+prompt+"formError").size() ==0) ? $.validationEngine.buildPrompt(caller,promptText,"error")   : $.validationEngine.updatePromptText(caller,promptText);
-            }
+            ($(prompt).size() ==0) ? $.validationEngine.buildPrompt(caller,promptText,"error")   : $.validationEngine.updatePromptText(caller,promptText);
         }else{
             radioHackClose();
             $.validationEngine.closePrompt(caller);
@@ -312,10 +309,9 @@ $.validationEngine = {
             if($("input[name="+callerName+"]").size()> 1 && callerType == "radio") {        // Hack for radio group button, the validation go the first radio
                 caller = $("input[name="+callerName+"]:first");
                 $.validationEngine.showTriangle = false;
-                var callerId ="."+ $(caller).attr("id")+"formError";
-                if($(callerId).size()==0){ $.validationEngine.isError = true; }else{ $.validationEngine.isError = false;}
-            }
-            if($("input[name="+callerName+"]").size()> 1 && callerType == "checkbox") {     // Hack for checkbox group button, the validation go the first radio
+                prompt ="."+ $(caller).attr("id")+"formError";
+                //if($(callerId).size()==0){ $.validationEngine.isError = true; }else{ $.validationEngine.isError = false;}
+            }else if($("input[name="+callerName+"]").size()> 1 && callerType == "checkbox") {     // Hack for checkbox group button, the validation go the first radio
                 caller = $("input[name="+callerName+"]:first");
                 $.validationEngine.showTriangle = false;
                 var callerId ="div."+ $(caller).attr("id")+"formError";
