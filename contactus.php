@@ -185,11 +185,11 @@ class CONTACTUS{
                 if(is_array($_POST['cu_pid'])){
                     $pid_str = implode(",",$_POST['cu_pid']);
                 }
-                $contactusData = array(
+                $contactusData = array_merge($_POST,array(
                     'cu_pid_str'    => $pid_str,
-                    'cu_status'     => 0,                    
-                    'cu_contact_s'  => $ws_array["contactus_s"][$_REQUEST["cu_contact_s"]],
-                );
+                    'cu_status'     => 0,
+                    'm_id'          => App::getHelper('session')->MEMBER_ID,
+                ));
                 if($file){
                     $contactusData['cu_file'] = $file;
                 }
