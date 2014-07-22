@@ -195,6 +195,8 @@ class NEWS{
                 }
             }      
         }
+        //上下筆連結
+        $this->news_next_previous($row['n_id'], $row['nc_id'], $row['n_showdate'] );
     }
     
     /*由$row取得該筆記錄的url
@@ -249,6 +251,35 @@ class NEWS{
             ));
         }
         return $currentRow;
+    }
+    //上下筆區域
+    function news_next_previous($n_id,$nc_id,$n_showdate){
+        global $db,$tpl,$cms_cfg,$TPLMSG;    
+        if(strtolower($cms_cfg['sort_pos'])=="asc"){
+            $pre_sql="select n.n_sort,n.nc_id,n.n_id,n.n_subject,n.n_seo_filename,nc.nc_seo_filename from ".$cms_cfg['tb_prefix']."_news as n left join ".$cms_cfg['tb_prefix']."_news_cate as nc on n.nc_id=nc.nc_id
+                where nc_status='1' and nc_indep='0' and n.nc_id='".$nc_id."' and n.n_id <> '".$n_id."' and n.n_status=1 and n.n_showdate>='".$n_showdate."' order by n.n_showdate, n.n_sort desc limit 0,1 ";
+            $next_sql="select n.n_sort,n.nc_id,n.n_id,n.n_subject,n.n_seo_filename,nc.nc_seo_filename from ".$cms_cfg['tb_prefix']."_news as n left join ".$cms_cfg['tb_prefix']."_news_cate as nc on n.nc_id=nc.nc_id
+                where nc_status='1' and nc_indep='0' and n.nc_id='".$nc_id."' and n.n_id <> '".$n_id."' and n.n_status=1 and n.n_showdate<='".$n_showdate."' order by n.n_showdate desc, n.n_sort limit 0,1 ";
+        }else{
+            $next_sql="select n.n_sort,n.nc_id,n.n_id,n.n_subject,n.n_seo_filename,nc.nc_seo_filename from ".$cms_cfg['tb_prefix']."_news as n left join ".$cms_cfg['tb_prefix']."_news_cate as nc on n.nc_id=nc.nc_id
+                where nc_status='1' and nc_indep='0' and  n.nc_id='".$nc_id."' and n.n_id <> '".$n_id."' and n.n_status=1 and n.n_showdate<='".$n_showdate."' order by n.n_showdate desc, n.n_sort desc limit 0,1 ";
+            $pre_sql="select n.n_sort,n.nc_id,n.n_id,n.n_subject,n.n_seo_filename,nc.nc_seo_filename from ".$cms_cfg['tb_prefix']."_news as n left join ".$cms_cfg['tb_prefix']."_news_cate as nc on n.nc_id=nc.nc_id
+                where nc_status='1' and nc_indep='0' and  n.nc_id='".$nc_id."' and n.n_id <> '".$n_id."' and n.n_status=1 and n.n_showdate>='".$n_showdate."' order by n.n_showdate, n.n_sort limit 0,1 ";
+        }
+        $selectrs = $db->query($pre_sql,true);
+        $row = $db->fetch_array($selectrs,1);
+        $rsnum  = $db->numRows($selectrs);
+        if ($rsnum > 0) {
+            $n_link = $this->get_link($row,true);
+            $tpl->assignGlobal("TAG_PREVIOUS_NEWS","<a href='".$n_link."'>".$TPLMSG['PREV']."</a>");
+        }
+        $selectrs = $db->query($next_sql,true);
+        $row = $db->fetch_array($selectrs,1);
+        $rsnum  = $db->numRows($selectrs);
+        if ($rsnum > 0) {
+            $n_link = $this->get_link($row,true);
+            $tpl->assignGlobal("TAG_NEXT_NEWS","<a href='".$n_link."'>".$TPLMSG['NEXT']."</a>");
+        }
     }
 }
 ?>
