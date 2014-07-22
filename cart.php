@@ -322,6 +322,8 @@ class CART{
                 "LINK_CONTINUE" => $_SESSION[$cms_cfg['sess_cookie_name']]['CONTINUE_SHOPPING_URL'],
                 "MSG_SHIPPING_PRICE"  => $TPLMSG['SHIPPING_PRICE'],
             ));
+            //送貨區域
+            App::getHelper('main')->multiple_radio("shipment_type",$ws_array["shippment_type"],"");                 
             for($i=0;$i<count($shopping);$i++){
                 $tpl->newBlock( "SHOPPING_CART_LIST" );
                 $pid=$shopping[$i]["p_id"];

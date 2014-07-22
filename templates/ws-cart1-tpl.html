@@ -54,9 +54,10 @@
 </table>
 
 <div id="shipment_zone">
-    送貨區域:<input type="radio" name="shipment_type" id="shipment_type_1" value="1"/><label for="shipment_type_1">臺灣本島</label>
-    <input type="radio" name="shipment_type" id="shipment_type_2" value="2"/><label for="shipment_type_2">離島地區(澎湖、金門、馬祖)</label>
-    <!--<input type="radio" name="shipment_type" id="shipment_type_3" value="3"/><label for="shipment_type_3">中國大陸(支付寶)</label>-->
+    送貨區域:
+    <!-- START BLOCK : SHIPMENT_TYPE_RADIO -->
+    <label><input type="radio" name="shipment_type" id="shipment_type_{VALUE_SHIPMENT_TYPE_KEY}" value="{VALUE_SHIPMENT_TYPE_KEY}"/>{VALUE_SHIPMENT_TYPE_NAME}</label>
+    <!-- END BLOCK : SHIPMENT_TYPE_RADIO -->
 </div>
     <div class="cart_btn">
         <input type="image" src="{TAG_THEME_PATH}btn_prev.png" onclick="cart_continue(myform,'{LINK_CONTINUE}');return false;" />

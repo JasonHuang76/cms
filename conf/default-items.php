@@ -44,7 +44,7 @@ if($cms_cfg['ws_module']['ws_shopping_cart_module']){
 }else{
     $ws_array["payment_type"]=array( 1 =>$TPLMSG["PAYMENT_ATM"],2 =>$TPLMSG["PAYMENT_CASH_ON_DELIVERY"]);
 }
-$ws_array["shippment_type"]=array( 1=>$TPLMSG['SHIPPMENT_1'], 2=>$TPLMSG['SHIPPMENT_2'], 3=>$TPLMSG['SHIPPMENT_3']);
+$ws_array["shippment_type"]=array( 1=>$TPLMSG['SHIPPMENT_1'], 2=>$TPLMSG['SHIPPMENT_2'], /*3=>$TPLMSG['SHIPPMENT_3']*/);
 if($cms_cfg['ws_module']['ws_shopping_cart_module']){
     $ws_array['invoice_type'] = array(1=>$TPLMSG['DUP_INVOICE'] ,2=>$TPLMSG['TRI_INVOICE'],3=>$TPLMSG['DONATE']);
 }else{
