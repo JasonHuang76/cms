@@ -122,11 +122,9 @@
                 <tr>
                     <th>配送時段</th>
                     <td>
-                        <select name="o_deliver_time_sec">
-                            <!-- START BLOCK : TIME_SEC_LIST -->
-                            <option value="{TS_ID}">{TS_SEC}</option>
-                            <!-- END BLOCK : TIME_SEC_LIST -->
-                        </select>
+                        <!-- START BLOCK : DELIVER_TIMESEC_RADIO -->
+                        <label><input type="radio" name="o_deliver_time_sec" value="{VALUE_DELIVER_TIMESEC_KEY}" {CHECKED}/>{VALUE_DELIVER_TIMESEC_NAME}</label>
+                        <!-- END BLOCK : DELIVER_TIMESEC_RADIO -->
                     </td>
                 </tr>
                 <!-- END BLOCK : TIME_SEC_ZONE -->

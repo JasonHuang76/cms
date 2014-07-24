@@ -473,13 +473,7 @@ class CART{
         if($cms_cfg['ws_module']['ws_delivery_timesec']){
             $tpl->newBlock("TIME_SEC_ZONE");
             //配送時段
-            foreach($ws_array["deliery_timesec"] as $k=>$timesec){
-                $tpl->newBlock("TIME_SEC_LIST");
-                $tpl->assign(array(
-                   "TS_ID"  => $k,
-                   "TS_SEC" => $timesec,
-                ));
-            }
+            App::getHelper('main')->multiple_radio("deliver_timesec",$ws_array["deliery_timesec"],'');
         }
         //會員區資訊
         if($_POST['shop_and_register']){
