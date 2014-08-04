@@ -414,33 +414,6 @@
 	text-decoration: none;
 }
 
-
-/* datatable */
-.datatable {
-	float:left;
-	margin:5px 0 20px 0;
-	background-color: #FFF;
-	border-left:1px solid #666;
-	border-top:1px solid #666;
-}
-.datatable th {
-	color: #FFF;
-	padding:5px 0;
-	background-color: #2bade2;
-	font-weight: bold;
-	border-right:1px solid #000;
-	border-bottom:1px solid #000;
-}
-.datatable td {
-	color: #000;
-	padding:5px 0;
-	text-align:center;
-	border-right:1px solid #666;
-	border-bottom:1px solid #666;
-}
-.datatable  tr.altrow {
-}
-
 #nodata {
   margin: 0px;
   padding: 10px 0px 0px 0px;
