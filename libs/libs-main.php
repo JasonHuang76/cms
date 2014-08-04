@@ -1780,8 +1780,10 @@ class MAINFUNC{
         if(is_string($values)){
             $values = explode($sp,$values);
         }
-        foreach($values as $k){
-            $tmp[] = $datas[$k];
+        if(is_array($values)){
+            foreach($values as $k){
+                $tmp[] = is_array($datas[$k])?$datas[$k]['label']:$datas[$k];
+            }
         }
         return implode(',',$tmp);
     }    
