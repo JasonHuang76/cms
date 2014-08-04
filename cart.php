@@ -548,13 +548,7 @@ class CART{
             $tpl->gotoBlock("PAYMENT_TYPE");
             $tpl->gotoBlock("MEMBER_DATA_FORM");
             //發票類型
-            foreach($ws_array['invoice_type'] as $type_id => $type_label){
-                $tpl->newBlock("INVOICE_TYPE_LIST");
-                $tpl->assign(array(
-                    "VALUE_INVOICE_ID"    => $type_id,
-                    "VALUE_INVOICE_LABEL" => $type_label,
-                ));
-            }
+            $main->multiple_radio("invoice",$ws_array['invoice_type'],2);
             //付款說明
             $this->load_term($tpl);
         }    
