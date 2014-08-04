@@ -241,6 +241,7 @@ class ORDER{
                                           "VALUE_O_COMPANY_NAME" => $row["o_company_name"],
                                           "VALUE_O_VAT_NUMBER" => $row["o_vat_number"],
                                           "ORIGIN_STATUS" => $row['o_status'],
+                                          "MSG_PLUS_FEE" => $TPLMSG["PLUS_FEE"],
                 ));
                 //發票類型
                 $main->multiple_radio("invoice_type",$ws_array['invoice_type'],$row['o_invoice_type']);

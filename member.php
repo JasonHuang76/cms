@@ -468,7 +468,9 @@ class MEMBER{
         global $db,$tpl,$main,$cms_cfg,$TPLMSG,$ws_array;
         $main->layer_link($TPLMSG['MEMBER_ZONE_ORDER']);
         if($type=="list"){
-            $tpl->assignGlobal( array("TAG_MAIN_FUNC"  => $TPLMSG['MEMBER_ZONE_ORDER']  ));
+            $tpl->assignGlobal( array(
+                "TAG_MAIN_FUNC"  => $TPLMSG['MEMBER_ZONE_ORDER']  
+            ));
             $tpl->newBlock( "ORDER_LIST_ZONE" );
             $tpl->assign( array("MSG_NAME"  => $TPLMSG['MEMBER_NAME'],
                                 "MSG_STATUS" => $TPLMSG['STATUS'],
@@ -546,6 +548,7 @@ class MEMBER{
                                       "MSG_VAT_NUMBER"   => $TPLMSG['VAT_NUMBER'],
                                       "MSG_PAYMENT_TYPE"   => $TPLMSG['PAYMENT_TYPE'],
                                       "MSG_DELIVER_STR"   => $TPLMSG['DELIVER_STR'],
+                                      "MSG_PLUS_FEE" => $TPLMSG["PLUS_FEE"],
             ));
             //相關參數
             if(!empty($_REQUEST['nowp'])){

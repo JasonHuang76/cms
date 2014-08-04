@@ -245,6 +245,7 @@ class CART{
                                   "MSG_MODIFY" => $TPLMSG['MODIFY'],
                                   "MSG_DEL" => $TPLMSG['DEL'],
                                   "MSG_TOTAL" => $TPLMSG['CART_TOTAL'],
+                                  "MSG_PLUS_FEE" => $TPLMSG["PLUS_FEE"],
                                   "MSG_SUBTOTAL" => $TPLMSG['CART_SUBTOTAL'],
                                   "MSG_AMOUNT" => $TPLMSG['CART_AMOUNT'],
                                   "MSG_PRODUCT" => $TPLMSG['PRODUCT'],
