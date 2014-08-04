@@ -592,7 +592,7 @@ class MEMBER{
                                               "VALUE_O_TOTAL_PRICE" => $row["o_total_price"],
                                               "VALUE_O_STATUS_SUBJECT" => $ws_array["order_status"][$row["o_status"]],
                                               "VALUE_O_CONTENT" => $row["o_content"],
-                                              "VALUE_O_PAYMENT_TYPE" => $ws_array["payment_type"][$row['o_payment_type']],
+                                              "VALUE_O_PAYMENT_TYPE" => $main->multi_map_value($ws_array["payment_type"],$row['o_payment_type']),
                                               "VALUE_O_SHIPPMENT_TYPE" => $ws_array["shippment_type"][$row['o_shippment_type']],
                                               "VALUE_O_INVOICE_TYPE" => $ws_array["invoice_type"][$row['o_invoice_type']],
                                               "VALUE_O_VAT_NUMBER" => $row["o_vat_number"],

@@ -672,7 +672,7 @@ class CART{
             //顯示付款方式
             $tpl->newBlock("PAYMENT_TYPE");
             $tpl->assign("MSG_PAYMENT_TYPE" , $TPLMSG["PAYMENT_TYPE"]);
-            $tpl->assign("VALUE_PAYMENT_TYPE" , $ws_array["payment_type"][$_REQUEST["o_payment_type"]]);
+            $tpl->assign("VALUE_PAYMENT_TYPE" , $main->multi_map_value($ws_array["payment_type"],$_REQUEST["o_payment_type"]));
             if($_REQUEST["o_payment_type"]==1){ //ATM轉帳
                 $tpl->newBlock("ATM_LAST_FIVE");
                 $tpl->assign("VALUE_ATM_LAST5",$_REQUEST["o_atm_last5"]);
@@ -968,7 +968,7 @@ class CART{
             //顯示付款方式
             $tpl->newBlock("PAYMENT_TYPE");
             $tpl->assign("MSG_PAYMENT_TYPE" , $TPLMSG["PAYMENT_TYPE"]);
-            $tpl->assign("VALUE_PAYMENT_TYPE" , $ws_array["payment_type"][$_REQUEST["o_payment_type"]]);
+            $tpl->assign("VALUE_PAYMENT_TYPE" , $main->multi_map_value($ws_array["payment_type"],$_REQUEST["o_payment_type"]));
             App::getHelper("session")->{paymentType} = $_REQUEST["o_payment_type"];
             if($_REQUEST["o_payment_type"]==1){ //ATM轉帳
                 $tpl->newBlock("ATM_LAST_FIVE");
