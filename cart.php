@@ -451,6 +451,7 @@ class CART{
     }
     function cart_finish(){
         global $db,$tpl,$TPLMSG,$ws_array,$shopping,$inquiry,$cms_cfg,$main;
+        $tmpForm = App::getHelper('session')->tmpForm;
         //載入購物車列表
         $this->cart_list();
         //顯示表單資料
@@ -511,6 +512,13 @@ class CART{
                  "VALUE_M_CELLPHONE" => $row["m_cellphone"]
             ));
         }
+        if($tmpForm){
+            $tpl->assignGlobal(array(
+                 "VALUE_M_COMPANY_NAME" => $tmpForm["m_company_name"],                
+                 "VALUE_M_VAT_NUMBER" => $tmpForm["m_vat_number"],
+                 "VALUE_CONTENT" => $tmpForm["content"],
+            ));
+        }
         //國家下拉選單
         if($cms_cfg["ws_module"]["ws_country"]==1) {
             $main->country_select($row["m_country"]);
@@ -548,7 +556,7 @@ class CART{
             $tpl->gotoBlock("PAYMENT_TYPE");
             $tpl->gotoBlock("MEMBER_DATA_FORM");
             //發票類型
-            $main->multiple_radio("invoice",$ws_array['invoice_type'],2);
+            $main->multiple_radio("invoice",$ws_array['invoice_type'],$tmpForm['o_invoice_type']?$tmpForm['o_invoice_type']:2);
             //付款說明
             $this->load_term($tpl);
         }    
@@ -569,6 +577,7 @@ class CART{
     //預覽訂單
     function cart_preview(){
         global $db,$tpl,$cms_cfg,$TPLMSG,$shopping,$inquiry,$main,$ws_array;
+        App::getHelper('session')->tmpForm = $_POST;
         $this->cart_list();
         $tpl->newBlock( "MEMBER_DATA_FORM" );
         $tpl->assign( array("MSG_MEMBER_NAME"  => $TPLMSG['MEMBER_NAME'],
@@ -1081,6 +1090,7 @@ class CART{
                 unset($_SESSION[$cms_cfg['sess_cookie_name']]["CART_PID"]);
                 unset($_SESSION[$cms_cfg['sess_cookie_name']]["amount"]);
                 unset($_SESSION[$cms_cfg['sess_cookie_name']]["shipment_type"]);
+                unset(App::getHelper('session')->tmpForm);//結帳表單暫存
                 //$tpl->assignGlobal( "MSG_ACTION_TERM" , $TPLMSG["ACTION_TERM"]);
                 //$goto_url=$cms_cfg["base_url"]."member.php?".$func_str;
                 //$this->goto_target_page($goto_url,2);
