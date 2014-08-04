@@ -1710,9 +1710,14 @@ class MAINFUNC{
             $tpl->newBlock(strtoupper($blockname)."_CHECKBOX");
             $tpl->assign(array(
                 "VALUE_".strtoupper($blockname)."_KEY"  => $k, 
-                "VALUE_".strtoupper($blockname)."_NAME" => $v, 
+                "VALUE_".strtoupper($blockname)."_NAME" => is_array($v)?$v['label']:$v, 
                 "CHECKED"                   => (@in_array($k,$values))?"checked":"",
             ));
+            if(isset($v['htmlOptions']) && is_array($v['htmlOptions'])){
+                foreach($v['htmlOptions'] as $m => $n){
+                    $tpl->assign("TAG_OPTION_".  strtoupper($m),sprintf("%s='%s'",$m,$n));
+                }
+            }
         }
     }
     //multiple radio
@@ -1730,9 +1735,14 @@ class MAINFUNC{
             $tpl->newBlock(strtoupper($blockname)."_RADIO");
             $tpl->assign(array(
                 "VALUE_".strtoupper($blockname)."_KEY"  => $k, 
-                "VALUE_".strtoupper($blockname)."_NAME" => $v, 
+                "VALUE_".strtoupper($blockname)."_NAME" => is_array($v)?$v['label']:$v,
                 "CHECKED"                   => ($k==$values)?"checked":"",
             ));
+            if(isset($v['htmlOptions']) && is_array($v['htmlOptions'])){
+                foreach($v['htmlOptions'] as $m => $n){
+                    $tpl->assign("TAG_OPTION_".  strtoupper($m),sprintf("%s='%s'",$m,$n));
+                }
+            }
         }
     }        
     //multiple select
@@ -1750,9 +1760,14 @@ class MAINFUNC{
             $tpl->newBlock(strtoupper($blockname)."_SELECT");
             $tpl->assign(array(
                 "VALUE_".strtoupper($blockname)."_KEY"  => $k, 
-                "VALUE_".strtoupper($blockname)."_NAME" => $v, 
+                "VALUE_".strtoupper($blockname)."_NAME" => is_array($v)?$v['label']:$v,
                 "SELECTED"                   => ($k==$values)?"selected":"",
             ));
+            if(isset($v['htmlOptions']) && is_array($v['htmlOptions'])){
+                foreach($v['htmlOptions'] as $m => $n){
+                    $tpl->assign("TAG_OPTION_".  strtoupper($m),sprintf("%s='%s'",$m,$n));
+                }
+            }
         }
     }      
     //參數說明
