@@ -1056,22 +1056,33 @@ class EPAPER{
     //attach product checkbox
     function attach_product_checkbox(){
         global $db,$cms_cfg,$tpl;
-        $sql = "select pc_id,pc_name,pc_layer from ".$cms_cfg['tb_prefix']."_products_cate where  pc_status='1' order by pc_layer ".$cms_cfg['sort_pos'];
-        $pcrs = $db->query($sql);
-        while($pc_row = $db->fetch_array($pcrs,1)){
-            $sql = "select * from ".$cms_cfg['tb_prefix']."_products where pc_id='".$pc_row['pc_id']."' and p_status='1' order by p_sort ".$cms_cfg['sort_pos'];
-            $rs = $db->query($sql);
-            if($db->numRows($rs)){
-                $tpl->newBlock("PRODUCTS_CATE_LIST");
-                $tpl->assign("VALUE_PC_NAME",$pc_row['pc_name']);
-                while($row = $db->fetch_array($rs,1)){
-                    $tpl->newBlock("PRODUCTS_LIST");
-                    $tpl->assign(array(
-                        "VALUE_P_SMALL_IMG" => $row['p_small_img']?$cms_cfg['file_root'].$row['p_small_img']:$cms_cfg['default_preview_pic'], 
-                        "VALUE_P_ID"        => $row['p_id'], 
-                    ));
+        $prod_cates = array();
+        $this->get_products_cate($prod_cates);
+        if(!empty($prod_cates)){
+            foreach($prod_cates as $pc_row ){
+                $sql = "select * from ".$cms_cfg['tb_prefix']."_products where pc_id='".$pc_row['pc_id']."' and p_status='1' order by p_sort ".$cms_cfg['sort_pos'];
+                $rs = $db->query($sql);
+                if($db->numRows($rs)){
+                    $tpl->newBlock("PRODUCTS_CATE_LIST");
+                    $tpl->assign("VALUE_PC_NAME",$pc_row['pc_name']);
+                    while($row = $db->fetch_array($rs,1)){
+                        $tpl->newBlock("PRODUCTS_LIST");
+                        $tpl->assign(array(
+                            "VALUE_P_SMALL_IMG" => $row['p_small_img']?$cms_cfg['file_root'].$row['p_small_img']:$cms_cfg['default_preview_pic'], 
+                            "VALUE_P_ID"        => $row['p_id'], 
+                        ));
+                    }
                 }
             }
+        }
+    }
+    protected function get_products_cate(&$container,$parent=0){
+        global $db,$cms_cfg,$tpl;
+        $sql = "select pc_id,pc_name from ".$cms_cfg['tb_prefix']."_products_cate where  pc_status='1' and pc_parent='{$parent}' order by pc_sort ".$cms_cfg['sort_pos'];
+        $pcrs = $db->query($sql,true);
+        while($pc_row = $db->fetch_array($pcrs,1)){
+            $container[] = $pc_row;
+            $this->get_products_cate($container, $pc_row['pc_id']);
         }
     }
     function get_maillist_sql(){
