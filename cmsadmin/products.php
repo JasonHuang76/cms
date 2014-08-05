@@ -1053,7 +1053,7 @@ class PRODUCTS{
             if($row['p_id']){
                 $tpl->newBlock("PREVIEW_LINK");
                 $tpl->assign(array(
-                  "TAG_PREVIEW_URL" => $cms_cfg['base_root']."products.php?func=p_detail&p_id=".$row['p_id']."&pc_parent=".$row['pc_id']."&preview=1",                        
+                  "TAG_PREVIEW_URL" => $this->preview_link($row),
                 ));
             }
         }        
@@ -2812,6 +2812,10 @@ class PRODUCTS{
             
         }
         return $outout;
+    }
+    function preview_link($row){
+        global $cms_cfg;
+        return $cms_cfg['base_root']."products.php?func=p_detail&p_id=".$row['p_id']."&pc_parent=".$row['pc_id']."&preview=1";
     }
 }
 //ob_end_flush();
