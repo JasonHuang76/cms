@@ -18,12 +18,12 @@
 
         <tr><td>
             <!-- START BLOCK : ATTACH_PRODUCT_LIST -->
-            <table width="48%" style="float:left" >
-                <tr><th colspan="2" style="margin:3% 0; font-size: large;width:50%; text-align:left; "><a href="{VALUE_P_LINK}" style="color:#8c0c09;">{VALUE_P_NAME}</a></th><tr>
-
-                <td valign="top">{VALUE_P_DESC}</td>
-                <td align="right"><a href="{VALUE_P_LINK}"><img src="{VALUE_P_SMALL_IMG}" width="{VALUE_P_SMALL_IMG_W}" height="{VALUE_P_SMALL_IMG_H}" /></a></td>
-            </table>
+            <div style="width:110px;display:inline-block;padding:5px;margin:5px;">
+                <div style="width:110px;height:110px;display:table-cell;text-align:center;vertical-align: middle;">
+                    <a href="{VALUE_P_LINK}"><img src="{VALUE_P_SMALL_IMG}" width="{VALUE_P_SMALL_IMG_W}" height="{VALUE_P_SMALL_IMG_H}" /></a>
+                </div>
+                <div style="height:60px;overflow: hidden;"><a href="{VALUE_P_LINK}" style="color:#8c0c09;text-decoration: none;font-size:12px">{VALUE_P_NAME}</a></div>
+            </div>
             <!-- END BLOCK : ATTACH_PRODUCT_LIST -->
         </td></tr>
 
