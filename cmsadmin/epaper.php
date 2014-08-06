@@ -1069,6 +1069,7 @@ class EPAPER{
                         $tpl->newBlock("PRODUCTS_LIST");
                         $tpl->assign(array(
                             "VALUE_P_SMALL_IMG" => $row['p_small_img']?$cms_cfg['file_root'].$row['p_small_img']:$cms_cfg['default_preview_pic'], 
+                            "VALUE_P_NAME"      => $row['p_name'],
                             "VALUE_P_ID"        => $row['p_id'], 
                         ));
                     }
