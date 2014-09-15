@@ -60,9 +60,39 @@ $cms_cfg['default_lock'] = "icon-lock.gif";
 require_once dirname(__FILE__)."/database.php";
 require_once dirname(__FILE__)."/creditcard.php";
 
+# 語系切換設定 #
+$cms_cfg["lang_array"] = array( // language => tb_prefix
+	"eng" => "eng",
+	"cht" => "cht",
+	"chs" => "chs",
+	"jap" => "jap",
+	"rus" => "rus",
+);
+
+$uri_no_base = str_replace($cms_cfg["base_root"], '', $_SERVER["REQUEST_URI"]);
+$uri_array = explode("/",$uri_no_base);
+$uri_lang = $uri_array[0];
+
+if(empty($cms_cfg["lang_array"][$uri_lang])){
+	$uri_lang = "eng";
+	$base_uri = $cms_cfg["base_root"];
+}else{
+	$base_uri = $cms_cfg["base_root"].$uri_lang."/";
+}
+
+$cms_cfg['language'] = $uri_lang;
+$cms_cfg['tb_prefix'] = $cms_cfg["lang_array"][$uri_lang];
+
+$cms_cfg["origin_root"] = $cms_cfg["base_root"];
+$cms_cfg["base_root"] = $base_uri;
+
+##############
+
 //default language
+/*
 $cms_cfg['language'] = "eng";
 $cms_cfg['tb_prefix'] = "eng";
+*/
 
 //Products page limit
 $cms_cfg['op_limit']=12;  //一頁筆數限制

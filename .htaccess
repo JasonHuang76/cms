@@ -11,6 +11,11 @@ Options ExecCGI Includes IncludesNOEXEC SymLinksIfOwnerMatch -Indexes
 
 RewriteEngine On
 
+#多語系設定
+RewriteRule ^(cht|chs|jap|spa|rus)$  ./ 
+RewriteRule ^(cht|chs|jap|spa|rus)/$  ./ 
+RewriteRule ^(cht|chs|jap|spa|rus)/([^*]+)$  $2 
+
 #防盜連
 #圖片request的HTTP_REFERER不包括主機的網域
 #RewriteCond %{HTTP_REFERER} !http://localhost/ [NC]

@@ -35,7 +35,7 @@ class Model_Modules {
                 throw new Exception('get model modules error');
             }
         }
-        return $this->_modules[$name];        
+        return $this->_modules[$name];
     }
     
     function getModulesPath(){
