@@ -3,6 +3,7 @@
 //ob_start();
 session_start();
 include_once("../conf/config.inc.php");
+
 if(empty($_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"])){
     header("location: /");
     exit;

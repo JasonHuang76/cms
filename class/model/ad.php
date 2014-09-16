@@ -8,7 +8,7 @@ class Model_Ad {
     function __construct($db,$rootPath,$sortType='asc') {
         $this->db = $db;
         $this->sortType = $sortType;
-        $this->templatePath = $rootPath . LANG::$templates . DIRECTORY_SEPARATOR. "ad". DIRECTORY_SEPARATOR;
+        $this->templatePath = LANG::$real_root . LANG::$templates . DIRECTORY_SEPARATOR. "ad". DIRECTORY_SEPARATOR;
     }
     function getAd($adCate,$template="common",$belongTo=0){
         $this->_initTemplate($template);

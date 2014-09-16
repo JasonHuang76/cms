@@ -6,6 +6,7 @@
 		);
 		
 		public static $templates = '';
+		public static $real_root = '';
 		
 		function __construct($base_root='/',array $lang_array){
 			$lang_array = array_merge(self::$lang_array,$lang_array);
@@ -24,10 +25,11 @@
 			$this->language = $uri_lang;
 			$this->tb_prefix = $lang_array[$uri_lang];
 			
-			$this->origin_root = $base_root;
 			$this->base_root = $base_uri;
 			
 			self::$templates = $this->base_templates = "templates-".$uri_lang;
+			
+			self::$real_root = dirname(__FILE__)."/../";
 		}
 	}
 

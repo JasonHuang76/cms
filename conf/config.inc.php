@@ -26,7 +26,6 @@ $lang = new LANG($cms_cfg["base_root"],$cms_cfg["lang_array"]);
 $cms_cfg['language'] = $lang->language;
 $cms_cfg['tb_prefix'] = $lang->tb_prefix;
 
-$cms_cfg["origin_root"] = $lang->origin_root;
 $cms_cfg["base_root"] = $lang->base_root;
 
 $cms_cfg['base_templates'] = $lang->base_templates."/";
