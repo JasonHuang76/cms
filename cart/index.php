@@ -885,6 +885,7 @@
 			global $cms_cfg, $db;
 	
 			if (empty($this -> m_id) && !empty($cms_cfg["ws_module"]["ws_cart_login"])) {
+                                App::getHelper('main')->check_duplicate_member_account($_REQUEST["m_account"]);
 				$sql = "
 					insert into " . $cms_cfg['tb_prefix'] . "_member (
 						mc_id,

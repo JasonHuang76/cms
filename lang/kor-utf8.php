@@ -144,6 +144,8 @@ $TPLMSG['MEMBER_JOIN_VALIDATE_MANUAL'] = "등록 된 계정 알림 문자가 당
 $TPLMSG['MEMBER_NAME_SET_1'] = "%1\$s&nbsp;%2\$s";
 $TPLMSG['MEMBER_NAME_SET_2'] = "%2\$s&nbsp;%1\$s";
 $TPLMSG["MEMBER_EPAPER"] = "Occasionally, we email newsletters to our members. Would you like to receive this information?";
+$TPLMSG["MEMBER_NAME_IN_CART_TEMPLATE"] = '%1$s %2$s';
+$TPLMSG["MEMBER_ACCOUNT_EXISTS"] = "회원 계정은 존재했다!";
 
 //PRODUCTS
 $TPLMSG['PRODUCTS'] = "제품소개";

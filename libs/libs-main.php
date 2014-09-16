@@ -2304,5 +2304,18 @@ class MAINFUNC{
         list($gg) = App::getHelper('db')->query_firstRow($sql,false);
         return (int)$gg;
     }
+    function check_duplicate_member_account($account){
+        global $db,$TPLMSG,$cms_cfg;
+        $sql = "select * from ".$cms_cfg['tb_prefix']."_member where m_account='{$account}'";
+        $pre_res = $db->query($sql);
+        if($db->numRows($pre_res)){
+            echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />";
+            echo "<script>";
+            echo "alert(\"".$TPLMSG["MEMBER_ACCOUNT_EXISTS"]."\");";
+            echo "history.go(-1);";
+            echo "</script>";  
+            die();
+        }        
+    }
 }
 ?>

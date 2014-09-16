@@ -86,7 +86,11 @@ class CART{
                     $tpl->newBlock("JS_FORMVALID");
                     $tpl->newBlock("JQUERY_UI_SCRIPT");
                     $tpl->newBlock("DATEPICKER_SCRIPT_IN_CART");
+<<<<<<< HEAD
                     if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->res_init("zone","box");
+=======
+                    if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->res_init("zone",'box');
+>>>>>>> master
                     $this->cart_finish();
                 }
                 $this->ws_tpl_type=1;
@@ -775,6 +779,7 @@ class CART{
         }
         //如果是註冊會員,新增一筆會員資料
         if($_POST['reg_mem'] && !empty($shopping)){
+            $main->check_duplicate_member_account($_REQUEST["m_email"]);            
             $sql="
                 insert into ".$cms_cfg['tb_prefix']."_member (
                     mc_id,

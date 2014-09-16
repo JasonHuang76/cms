@@ -157,6 +157,7 @@ $TPLMSG['MEMBER_NAME_SET_1'] = "%1\$s&nbsp;%2\$s";
 $TPLMSG['MEMBER_NAME_SET_2'] = "%2\$s&nbsp;%1\$s";
 $TPLMSG["MEMBER_EPAPER"] = "願意接收電子報訊息?";
 $TPLMSG["MEMBER_NAME_IN_CART_TEMPLATE"] = '%2$s%1$s';
+$TPLMSG["MEMBER_ACCOUNT_EXISTS"] = "會員帳號已存在!";
 
 //PRODUCTS
 $TPLMSG['PRODUCTS'] = "產品介紹";

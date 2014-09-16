@@ -144,6 +144,8 @@ $TPLMSG['MEMBER_JOIN_VALIDATE_MANUAL'] = "आपका पंजीकृत ख
 $TPLMSG['MEMBER_NAME_SET_1'] = "%1\$s&nbsp;%2\$s";
 $TPLMSG['MEMBER_NAME_SET_2'] = "%2\$s&nbsp;%1\$s";
 $TPLMSG["MEMBER_EPAPER"] = "Occasionally, we email newsletters to our members. Would you like to receive this information?";
+$TPLMSG["MEMBER_NAME_IN_CART_TEMPLATE"] = '%1$s %2$s';
+$TPLMSG["MEMBER_ACCOUNT_EXISTS"] = "सदस्य खाते ही अस्तित्व में है!";
 
 //PRODUCTS
 $TPLMSG['PRODUCTS'] = "Products";

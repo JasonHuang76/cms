@@ -292,7 +292,9 @@ class MEMBER{
             case "add":
                 if(!isset($_SESSION[$cms_cfg['sess_cookie_name']]['JOIN_MEMBER']) || ($_SESSION[$cms_cfg['sess_cookie_name']]['JOIN_MEMBER']+20)>time()){
                     trigger_error("invalid join member",E_USER_ERROR);
-                }                
+                }             
+                //判斷會員帳號是否已存在
+                $main->check_duplicate_member_account($_REQUEST["m_account"]);
                 $max_sort = $main->get_max_sort_value($cms_cfg['tb_prefix']."_member",'m');
                 $m_status = ($cms_cfg["ws_module"]['ws_member_join_validation'])?0:1;
                 $sql="
