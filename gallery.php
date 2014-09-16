@@ -13,7 +13,7 @@ class GALLERY{
         $list_method = ($cms_cfg['ws_module']['ws_gallery_scan_dir'])?"galler_dir_list":"gallery_list";
         switch($_REQUEST["func"]){
             case "g_list"://活動剪影列表
-                $this->ws_tpl_file = "templates/ws-gallery-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-gallery-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->{$list_method}();
                 //page view record --ph_type,ph_type_id,m_id
@@ -21,7 +21,7 @@ class GALLERY{
                 $this->ws_tpl_type=1;
                 break;
             case "g_show"://活動剪影顯示
-                $this->ws_tpl_file = "templates/ws-gallery-show-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-gallery-show-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_POP_IMG");
                 $this->gallery_show();
@@ -30,7 +30,7 @@ class GALLERY{
                 $this->ws_tpl_type=1;
                 break;
             default:    //活動剪影列表
-                $this->ws_tpl_file = "templates/ws-gallery-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-gallery-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->{$list_method}();
                 //page view record --ph_type,ph_type_id,m_id
@@ -48,12 +48,12 @@ class GALLERY{
         global $tpl,$cms_cfg,$db,$ws_array,$TPLMSG,$main;
         $tpl = new TemplatePower( $cms_cfg['base_all_tpl'] );
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
-        $tpl->assignInclude( "MAIN_MENU", "templates/ws-fn-main-menu-tpl.html"); //主選單
-        $tpl->assignInclude( "FOOTER", "templates/ws-fn-footer-tpl.html"); //頁腳        
+        $tpl->assignInclude( "MAIN_MENU", $cms_cfg['base_templates']."ws-fn-main-menu-tpl.html"); //主選單
+        $tpl->assignInclude( "FOOTER", $cms_cfg['base_templates']."ws-fn-footer-tpl.html"); //頁腳        
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板     
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板     
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG['GALLERY']);
         $tpl->assignGlobal( "TAG_GALLERY_CURRENT" , "class='current'");

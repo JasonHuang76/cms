@@ -6,9 +6,9 @@ class ABOUTUS{
     function ABOUTUS(){
         global $db,$cms_cfg,$tpl,$main;
         //show page
-        $this->ws_tpl_file = "templates/ws-aboutus-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-aboutus-tpl.html";
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
-        $this->au_cate = $_REQUEST['au_cate']?$_REQUEST['au_cate']:'aboutus';        
+        $this->au_cate = $_REQUEST['au_cate']?$_REQUEST['au_cate']:'aboutus';
         $this->ws_load_tp($this->ws_tpl_file);
         $this->aboutus_list();
         //page view record --ph_type,ph_type_id,m_id
@@ -23,8 +23,8 @@ class ABOUTUS{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["ABOUT_US"]);
         $tpl->assignGlobal( "TAG_LAYER" , $TPLMSG["ABOUT_US"]);

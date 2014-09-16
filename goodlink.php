@@ -11,7 +11,7 @@ class GOODLINK{
         $this->ps = $cms_cfg['path_separator'];
         switch($_REQUEST["func"]){
             case "l_list"://相關網站列表
-                $this->ws_tpl_file = "templates/ws-goodlink-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-goodlink-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->goodlink_list();
                 //page view record --ph_type,ph_type_id,m_id
@@ -19,7 +19,7 @@ class GOODLINK{
                 $this->ws_tpl_type=1;
                 break;
             default:    //相關網站列表
-                $this->ws_tpl_file = "templates/ws-goodlink-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-goodlink-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->goodlink_list();
                 //page view record --ph_type,ph_type_id,m_id
@@ -39,8 +39,8 @@ class GOODLINK{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板      
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板      
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_GOODLINK_CURRENT" , "class='current'");
         $tpl->assignGlobal( "TAG_CATE_TITLE", $ws_array["left"]['goodlink']);

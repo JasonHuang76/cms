@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("libs/libs-lang.php");
 include_once("conf/config.inc.php");
 include_once("libs/libs-mysql.php");
 include_once("libs/libs-main.php");

@@ -1,7 +1,7 @@
 <?php
 //error_reporting(15);
 include_once("libs/libs-sysconfig.php");
-if($_GET['view'] && file_exists("templates/views/".$_GET['view'])){
+if($_GET['view'] && file_exists(LANG::$templates."/views/".$_GET['view'])){
     ob_start();
     include "templates/views/".$_GET['view'];
     $raw_content = ob_get_clean();

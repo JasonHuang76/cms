@@ -19,7 +19,7 @@ class DOWNLOAD{
         $this->is_login = isset($_SESSION[$cms_cfg["sess_cookie_name"]]["MEMBER_ID"]);
         //需要會員權限,則顯示登入表單
         if(!$this->is_login && $this->need_login){
-            $this->ws_tpl_file = "templates/ws-login-form-tpl.html";
+            $this->ws_tpl_file = $cms_cfg['base_templates']."ws-login-form-tpl.html";
             $this->ws_load_tp($this->ws_tpl_file);
             $main->layer_link($TPLMSG["MEMBER_LOGIN"]);
             $tpl->assignGlobal( "MSG_MEMBER_LOGIN",$TPLMSG["MEMBER_LOGIN"]);
@@ -40,7 +40,7 @@ class DOWNLOAD{
                         $_REQUEST["f"]="download";
                         $this->func_str=$cms_cfg['base_root'].$_REQUEST["f"];
                     }
-                    $this->ws_tpl_file = "templates/ws-download-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-download-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $this->download_list();
             }
@@ -59,8 +59,8 @@ class DOWNLOAD{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板     
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板     
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["DOWNLOAD"]);
         $tpl->assignGlobal( "TAG_LAYER" , $TPLMSG["DOWNLOAD"]);

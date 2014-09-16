@@ -8,7 +8,7 @@ class PRODUCTS{
         $this->one_page_limit=($_SESSION[$cms_cfg['sess_cookie_name']]["sc_one_page_limit"])?$_SESSION[$cms_cfg['sess_cookie_name']]["sc_one_page_limit"]:$cms_cfg["one_page_limit"];
         //等級大於10啟動seo
         $this->ws_seo=($cms_cfg["ws_level"]>10)?1:0;
-        $this->ws_tpl_file = "templates/ws-quick-shopping-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-quick-shopping-tpl.html";
         $this->ws_load_tp($this->ws_tpl_file);
         $this->products_list();
         //有廣告模組才啟動廣告

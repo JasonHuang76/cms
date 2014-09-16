@@ -59,7 +59,7 @@ class epaper_register {
     
     protected function _show_msg($msg){
         global $tpl,$cms_cfg,$main;
-        $tpl = new TemplatePower("templates/ws-epaper-msg-tpl.html");
+        $tpl = new TemplatePower($cms_cfg['base_templates']."ws-epaper-msg-tpl.html");
         $tpl->prepare();
         $main->header_footer("epaper");
         $tpl->assign("_ROOT.MSG",$msg);

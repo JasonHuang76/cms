@@ -17,7 +17,7 @@ class CART{
                 $this->ajax_show_ship_price();
                 break;
             case "c_list"://購物車列表
-                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -27,7 +27,7 @@ class CART{
                 break;
             case "c_add"://新增購物項目
                 if(!$_POST['via_ajax']){
-                    $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $tpl->newBlock("JS_MAIN");
                     $tpl->newBlock("JS_POP_IMG");
@@ -37,14 +37,14 @@ class CART{
                 $this->cart_add($_POST['via_ajax']);
                 break;
             case "c_list_add"://新增購物項目(產品列表)
-                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $this->cart_list_add();
                 $this->ws_tpl_type=1;
                 break;
             case "c_quick_add"://快速購物項目
-                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -53,7 +53,7 @@ class CART{
                 break;
             case "c_mod"://購物車列表
                 if(!$_POST['via_ajax']){
-                    $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $tpl->newBlock("JS_MAIN");
                     $tpl->newBlock("JS_POP_IMG");
@@ -62,7 +62,7 @@ class CART{
                 $this->cart_modify($_POST['via_ajax']);
                 break;
             case "c_del"://刪除購物項目
-                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -77,22 +77,22 @@ class CART{
                     $_SESSION[$cms_cfg['sess_cookie_name']]["shipment_type"] = $_POST['shipment_type'];
                 }
                 if(empty($this->m_id) && $cms_cfg["ws_module"]["ws_cart_login"]==1 && empty($_POST['shop_and_register'])){
-                    $this->ws_tpl_file = "templates/ws-cart-login-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-login-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $this->member_login();
                 }else{
-                    $this->ws_tpl_file = "templates/ws-cart-finish".$this->cart_type."-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-finish".$this->cart_type."-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $tpl->newBlock("JS_FORMVALID");
                     $tpl->newBlock("JQUERY_UI_SCRIPT");
                     $tpl->newBlock("DATEPICKER_SCRIPT_IN_CART");
-                    if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->jQuery_init("zone");
+                    if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->res_init("zone","box");
                     $this->cart_finish();
                 }
                 $this->ws_tpl_type=1;
                 break;
             case "preview": //預覽購物訂單
-                $this->ws_tpl_file = "templates/ws-cart-preview-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-preview-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->cart_preview();
                 $main->load_privacy_term();
@@ -102,7 +102,7 @@ class CART{
                 $this->cart_replace();
                 break;
             case "s_inquiry": //單一詢問車
-                $this->ws_tpl_file = "templates/ws-single-inquiry-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-single-inquiry-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 //$tpl->newBlock("JS_POP_IMG");
@@ -113,7 +113,7 @@ class CART{
                 $this->inquiry_replace();
                 break;
             default: //購物車列表
-                $this->ws_tpl_file = "templates/ws-cart".$this->cart_type."-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart".$this->cart_type."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -137,10 +137,10 @@ class CART{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方首頁表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板
-        $tpl->assignInclude( "CONTACT_S", "templates/ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
-        $tpl->assignInclude( "N_CONTACT_S", "templates/ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板
+        $tpl->assignInclude( "CONTACT_S", $cms_cfg['base_templates']."ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
+        $tpl->assignInclude( "N_CONTACT_S", $cms_cfg['base_templates']."ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_CATE_TITLE", $ws_array["left"]["products"]);//左方menu title
         $tpl->assignGlobal( "TAG_CATE_DESC", $ws_array["left_desc"]["products"]);//左方menu title
@@ -700,7 +700,7 @@ class CART{
     //資料更新================================================================
     function cart_replace(){
         global $db,$tpl,$cms_cfg,$TPLMSG,$shopping,$inquiry,$main,$ws_array;
-//        $this->ws_tpl_file = "templates/mail/cart".$this->cart_type."-finish.html";
+//        $this->ws_tpl_file = $cms_cfg['base_templates']."mail/cart".$this->cart_type."-finish.html";
 //        $tpl = new TemplatePower( $this->ws_tpl_file );
 //        $tpl->prepare();
 //        $tpl->assignGlobal("TAG_BASE_CSS", $cms_cfg['base_mail_css']);
@@ -1207,7 +1207,7 @@ class CART{
     //單一詢問車資料更新
     function inquiry_replace(){
         global $db,$tpl,$cms_cfg,$TPLMSG,$main;
-        $this->ws_tpl_file = "templates/ws-mail-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-mail-tpl.html";
         $tpl = new TemplatePower( $this->ws_tpl_file );
         $tpl->prepare();
         $tpl->assignGlobal("TAG_BASE_CSS", $cms_cfg['base_mail_css']);
@@ -1345,7 +1345,7 @@ class CART{
         $mail_content=$tpl->getOutputContent();
 
         $db_msg = $db->report();
-        $this->ws_tpl_file = "templates/ws-single-inquiry-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-single-inquiry-tpl.html";
         $tpl = new TemplatePower($this->ws_tpl_file);
         $tpl->prepare();
         if ( $db_msg == "" ) {
@@ -1444,7 +1444,7 @@ class CART_WITH_SERIAL extends CART{
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
         switch($_REQUEST["func"]){
             case "c_list"://購物車列表
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -1452,7 +1452,7 @@ class CART_WITH_SERIAL extends CART{
                 $this->ws_tpl_type=1;
                 break;
             case "c_add"://新增購物項目
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -1460,14 +1460,14 @@ class CART_WITH_SERIAL extends CART{
                 $this->ws_tpl_type=1;
                 break;
             case "c_list_add"://新增購物項目(產品列表)
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $this->cart_list_add();
                 $this->ws_tpl_type=1;
                 break;
             case "c_quick_add"://快速購物項目
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -1475,7 +1475,7 @@ class CART_WITH_SERIAL extends CART{
                 $this->ws_tpl_type=1;
                 break;
             case "c_mod"://購物車列表
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -1483,7 +1483,7 @@ class CART_WITH_SERIAL extends CART{
                 $this->ws_tpl_type=0;
                 break;
             case "c_del"://刪除購物項目
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -1491,7 +1491,7 @@ class CART_WITH_SERIAL extends CART{
                 $this->ws_tpl_type=0;
                 break;
             case "c_finish"://結帳
-                $this->ws_tpl_file = "templates/ws-cart-serial-finish-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-finish-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 //$tpl->newBlock("JS_POP_IMG");
@@ -1502,7 +1502,7 @@ class CART_WITH_SERIAL extends CART{
                 $this->cart_replace();
                 break;
             case "s_inquiry": //單一詢問車
-                $this->ws_tpl_file = "templates/ws-single-inquiry-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-single-inquiry-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 //$tpl->newBlock("JS_POP_IMG");
@@ -1513,7 +1513,7 @@ class CART_WITH_SERIAL extends CART{
                 $this->inquiry_replace();
                 break;
             default: //購物車列表
-                $this->ws_tpl_file = "templates/ws-cart-serial-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-serial-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_MAIN");
                 $tpl->newBlock("JS_POP_IMG");
@@ -1866,7 +1866,7 @@ class CART_WITH_SERIAL extends CART{
     //資料更新================================================================
     function cart_replace(){
         global $db,$tpl,$cms_cfg,$TPLMSG,$shopping,$inquiry,$main;
-        $this->ws_tpl_file = "templates/ws-mail-serial-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-mail-serial-tpl.html";
         $tpl = new TemplatePower( $this->ws_tpl_file );
         $tpl->prepare();
         $tpl->assignGlobal("TAG_BASE_CSS", $cms_cfg['base_mail_css']);

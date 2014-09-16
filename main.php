@@ -7,7 +7,7 @@ class MAINDEFAULT{
         global $main,$cms_cfg,$tpl;
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
         //show page
-        $this->ws_tpl_file = "templates/ws-index-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-index-tpl.html";
         $this->ws_load_tp($this->ws_tpl_file);
         //請依首頁不同的版型取消註解，顯示以下的項目
 //        $this->products_rand(); //隨機產品

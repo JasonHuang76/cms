@@ -15,7 +15,7 @@ class ContactfieldWithCourtesyTitle {
             foreach($options as $name => $value){
                 if(property_exists($this, $name)){
                     if($name=="view"){
-                        $value = APP_ROOT_PATH."templates/contactfield/".$value.".html";
+                        $value = APP_ROOT_PATH.LANG::$templates."/contactfield/".$value.".html";
                     }
                     $this->$name = $value;
                 }

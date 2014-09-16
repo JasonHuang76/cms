@@ -7,7 +7,7 @@ class SITEMAP{
         global $db,$cms_cfg,$tpl,$main;
         //等級大於10啟動seo
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
-        $this->ws_load_tp("templates/ws-sitemap-tpl.html");
+        $this->ws_load_tp($cms_cfg['base_templates']."ws-sitemap-tpl.html");
         $this->sitemap_list();
         $main->layer_link();
         $tpl->printToScreen();
@@ -19,8 +19,8 @@ class SITEMAP{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板   
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板   
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["SITEMAP"]);
         $tpl->assignGlobal( "TAG_CATE_TITLE", $ws_array["left"]["products"]);//左方menu title

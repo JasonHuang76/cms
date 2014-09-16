@@ -8,13 +8,38 @@ $cms_cfg['index_page'] = "index.html";
 $cms_cfg["manage_page"] = "index.php";
 
 $cms_cfg['base_root']	= "/cms/";
+
+# 語系切換功能 #
+$cms_cfg["lang_array"] = array( // language => tb_prefix
+	"eng" => "eng",
+	"cht" => "cht",
+	"chs" => "chs",
+	"jap" => "jap",
+	"rus" => "rus",
+);
+
+include_once(dirname(__FILE__)."/../libs/libs-lang.php");
+$lang = new LANG($cms_cfg["base_root"],$cms_cfg["lang_array"]);
+
+##############
+
+$cms_cfg['language'] = $lang->language;
+$cms_cfg['tb_prefix'] = $lang->tb_prefix;
+
+$cms_cfg["origin_root"] = $lang->origin_root;
+$cms_cfg["base_root"] = $lang->base_root;
+
+$cms_cfg['base_templates'] = $lang->base_templates."/";
+
+##############
+
 $cms_cfg['base_url']	= "http://".$cms_cfg['server_name'].$cms_cfg['base_root'];
 $cms_cfg['req_uri']	= "http://".$cms_cfg['server_name'].$_SERVER['REQUEST_URI'];
 $cms_cfg['computer_url'] = "/cms/";
 $cms_cfg['mobile_url']	= "/cms/mobile/";
 $cms_cfg['base_css']	= $cms_cfg['base_root']."css/";
 $cms_cfg['base_images']	= $cms_cfg['base_root']."images/";
-$cms_cfg['base_templates']	= "templates/";
+#$cms_cfg['base_templates']	= "templates/";
 
 //共用檔案路徑
 $cms_cfg['file_root']="/cms/";
@@ -59,34 +84,6 @@ $cms_cfg['default_lock'] = "icon-lock.gif";
 
 require_once dirname(__FILE__)."/database.php";
 require_once dirname(__FILE__)."/creditcard.php";
-
-# 語系切換設定 #
-$cms_cfg["lang_array"] = array( // language => tb_prefix
-	"eng" => "eng",
-	"cht" => "cht",
-	"chs" => "chs",
-	"jap" => "jap",
-	"rus" => "rus",
-);
-
-$uri_no_base = str_replace($cms_cfg["base_root"], '', $_SERVER["REQUEST_URI"]);
-$uri_array = explode("/",$uri_no_base);
-$uri_lang = $uri_array[0];
-
-if(empty($cms_cfg["lang_array"][$uri_lang])){
-	$uri_lang = "eng";
-	$base_uri = $cms_cfg["base_root"];
-}else{
-	$base_uri = $cms_cfg["base_root"].$uri_lang."/";
-}
-
-$cms_cfg['language'] = $uri_lang;
-$cms_cfg['tb_prefix'] = $cms_cfg["lang_array"][$uri_lang];
-
-$cms_cfg["origin_root"] = $cms_cfg["base_root"];
-$cms_cfg["base_root"] = $base_uri;
-
-##############
 
 //default language
 /*

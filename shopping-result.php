@@ -8,7 +8,7 @@ class CART{
         $this->m_id =$_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_ID"];
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
         $this->contact_s_style = $cms_cfg['ws_module']['ws_contactus_s_style'];
-        $this->ws_tpl_file = "templates/ws-cart-result-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-cart-result-tpl.html";
         $this->ws_load_tp($this->ws_tpl_file);
         $tpl->newBlock("JS_MAIN");
         $tpl->assignGlobal("CURRENT_STEP3","class='current'");
@@ -30,9 +30,9 @@ class CART{
             $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方首頁表單
         }
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板
-        $tpl->assignInclude( "CONTACT_S", "templates/ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板
+        $tpl->assignInclude( "CONTACT_S", $cms_cfg['base_templates']."ws-fn-contact-s-style".$this->contact_s_style."-tpl.html"); //稱呼樣版      
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_CATE_TITLE", $ws_array["left"]["products"]);//左方menu title
         $tpl->assignGlobal( "TAG_CATE_DESC", $ws_array["left_desc"]["products"]);//左方menu title

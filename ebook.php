@@ -18,23 +18,23 @@ class EBOOK{
                 $this->download_ebook($_GET['mode']);
                 break;
             case "print":
-                $this->ws_tpl_file = "templates/ws-ebook-print-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-ebook-print-tpl.html";
                 $tpl = new TemplatePower($this->ws_tpl_file);
                 $tpl->prepare();
                 $this->ebook_print();
                 $this->ws_tpl_type=1;
                 break;
             case "eb_list": //EBOOK列表
-                $this->base_all_tpl ="templates/ws-fn-all-tpl.html";
-                $this->ws_tpl_file = "templates/ws-ebook-main-tpl.html";
+                $this->base_all_tpl =$cms_cfg['base_templates']."ws-fn-all-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-ebook-main-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->left_fix_cate_list();
                 $this->ebook_list("");
                 $this->ws_tpl_type=1;
                 break;
              case "eb_detail": //EBOOK詳細頁
-                $this->base_all_tpl ="templates/ws-fn-all-tpl.html";
-                $this->ws_tpl_file = "templates/ws-ebook-page-tpl.html";
+                $this->base_all_tpl =$cms_cfg['base_templates']."ws-fn-all-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-ebook-page-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_POP_IMG");
                 $this->left_fix_cate_list();
@@ -43,8 +43,8 @@ class EBOOK{
                 break;
             default: //EBOOK分類列表
                 $this->eb_homepage=1;
-                $this->base_all_tpl ="templates/ws-fn-all-tpl.html";
-                $this->ws_tpl_file = "templates/ws-ebook-main-tpl.html";
+                $this->base_all_tpl =$cms_cfg['base_templates']."ws-fn-all-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-ebook-main-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->left_fix_cate_list();
                 $this->ebook_list("");
@@ -61,8 +61,8 @@ class EBOOK{
         global $tpl,$cms_cfg,$db,$ws_array,$TPLMSG,$main;
         $this->top_layer_link="<a href=\"" . $cms_cfg['base_root'] . "ebook.php\">" . $TPLMSG["EBOOK"] . "</a>";
         $tpl = new TemplatePower($this->base_all_tpl);
-        $tpl->assignInclude( "HEADER", "templates/ws-fn-header-tpl.html"); //js,css
-        $tpl->assignInclude( "LEFT", "templates/ws-ebook-menu-tpl.html"); //左方一般表單
+        $tpl->assignInclude( "HEADER", $cms_cfg['base_templates']."ws-fn-header-tpl.html"); //js,css
+        $tpl->assignInclude( "LEFT", $cms_cfg['base_templates']."ws-ebook-menu-tpl.html"); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
         //$tpl->assignGlobal( "MSG_HOME", $TPLMSG['EBOOK']);
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["EBOOK"]);

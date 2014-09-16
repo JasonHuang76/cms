@@ -9,7 +9,7 @@ class APPLICATON{
         $this->jp_limit=$cms_cfg["jp_limit"];
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
         $this->ps = $cms_cfg['path_separator'];
-        $this->ws_tpl_file = "templates/ws-products-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
         $this->ws_load_tp($this->ws_tpl_file);
         $this->products_list();
         $this->ws_tpl_type=1;
@@ -27,8 +27,8 @@ class APPLICATON{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板        
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板        
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["APPLICATION"]);
         $tpl->assignGlobal( "TAG_LAYER" , $this->top_layer_link);

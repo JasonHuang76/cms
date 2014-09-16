@@ -1,0 +1,493 @@
+
+    <!-- START BLOCK : MEMBER_LOGIN_FORM -->
+            <table width="60%" border="0" align="center" cellpadding="4" cellspacing="1" >
+                <tr>
+                    <td>
+                      {MSG_LOGIN_NOTICE1}</td>
+                    <td>
+                 </tr>
+            </table>
+            <form name="myform" method="post" action="login.php?func=check_data" id="formID" class="formular">
+              <table width="90%" border="0" align="center" cellpadding="4" cellspacing="1" class="inquiry_table">
+                    <tr class="altrow1">
+                        <td colspan="2">{MSG_MEMBER_LOGIN}</td>
+                    </tr>
+                    <tr class="altrow2">
+                        <td>{MSG_LOGIN_ACCOUNT}</td>
+                        <td>
+                            <input name="mm_account" class="validate[required]" type="text" class="search_product" id="mm_account" size="20" /></td>
+                    </tr>
+                    <tr class="altrow2">
+                        <td>{MSG_LOGIN_PASSWORD}</td>
+                        <td><input name="mm_password" class="validate[required]" type="password" class="search_product" id="mm_password" size="20" /></td>
+                    </tr>
+                    <tr class="altrow2">
+                        <td>{MSG_LOGIN_SECURITY}</td>
+                        <td>{TAG_INPUT_SECURITY}&nbsp;{TAG_IMAGE_SECURITY_IMAGE}&nbsp;&nbsp;<font color="#ff0000">{MSG_ERROR_MESSAGE}</font></td>
+                    </tr>
+                    <tr class="altrow2">
+                        <td align="center" colspan="2"><input type="submit" name="login" value="Login"></td>
+                    </tr>
+                </table>
+            <input type="hidden" name="callback" value="1">
+            <input type="hidden" name="rp" value="1">
+            </form>
+    <!-- END BLOCK : MEMBER_LOGIN_FORM -->
+    <!-- START BLOCK : SHOPPING_CART_ZONE -->
+        <div class="cart_step"><img src="{TAG_THEME_PATH}cart_step2.png" /></div>
+        <table  border="0" align="center" cellpadding="0" cellspacing="0" class="cart_table">
+            <tr>
+                <th width="5%"> No.</th>
+                <th width="15%"> {MSG_PRODUCT_IMAGE}</th>
+                <th width=""> {MSG_PRODUCT}</th>
+                <th width="12%"> {MSG_AMOUNT}</th>
+                <th width="12%"> {MSG_PRODUCT_SPECIAL_PRICE}{VALUE_P_DISCOUNT}</th>
+                <th width="12%"> {MSG_SUBTOTAL}</th>
+            </tr>
+            <!-- START BLOCK : SHOPPING_CART_LIST -->
+            <tr class="cart_line">
+                <td>{VALUE_P_SERIAL}</td>
+                <td><a href="{VALUE_P_LINK}" target="_blank"><img src="{VALUE_P_SMALL_IMG}" width="60" alt="{VALUE_P_NAME}" border="0"/></a></td>
+                <td><a href="{VALUE_P_LINK}" target="_blank">{VALUE_P_NAME}</a></td>
+                <td>{VALUE_P_AMOUNT}</td>
+                <td>{VALUE_P_SPECIAL_PRICE}</td>
+                <td>{VALUE_P_SUBTOTAL_PRICE}</td>
+            </tr>
+            <!-- END BLOCK : SHOPPING_CART_LIST -->
+            <tr id="ship_row">
+                <td colspan="3">&nbsp;</td>
+                <td>
+                    <div align="right">{MSG_SHIPPING_PRICE}:&nbsp;</div>
+                </td>
+                <td colspan="2"> <span id="ship_price">{VALUE_SHIPPING_PRICE_STR}</span></td>
+            </tr>
+            <tr id="discount_row" style="display:none">
+                <td colspan="4">
+                    <div align="right">折價:&nbsp;</div>
+                </td>
+                <td colspan="2"> <span id="s_minus_price" style="color:red">0</span></td>
+            </tr>            
+            <tr id="charge_fee_row">
+                <td colspan="4">
+                    <div align="right"> {MSG_PLUS_FEE}:&nbsp;</div>
+                </td>
+                <td colspan="2"> <span id="s_charge_fee" >0</span></td>
+            </tr>            
+            <tr>
+                <th colspan="4">
+                    <div align="right"> {MSG_TOTAL}:&nbsp;</div>
+                </th>
+                <th colspan="2"> <span id="s_total_price" origin-total-price="{VALUE_TOTAL}">{VALUE_TOTAL}</span></th>
+            </tr>
+        </table>
+    <!-- END BLOCK : SHOPPING_CART_ZONE -->
+    <br /><br />    
+    <!-- START BLOCK : MEMBER_DATA_FORM -->
+    <br/>
+<form name="myform" method="post" action="cart.php?func=preview" id="formID2" class="formular">
+        <div class="cart_title_icon2">訂單資訊</div>
+        <div class="cart_order_info_frame">
+            <table class="cart_order_info">
+                <!-- START BLOCK : PAYMENT_TYPE -->
+                <tr>
+                    <th width="20%">{MSG_PAYMENT_TYPE}</th>
+                    <td>
+                        <div style="display:inline-block;width:120px;height:26px;margin:0;padding:0">
+                            <select name="o_payment_type" id="o_payment_type" type="select-one" class="validate[required]" style="vertical-align: middle">
+                                <option value="">請選擇付款方式</option>
+                                <!-- START BLOCK : PAYMENT_TYPE_ITEMS -->
+                                <option value="{VALUE_PAYMENT_TYPE_ID}" {TAG_PAYMENT_SELECTED}>{VALUE_PAYMENT_TYPE}</option>
+                                <!-- END BLOCK : PAYMENT_TYPE_ITEMS -->
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr  id="atm_last5" style="display:none;">
+                    <th>匯款帳號後五號</th>
+                    <td>
+                        <input type="text" name="o_atm_last5" id="o_atm_last5"  maxlength="5" class="validate[custom[onlyNumber]]"/>
+                        <div style="color:#f00">您的付款方式若是ATM匯款，您可於此處填入欲轉帳帳號後五碼。<br/>或者稍後完成匯款後，於會員專區的會員訂單管理列表裡填寫匯款帳號後五碼</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>貨運區域</th>
+                    <td>{VALUE_SHIPMENT_ZONE}</td>
+                </tr>
+                <!-- END BLOCK : PAYMENT_TYPE -->
+                <!-- START BLOCK : TIME_SEC_ZONE -->
+                <tr>
+                    <th>到貨日期</th>
+                    <td><input type="text" class="datepicker" name="o_deliver_date" id="o_deliver_date" value=""  /></td>
+                </tr>
+                <tr>
+                    <th>配送時段</th>
+                    <td>
+                        <!-- START BLOCK : DELIVER_TIMESEC_RADIO -->
+                        <label><input type="radio" name="o_deliver_time_sec" value="{VALUE_DELIVER_TIMESEC_KEY}" {CHECKED}/>{VALUE_DELIVER_TIMESEC_NAME}</label>
+                        <!-- END BLOCK : DELIVER_TIMESEC_RADIO -->
+                    </td>
+                </tr>
+                <!-- END BLOCK : TIME_SEC_ZONE -->
+            </table>        
+        </div>
+        <br/><br/>
+        <div class="cart_title_icon2">訂購者資訊
+<!--            (註冊資訊)
+            <div>填好以下欄位，系統會自動註冊為本站會員</div>-->
+        </div>
+        <div class="cart_order_info_frame">
+            <table class="cart_order_info">
+              <!-- START BLOCK : REGISTER_INFO -->
+              <tr>
+                    <th>
+                        <font color="#ff0000">*</font>{MSG_ACCOUNT}<br/>(e-mail)
+                    </th>
+                    <td>
+                        <input name="m_email" type="text" class="validate[required,custom[email],ajax[ajaxUser]]" id="m_account" value="{VALUE_M_ACCOUNT}" size="40" >
+                        <input type="hidden" name="reg_mem" value="1"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <font color="#ff0000">*</font>{MSG_PASSWORD}
+                    </th>
+                    <td>
+                        <input name="m_password" type="password" class="validate[required]" id="m_password" value="{VALUE_M_PASSWORD}" size="20" >
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <font color="#ff0000">*</font>{MSG_VALID_PASSWORD}
+                    </th>
+                    <td>
+                        <input name="v_password" type="password" class="validate[required,confirm[m_password]]" id="v_password" value="{VALUE_M_PASSWORD}" size="20" >
+                    </td>
+                </tr>          
+                <tr>
+                  <th><font color="#ff0000">*</font>{MSG_CONTACT_PERSON}</th>
+                  <td>
+                        {TAG_CONTACT_WITH_S}
+                  </td>              
+                </tr>            
+                <!-- END BLOCK : REGISTER_INFO-->        
+            <!-- START BLOCK : NORMAL_INFO -->
+            <tr>
+              <th><font color="#ff0000">*</font>{MSG_CONTACT_PERSON}</th>
+              <td>
+                    {TAG_CONTACT_WITH_S}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <font color="#ff0000">*</font>e-mail</th>
+                <td>
+                    <input name="m_email" type="text" id="m_email" class="validate[required,custom[email]]"   value="{VALUE_M_EMAIL}"  >
+                    </td>
+            </tr>
+            <!-- END BLOCK : NORMAL_INFO -->                        
+            <!-- START BLOCK : SELECT_COUNTRY -->
+            <tr>
+                <th><font color="#ff0000">*</font>{MSG_COUNTRY}</th>
+                <td><select name="m_country" id="m_country" type="select-one" class="validate[required]">
+                    {TAG_SELECT_OPTION_COUNTRY}
+                    </select></td>
+            </tr>
+            <!-- END BLOCK : SELECT_COUNTRY -->
+            <!-- START BLOCK : SINGLE_ADDRESS -->
+            <tr>
+                <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
+                <td>
+                    {MSG_ZIP}<input name="m_zip" id="m_zip" type="text"   value="{VALUE_M_ZIP}" size="5"  >
+                    <input name="m_address" class="validate[required]" type="text"   value="{VALUE_M_ADDRESS}" style="width:98%" ></td>
+            </tr>
+            <!-- END BLOCK : SINGLE_ADDRESS -->
+            <!-- START BLOCK : TW_ADDRESS -->
+            <tr id="m_zone_row">
+                <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
+                <td>
+                    <select name="m_city" id="m_city"></select>
+                    <select name="m_area" id="m_area"></select>  
+                    {MSG_ZIP}<input name="m_zip" id="m_zip" type="text"   value="{VALUE_M_ZIP}" size="5"  >
+                    <input name="m_address" class="validate[required]" type="text"   value="{VALUE_M_ADDRESS}" style="width:98%" >
+                    <script type="text/javascript">
+                       //設定城市挑選器
+                       jQuery(function($){
+                            $("#m_zone_row").zone_box({
+                                    MAIN_ID : "m_city", // 縣市元素 ID (select 元素)
+                                    SUB_ID : "m_area", // 區域元素 ID (select 元素)
+                                    ZIP_ID : "m_zip", // 郵遞區號 ID (input 元素)
+                                    ZIP_GET : "", // 輸入郵遞區號
+                            });
+                            $("#m_zip").trigger('keyup');
+                       });
+                    </script>
+                </td>
+            </tr>
+            <!-- END BLOCK : TW_ADDRESS -->
+            <tr>
+                <th><font color="#ff0000">*</font>{MSG_TEL}</th>
+                <td>
+                    <input name="m_tel" type="text" id="m_tel" class="validate[required]"   value="{VALUE_M_TEL}"  >
+                    </td>
+            </tr>
+            <tr>
+                <th><font color="#ff0000">*</font>{MSG_CELLPHONE}</th>
+                <td>
+                    <input name="m_cellphone" id="m_cellphone" class="validate[required]" type="text"   value="{VALUE_M_CELLPHONE}"  >
+                    </td>
+            </tr>
+            <tr>
+                <th>{MSG_FAX}</th>
+                <td>  <input name="m_fax" type="text" value="{VALUE_M_FAX}"  ></td>
+            </tr>       
+            </table>        
+        </div>
+        <br/><br/>
+        <div class="cart_title_icon2">收件者資訊
+        <input type="checkbox" name="sameto_order" id="sameto_order" onclick="move_order_to_reci(this.checked,this.form)" style="vertical-align: middle;margin-right:3px"/><label for="sameto_order">收件者同訂購者</label>
+        </div>
+        <div class="cart_order_info_frame">
+            <table class="cart_order_info">
+                <tr>
+                  <th><font color="#ff0000">*</font>{MSG_CONTACT_PERSON}</th>
+                    <td>
+                        {TAG_CONTACTR_WITH_S}
+                        </td>
+                </tr>
+                <tr>
+                    <th>
+                        <font color="#ff0000">*</font>E-mail</th>
+                    <td>
+                        <input name="m_reci_email" type="text" id="m_reci_email" class="validate[required,custom[email]]"   value="" size="30" >
+                        </td>
+                </tr>
+                <!-- START BLOCK : SINGLE_ADDRESS_RECI -->
+                <tr>
+                    <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
+                    <td>
+                        {MSG_ZIP}<input name="m_reci_zip" id="m_reci_zip" type="text"   value=""  size="5"  />                    
+                        <input name="m_reci_address" id="m_reci_address" class="validate[required]" type="text"   value="" style="width:98%">
+                    </td>
+                </tr>
+                <!-- END BLOCK : SINGLE_ADDRESS_RECI -->
+                <!-- START BLOCK : TW_ADDRESS_RECI -->
+                <tr id="m_reci_zone_row">
+                    <th><font color="#ff0000">*</font>{MSG_ADDRESS}</th>
+                    <td>
+                        <select name="m_reci_city" id="m_reci_city"></select>
+                        <select name="m_reci_area" id="m_reci_area"></select>  
+                        {MSG_ZIP}<input name="m_reci_zip" id="m_reci_zip" type="text"   value=""  size="5"  />                    
+                        <input name="m_reci_address" id="m_reci_address" class="validate[required]" type="text"   value="" style="width:98%">
+                        <script type="text/javascript">
+                            jQuery(function($){
+                                $("#m_reci_zone_row").zone_box({
+                                        MAIN_ID : "m_reci_city", // 縣市元素 ID (select 元素)
+                                        SUB_ID : "m_reci_area", // 區域元素 ID (select 元素)
+                                        ZIP_ID : "m_reci_zip", // 郵遞區號 ID (input 元素)
+                                        ZIP_GET : "", // 輸入郵遞區號
+                                });
+                                $("#m_reci_zip").trigger('keyup');
+                            });
+                        </script>
+                    </td>
+                </tr>
+                <!-- END BLOCK : TW_ADDRESS_RECI -->
+                <tr>
+                    <th><font color="#ff0000">*</font>{MSG_TEL}</th>
+                    <td>
+                        <input name="m_reci_tel" type="text" id="m_reci_tel" class="validate[required]"   value="" size="20" >
+                    </td>
+                </tr>
+                <tr>
+                    <th><font color="#ff0000">*</font>{MSG_CELLPHONE}</th>
+                    <td>
+                        <input name="m_reci_cellphone" id="m_reci_cellphone" class="validate[required]"  type="text"   value="" size="20" >
+                        </td>
+                </tr>                
+            </table>        
+        </div>
+        <br/><br/>
+        <div class="cart_title_icon2">發票資訊</div>
+        <div class="cart_order_info_frame">
+            <table class="cart_order_info">
+                <tr>
+                    <th>發票類型</th>
+                    <td>
+                        <!-- START BLOCK : INVOICE_RADIO -->
+                        <input type="radio" name="o_invoice_type" id="o_invoice_type_{VALUE_INVOICE_KEY}" value="{VALUE_INVOICE_KEY}" {CHECKED}/><label for="o_invoice_type_{VALUE_INVOICE_KEY}">{VALUE_INVOICE_NAME}</label>
+                        <!-- END BLOCK : INVOICE_RADIO -->
+                  </td>
+                </tr>
+                <tr>
+                  <th>{MSG_COMPANY_NAME}</th>
+                  <td><input name="m_company_name" id="m_company_name"  value="{VALUE_M_COMPANY_NAME}" type="text" /></td>
+                </tr>
+                <tr>
+                  <th>統一編號</th>
+                  <td><input name="m_vat_number" id="m_vat_number" size="20" value="{VALUE_M_VAT_NUMBER}" type="text" maxlength="8"/></td>
+                </tr>  
+                <tr>
+                      <th>消費者備註</th>
+                      <td>
+                         <textarea name="content" cols="50" rows="12" style="width:98%;">{VALUE_CONTENT}</textarea>
+                      </td>
+                </tr>            
+            </table>       
+            <div class="cart_btn">
+                <input type="image" src="{TAG_THEME_PATH}btn_next.png">
+            </div>            
+        </div>
+        <input type="hidden" name="o_charge_fee" id="o_charge_fee" value="0"/>
+        <input type="hidden" name="o_plus_price" id="o_plus_price" origin-value="{VALUE_SHIPPING_PRICE}" value="{VALUE_SHIPPING_PRICE}"/>
+        <input type="hidden" name="o_subtotal_price" id="o_subtotal_price" value="{VALUE_SUBTOTAL}"/>
+        <input type="hidden" name="o_minus_price" id="o_minus_price" value="0"/>
+        <input type="hidden" name="o_total_price" id="o_total_price" value="{VALUE_TOTAL}"/>
+        </form>
+    <!-- END BLOCK : MEMBER_DATA_FORM -->
+    <br/>
+    <div class="cart-finish-bottom">
+        {MSG_PAYMENT_TERM}
+    </div>
+    <div class="cart-finish-bottom">
+        {MSG_SHOPPING_TERM}
+    </div>    
+    <div id="before_send_notification" style="display:none">
+        <h3>提醒您，訂單送出後將無法修改！</h3>
+    </div>
+    <script type="text/javascript" src="{TAG_ROOT_PATH}js/jquery-disabler.min.js"></script>    
+    <script type="text/javascript">
+        function move_order_to_reci(checked,form){
+            var _from = ['m_contact_s','m_name','m_email','m_city','m_area','m_zip','m_address','m_tel','m_cellphone'];
+            var _to = ['m_reci_contact_s','m_reci_name','m_reci_email','m_reci_city','m_reci_area','m_reci_zip','m_reci_address','m_reci_tel','m_reci_cellphone'];
+            if(checked){//核取
+                 for(var i=0;i<_from.length;i++){
+                     if(typeof form[_from[i]] !='undefined' && typeof form[_to[i]] !='undefined' ){
+                         if(form[_to[i]].tagName.toUpperCase()=='SELECT'){
+                             form[_to[i]].selectedIndex = form[_from[i]].selectedIndex;
+                         }else{
+                             form[_to[i]].value = form[_from[i]].value;
+                         }
+                         if(_to[i]=="m_reci_zip"){
+                             jQuery(form[_to[i]]).trigger('keyup');
+                         }else{
+                             jQuery(form[_to[i]]).trigger('blur');
+                         }
+                     }
+                 }
+            }else{//非核取
+                 for(var i=0;i<_to.length;i++){
+                     if(typeof form[_to[i]] !='undefined' ){
+                         if(form[_to[i]].tagName.toUpperCase()=='SELECT'){
+                             form[_to[i]].selectedIndex=0;
+                         }else{
+                             form[_to[i]].value = '';
+                         }
+                     }
+                 }
+            }
+        }        
+        jQuery(function($){
+           function calculate(){
+               var charge_fee = parseInt($("#o_charge_fee").val());
+               var ship_price = parseInt($("#o_plus_price").val());
+               var subtotal_price = parseInt($("#o_subtotal_price").val());
+               var minus_price = parseInt($("#o_minus_price").val());
+               var total_price = subtotal_price + ship_price + charge_fee - minus_price;
+               $("#s_charge_fee").text(charge_fee);
+               $("#s_ship_price").text(ship_price);
+               $("#s_minus_price").text(minus_price);
+               $("#s_total_price").text(total_price);
+           }
+           $(document).ready(function(){
+               //因為最上方還有一個登入表單為formID，所以這裡另外再設定訂購資料區表單的驗證
+               $("#formID2").validationEngine();
+               var ship_price = $("#ship_price");
+               var can_minus_price = parseInt($("#can_minus_price").text());
+               var charge_fee;
+               $("#o_payment_type").change(function(){
+                   switch($(this).val()){
+                       case "1":
+                           $("#atm_last5").slideDown();
+                           $("#o_charge_fee").val(0);
+//                           $("#ship_row").show();
+//                           $("#pay_ship_row").hide();
+                           break;
+                       case "2":
+                           $("#atm_last5").slideUp();
+                           $("#o_atm_last5").val('');
+                           if(typeof charge_fee == 'undefined'){
+                               $.post("cart.php?func=ajax_get_charge_fee",{ payment_type:2 },function(req){
+                                   if(req.code){
+                                       charge_fee = req.charge_fee;
+                                       $("#o_charge_fee").val(charge_fee);
+                                       calculate();
+                                   }
+                               },'json');
+                           }else{
+                               $("#o_charge_fee").val(charge_fee);
+                           }
+//                           $("#ship_row").show();
+//                           $("#pay_ship_row").hide();
+                           break;
+                       case "3":
+                           $("#atm_last5").slideUp();
+                           $("#o_atm_last5").val('');
+                           $("#ship_row").hide();
+//                           $("#pay_ship_row").show();
+                           $("#o_charge_fee").val(0);
+                           break;
+                       default:
+                           $("#atm_last5").slideUp();
+                           $("#o_atm_last5").val('');
+                           $("#o_charge_fee").val(0);
+//                           $("#ship_row").show();
+//                           $("#pay_ship_row").hide();
+                           break;
+                   }
+                   calculate();
+               });
+               $("#before_send_notification").dialog({
+                   autoOpen:false,
+                   modal:true,
+                   resizable:false,
+                   width:650,
+                   height:200,
+                   buttons:{
+                       "送出":function(){
+                           $("#formID2").trigger("submit");                           
+                           $(this).dialog("close");
+                       },
+                       "修改訂單":function(){                           
+                           $(this).dialog("close");
+                       }
+                   }
+               });               
+               $("#checkout").click(function(evt){
+//                   if($("#o_payment_type").val()==1 && $("#o_atm_last5").val()==""){
+//                       alert("請輸入匯款帳號後五碼");
+//                       return false;
+//                   }
+                   if($(":radio[name=o_invoice_type]:checked").size()==0){
+                       alert("請選擇發票類型");
+                       return false;
+                   }
+                   if($("#o_invoice_type_3")[0].checked){
+                       if( $.trim($("#m_vat_number").val()).length==0 || $.trim($("#m_company_name").val()).length==0){
+                           alert("三聯式發票需要您的公司抬頭及統一編號資訊");
+                           return false;
+                       }else if($.trim($("#m_vat_number").val()).length!=8){
+                           alert("統一編號為8碼");
+                           return false;
+                       }
+                   }
+                   $("#before_send_notification").dialog("open");
+//                   if(confirm("訂單送出後無法修改，確定繼續?")){
+//                       $("#formID2").trigger("submit");
+//                   }
+               });
+                $(".sw_delivery").disabler({
+                    disable:true
+                });
+           });
+        });
+    </script>

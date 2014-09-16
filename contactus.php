@@ -12,21 +12,21 @@ class CONTACTUS{
         $this->form_style = $cms_cfg['ws_module']['ws_contactus_form_style'];
         switch($_REQUEST["func"]){
             case "cu_add"://聯絡我們新增
-                $this->ws_tpl_file = "templates/ws-contactus-form-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-contactus-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 $this->contactus_form();
                 $this->ws_tpl_type=1;
                 break;
             case "cu_replace"://聯絡我們更新資料(replace)
-//                $this->ws_tpl_file = "templates/ws-mail-tpl.html";
+//                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-mail-tpl.html";
 //                $tpl = new TemplatePower( $this->ws_tpl_file );
 //                $tpl->prepare();
                 $this->contactus_replace();
                 $this->ws_tpl_type=0;
                 break;
             default:    //聯絡我們列表
-                $this->ws_tpl_file = "templates/ws-contactus-form-style".$this->form_style."-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-contactus-form-style".$this->form_style."-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 $this->contactus_form();
@@ -45,8 +45,8 @@ class CONTACTUS{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板         
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板         
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["CONTACT_US"]);
         $tpl->assignGlobal( "TAG_CATE_TITLE", $ws_array["left"]["products"]);//左方menu title

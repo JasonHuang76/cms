@@ -1,0 +1,214 @@
+<div class="cart_step"><img src="{TAG_THEME_PATH}cart_step3.png" /></div>
+
+    <!-- START BLOCK : SHOPPING_CART_ZONE -->
+
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="cart_table">
+            <tr>
+                <th width="5%"> No.</th>
+                <th width="15%"> {MSG_PRODUCT_IMAGE}</th>
+                <th width=""> {MSG_PRODUCT}</th>
+                <th width="12%"> {MSG_AMOUNT}</th>
+                <th width="12%"> {MSG_PRODUCT_SPECIAL_PRICE}{VALUE_P_DISCOUNT}</th>
+                <th width="12%"> {MSG_SUBTOTAL}</th>
+            </tr>
+            <!-- START BLOCK : SHOPPING_CART_LIST -->
+            <tr>
+                <td>{VALUE_P_SERIAL}</td>
+                <td><center><a href="{VALUE_P_LINK}"><img src="{VALUE_P_SMALL_IMG}" width="60"  border="0"/></a></center></td>
+                <td>{VALUE_P_NAME}</td>
+                <td>{VALUE_P_AMOUNT}</td>
+                <td>{VALUE_P_SPECIAL_PRICE}</td>
+                <td>{VALUE_P_SUBTOTAL_PRICE}</td>
+            </tr>
+            <!-- END BLOCK : SHOPPING_CART_LIST -->
+            <tr>
+                <td colspan="4">
+                    <div align="right"> {MSG_SHIPPING_PRICE}:&nbsp;
+                    </div>
+                </td>
+                <td colspan="2"> {VALUE_SHIPPING_PRICE_STR}
+                </td>
+            </tr>
+            <!-- START BLOCK : CHARGE_FEE_ROW -->
+            <tr>
+                <td colspan="4"><div align="right"> {MSG_PLUS_FEE}:&nbsp;</div></td>
+                <td colspan="2" align="left"> {VALUE_CHARGE_FEE}</td>
+            </tr>            
+            <!-- END BLOCK : CHARGE_FEE_ROW -->            
+            <tr>
+                <th colspan="4">
+                    <div align="right"> {MSG_TOTAL}:&nbsp;
+                    </div>
+                </th>
+                <th colspan="2"> {VALUE_TOTAL}
+                </th>
+            </tr>
+        </table>
+    <!-- END BLOCK : SHOPPING_CART_ZONE  -->
+<br/><br/>
+
+<div class="cart_title_icon2">訂單資訊</div>
+    <form name="myform" method="post" action="cart.php?func=c_replace" id="formID" class="formular">
+    <div class="cart_order_info_frame">
+    <!-- START BLOCK : MEMBER_DATA_FORM -->
+    <table class="cart_order_info" width="100%">         
+            <tr>
+                <th width="25%">運送區域</th>
+                <td width="75%">{VALUE_SHIPPMENT_TYPE}</td>
+            </tr>
+            <!-- START BLOCK : PAYMENT_TYPE -->
+            <tr>
+                <th>{MSG_PAYMENT_TYPE}</th>
+                <td> {VALUE_PAYMENT_TYPE}</td>
+            </tr>
+            <!-- END BLOCK : PAYMENT_TYPE -->
+            <!-- START BLOCK : DELIVERY_ZONE -->
+            <tr>
+                <th>到貨日期</th>
+                <td>{VALUE_M_DELIVER_DATE}</td>
+            </tr>
+            <tr>
+                <th>配送時段</th>
+                <td>{VALUE_M_DELIVER_TIMESEC}</td>
+            </tr>
+            <!-- END BLOCK : DELIVERY_ZONE -->
+            <!-- START BLOCK : ATM_LAST_FIVE -->
+            <tr>
+                <th>匯款帳號後五碼</th>
+                <td>{VALUE_ATM_LAST5}</td>
+            </tr>
+            <!-- END BLOCK : ATM_LAST_FIVE -->
+            <!-- START BLOCK : VIRTUAL_ACCOUNT -->           
+            <tr>
+                <th>{MSG_TRANSFER_BANK}</th>
+                <td>{VALUE_TRANSFER_BANK_CODE}</td>
+            </tr>            
+            <tr>
+                <th>{MSG_TRANSFER_ACCOUNT}</th>
+                <td>{VALUE_VIRTUAL_ACCOUNT}</td>
+            </tr>
+            <!-- END BLOCK : VIRTUAL_ACCOUNT -->
+            <tr>
+              <th>{MSG_CONTENT}</th>
+              <td>
+                 {VALUE_CONTENT}
+              </td>
+            </tr>            
+            <tr>
+                <td colspan="2" align="center">發票資訊</td>
+            </tr>
+            <tr>
+                <th>發票類型</th>
+                <td>{VALUE_O_INVOICE_TYPE}</td>
+            </tr>
+            <tr>
+                <th>{MSG_COMPANY_NAME}</th>
+                <td>{VALUE_M_COMPANY_NAME}</td>
+            </tr>
+            <tr>
+                <th>統一編號</th>
+                <td>{VALUE_M_VAT_NUMBER}</td>
+            </tr>                
+            <tr>
+                <td colspan="2" align="center">訂購者資訊</td>
+            </tr>            
+            <!-- START BLOCK : CART_S_STYLE_1 -->
+            <tr>
+                <th>{MSG_CONTACT_PERSON}</th>
+                <td>{VALUE_M_CONTACT_S}&nbsp;{VALUE_M_NAME}</td>
+            </tr>
+            <!-- END BLOCK : CART_S_STYLE_1 -->
+            <!-- START BLOCK : CART_S_STYLE_2 -->
+            <tr>
+                <th>{MSG_CONTACT_PERSON}</th>
+                <td>{VALUE_M_NAME}&nbsp;{VALUE_M_CONTACT_S}</td>
+            </tr>
+            <!-- END BLOCK : CART_S_STYLE_2 -->            
+            <!-- START BLOCK : MEMBER_DATA_COUNTRY_ZONE -->
+            <tr>
+                <th>{MSG_COUNTRY}</th>
+                <td>{VALUE_M_COUNTRY}</td>
+            </tr>
+            <!-- END BLOCK : MEMBER_DATA_COUNTRY_ZONE -->
+            <tr>
+                <th>{MSG_ZIP}</th>
+                <td>{VALUE_M_ZIP}</td>
+            </tr>
+            <tr>
+                <th>{MSG_ADDRESS}</th>
+                <td>{VALUE_M_ADDRESS}</td>
+            </tr>
+            <tr>
+                <th>{MSG_TEL}</th>
+                <td>{VALUE_M_TEL}</td>
+            </tr>
+            <tr>
+                <th>{MSG_CELLPHONE}</th>
+                <td>{VALUE_M_CELLPHONE}</td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>{VALUE_M_EMAIL}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">收件者資訊</td>
+            </tr>
+            <!-- START BLOCK : RECI_CART_S_STYLE_1 -->
+            <tr>
+                <th>{MSG_CONTACT_PERSON}</th>
+                <td>{VALUE_M_CONTACT_S}&nbsp;{VALUE_M_NAME}</td>
+            </tr>
+            <!-- END BLOCK : RECI_CART_S_STYLE_1 -->
+            <!-- START BLOCK : RECI_CART_S_STYLE_2 -->
+            <tr>
+                <th>{MSG_CONTACT_PERSON}</th>
+                <td>{VALUE_M_NAME}&nbsp;{VALUE_M_CONTACT_S}</td>
+            </tr>
+            <!-- END BLOCK : RECI_CART_S_STYLE_2 -->
+            <tr>
+              <th>{MSG_ZIP}</th>
+              <td>{VALUE_M_RECI_ZIP}</td>
+            </tr>
+            <tr>
+                <th>{MSG_ADDRESS}</th>
+                <td>{VALUE_M_RECI_ADDRESS}</td>
+            </tr>
+            <tr>
+                <th>{MSG_TEL}</th>
+                <td>{VALUE_M_RECI_TEL}</td>
+            </tr>
+            <tr>
+                <th>{MSG_CELLPHONE}</th>
+                <td>{VALUE_M_RECI_CELLPHONE}</td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>{VALUE_M_RECI_EMAIL}</td>
+            </tr>               
+        </table>   
+     <!-- END BLOCK : MEMBER_DATA_FORM -->
+    </div>
+
+    <br /><br />
+
+    <div class="cart_btn">
+        <a href="#" id="goback"><img src="{TAG_THEME_PATH}btn_modify.png"></a> <a href="#" id="continue"><img src="{TAG_THEME_PATH}btn_finish.png"></a>
+    </div>
+    <!-- START BLOCK : TMP_POST_FIELD -->
+    <input type="hidden" name="{TAG_POST_KEY}" value="{TAG_POST_VALUE}"/>
+    <!-- END BLOCK : TMP_POST_FIELD -->
+    <br /><br />
+    </form>
+<script type="text/javascript">
+    jQuery(function($){
+        $("#goback").click(function(evt){
+            evt.preventDefault();
+            history.go(-1);
+        });
+//        $("#continue").click(function(evt){
+//            evt.preventDefault();
+//            $(myform).trigger('submit');
+//        });
+    });
+</script>
+<!-- INCLUDE BLOCK : ./templates/ws-fn-privacy-dialog-tpl.html -->

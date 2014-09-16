@@ -13,7 +13,7 @@ class MEMBER{
                 $this->ajax();
                 break;
             case "activate":
-                $this->ws_tpl_file = "templates/ws-msg-action-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-msg-action-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->account_activate();
                 $this->ws_tpl_type=1;
@@ -23,7 +23,7 @@ class MEMBER{
                     header("Location: member.php?func=m_add");
                     die();
                 }
-                $this->ws_tpl_file = "templates/ws-member-zone-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-member-zone-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->member_zone();
                 $this->ws_tpl_type=1;
@@ -33,7 +33,7 @@ class MEMBER{
                     header("location:member.php?func=m_mod");
                     die();
                 }
-                $this->ws_tpl_file = "templates/ws-member-form-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-member-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 if(!isset($_SESSION[$cms_cfg['sess_cookie_name']]['JOIN_MEMBER'])){
@@ -49,7 +49,7 @@ class MEMBER{
                     header("Location: member.php?func=m_add");
                     die();
                 }
-                $this->ws_tpl_file = "templates/ws-member-form-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-member-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $tpl->newBlock("JS_FORMVALID");
                 $tpl->newBlock("JQUERY_UI_SCRIPT");
@@ -61,7 +61,7 @@ class MEMBER{
                 $this->member_forget_password();
                 break;
             case "m_sps"://密碼寄送完成顯示訊息
-                $this->ws_tpl_file = "templates/ws-member-forget-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-member-forget-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->member_send_password_success_str();
                 $this->ws_tpl_type=1;
@@ -71,25 +71,25 @@ class MEMBER{
                     header("Location: member.php");
                     die();
                 }
-                $this->ws_tpl_file = "templates/ws-member-message-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-member-message-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->member_message_list();
                 $this->ws_tpl_type=1;
                 break;
             case "o_del"://取消訂單
-                $this->ws_tpl_file = "templates/ws-msg-action-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-msg-action-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->order_del();
                 $this->ws_tpl_type=1;
                 break;
             case "o_replace"://編輯匯款帳號
-                $this->ws_tpl_file = "templates/ws-msg-action-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-msg-action-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->order_replace();
                 $this->ws_tpl_type=1;
                 break;            
             case "m_replace"://會員管理更新資料(replace)
-                $this->ws_tpl_file = "templates/ws-msg-action-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-msg-action-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->member_replace();
                 $this->ws_tpl_type=1;
@@ -99,7 +99,7 @@ class MEMBER{
                     header("Location: member.php?func=m_mod");
                     die();
                 }
-                $this->ws_tpl_file = "templates/ws-login-form-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-login-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->ws_tpl_type=1;
                 break;
@@ -385,7 +385,7 @@ class MEMBER{
                         $_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_DISCOUNT"]=100;
                         $goto_url=$cms_cfg["base_url"]."cart.php?func=c_finish";
                     }
-//                    $this->ws_tpl_file = "templates/ws-mail-tpl.html";
+//                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-mail-tpl.html";
 //                    $mtpl = new TemplatePower( $this->ws_tpl_file );
 //                    $mtpl->prepare();
                     $mtpl = App::getHelper('main')->get_mail_tpl("member-join");
@@ -886,7 +886,7 @@ class MEMBER{
     function member_forget_password(){
         global $db,$tpl,$main,$cms_cfg,$TPLMSG,$ws_array;
         if(empty($_REQUEST["m_email"])){
-            $this->ws_tpl_file = "templates/ws-member-forget-tpl.html";
+            $this->ws_tpl_file = $cms_cfg['base_templates']."ws-member-forget-tpl.html";
             $this->ws_load_tp($this->ws_tpl_file);
             $main->layer_link($TPLMSG["FORGOT_PASSWORD"] );
             $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["FORGOT_PASSWORD"] );
@@ -908,7 +908,7 @@ class MEMBER{
                     $sql = "update ".$cms_cfg['tb_prefix']."_member set m_password='".$db->quote($row['m_password'])."' where m_account='".$db->quote($row['m_email'])."'";
                     $db->query($sql,true);
                     //寄出通知信
-//                    $tpl = new TemplatePower( "templates/ws-mail-tpl.html" );
+//                    $tpl = new TemplatePower( $cms_cfg['base_templates']."ws-mail-tpl.html" );
 //                    $tpl->prepare();
                     $tpl = App::getHelper('main')->get_mail_tpl("member-forgetpass");
                     $tpl->newBlock( "MEMBER_FORGET_PASSWORD" );

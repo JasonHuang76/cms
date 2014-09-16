@@ -18,7 +18,7 @@ class FAQ{
         }
         switch($_REQUEST["func"]){
             case "f_list"://問與答列表
-                $this->ws_tpl_file = "templates/ws-faq-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-faq-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->faq_list();
                 //page view record --ph_type,ph_type_id,m_id
@@ -26,7 +26,7 @@ class FAQ{
                 $this->ws_tpl_type=1;
                 break;
             default:    //問與答列表
-                $this->ws_tpl_file = "templates/ws-faq-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-faq-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->faq_list();
                 //page view record --ph_type,ph_type_id,m_id
@@ -46,8 +46,8 @@ class FAQ{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板       
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板       
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["FAQ"]);
         $tpl->assignGlobal( "TAG_LAYER" , $TPLMSG["FAQ"]);

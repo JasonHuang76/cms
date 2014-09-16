@@ -6,12 +6,12 @@ class SERVICE{
     function SERVICE(){
         global $db,$cms_cfg,$tpl,$main;
         //show page
-        $this->ws_tpl_file = "templates/ws-service-term-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-service-term-tpl.html";
         if($_REQUEST["s"]==1){
-             $tpl = new TemplatePower( "templates/ws-service-term-single-tpl.html" );
+             $tpl = new TemplatePower( $cms_cfg['base_templates']."ws-service-term-single-tpl.html" );
              $tpl->prepare();
         }else{
-             $this->ws_load_tp("templates/ws-service-term-tpl.html");
+             $this->ws_load_tp($cms_cfg['base_templates']."ws-service-term-tpl.html");
         }
         $this->service_list($_REQUEST["st"]);
         $main->layer_link();
@@ -24,8 +24,8 @@ class SERVICE{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_IMG", "templates/ws-fn-ad-image-tpl.html"); //圖片廣告模板
-        $tpl->assignInclude( "AD_TXT", "templates/ws-fn-ad-txt-tpl.html"); //文字廣告模板        
+        $tpl->assignInclude( "AD_IMG", $cms_cfg['base_templates']."ws-fn-ad-image-tpl.html"); //圖片廣告模板
+        $tpl->assignInclude( "AD_TXT", $cms_cfg['base_templates']."ws-fn-ad-txt-tpl.html"); //文字廣告模板        
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_CATE_TITLE", $ws_array["left"]["service"]);//左方menu title
         $tpl->assignGlobal( "TAG_CATE_DESC", $ws_array["left_desc"]["service"]);//左方menu title

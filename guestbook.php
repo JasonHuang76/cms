@@ -6,31 +6,31 @@ class GUESTBOOK{
         global $db,$cms_cfg,$tpl;
         switch($_REQUEST["func"]){
             case "gb_list"://留言版列表
-                $this->ws_tpl_file = "templates/ws-guestbook-list-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-guestbook-list-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->guestbook_list();
                 $this->ws_tpl_type=1;
                 break;
             case "gb_add"://留言版新增
-                $this->ws_tpl_file = "templates/ws-guestbook-form-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-guestbook-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->guestbook_form("add");
                 $this->ws_tpl_type=1;
                 break;
             case "gbr_add"://留言版回覆新增
-                $this->ws_tpl_file = "templates/ws-guestbook-form-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-guestbook-form-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->guestbook_form("reply");
                 $this->ws_tpl_type=1;
                 break;
             case "gb_replace"://留言版更新資料(replace)
-                $this->ws_tpl_file = "templates/ws-msg-action-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-msg-action-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->guestbook_replace();
                 $this->ws_tpl_type=1;
                 break;
             default:    //留言版列表
-                $this->ws_tpl_file = "templates/ws-guestbook-list-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-guestbook-list-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->guestbook_list();
                 $this->ws_tpl_type=1;
@@ -49,8 +49,8 @@ class GUESTBOOK{
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
         //$tpl->assignInclude( "FOOTER", $cms_cfg['base_footer_tpl']); //尾檔功能列表
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板     
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板     
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_IMG" , $ws_array["main_img"]["guestbook"]); //此頁面對應的flash及圖檔名稱
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["GUEST_BOOK"]);

@@ -1,0 +1,40 @@
+        <form name="loginform" method="post" action="{TAG_ROOT_PATH}login.php?func=check_data" style="margin:0px;padding:0px;">
+
+            {MSG_LOGIN_NOTICE1}
+            <div class="member_login">
+            <table>
+              <tr>
+                <td class="cart_title_icon">{MSG_MEMBER_LOGIN}</td>
+              </tr>
+              <tr>
+                <td><input class="ipt1" type="text" name="mm_account" placeholder="{MSG_LOGIN_ACCOUNT}{MSG_LOGIN_EX_DESC}"></td>
+              </tr>
+              <tr>
+                <td><input class="ipt1" type="password" name="mm_password" placeholder="{MSG_LOGIN_PASSWORD}"></td>
+              </tr>
+              <tr>
+                <td><input class="ipt2" type="text" name="security" placeholder="{MSG_LOGIN_SECURITY}"> {TAG_IMAGE_SECURITY_IMAGE}&nbsp;&nbsp;<br/>
+                    <font color="red">{MSG_ERROR_MESSAGE}</font>
+                </td>
+              </tr>
+              <tr>
+                <td class="fg_pw"><a href="{TAG_ROOT_PATH}member.php?func=m_forget">{MSG_LOGIN_FORGOT_PASSWORD}</a> <input type="image" class="v_mid" src="{TAG_THEME_PATH}btn_login.png"></td>
+              </tr>
+            </table>
+            </div>
+
+
+
+            <div class="login_first">
+            <table>
+              <tr>
+                <td class="cart_title_icon">{MSG_LOGIN_REGISTER}</td>
+              </tr>
+              <tr>
+                <td><a href="{TAG_ROOT_PATH}member.php?func=m_add"><img style="padding-top: 20px;" src="{TAG_THEME_PATH}btn_add_member.png"></a></td>
+              </tr>
+            </table>
+            </div>
+            <input type="hidden" name="callback" value="1">
+            <input type="hidden" name="return_url" value="{TAG_RETURN_URL}"/>            
+        </form>

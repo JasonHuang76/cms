@@ -52,7 +52,7 @@
 					break;
 				case "c_order" :
                                         if(!$this->m_id){
-                                            $this -> ws_tpl_file = "../templates/ws-login-form-tpl.html";
+                                            $this -> ws_tpl_file = "../".$cms_cfg['base_templates']."ws-login-form-tpl.html";
                                             $this -> ws_load_tp($this -> ws_tpl_file);
                                             $this -> member_login();
                                         }else{
@@ -64,7 +64,7 @@
 					break;
 				case "c_order_detial" :
                                         if(!$this->m_id){
-                                            $this -> ws_tpl_file = "../templates/ws-login-form-tpl.html";
+                                            $this -> ws_tpl_file = "../".$cms_cfg['base_templates']."ws-login-form-tpl.html";
                                             $this -> ws_load_tp($this -> ws_tpl_file);
                                             $this -> member_login();                                            
                                         }else{

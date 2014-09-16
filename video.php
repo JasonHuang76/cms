@@ -6,7 +6,7 @@ class VIDEO{
     function VIDEO(){
         global $db,$cms_cfg,$tpl,$main;
         //show page
-        $this->ws_tpl_file = "templates/ws-video-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-video-tpl.html";
         $this->ws_load_tp($this->ws_tpl_file);
         $this->ws_seo=($cms_cfg["ws_module"]["ws_seo"])?1:0;
         switch($_GET['func']){

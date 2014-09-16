@@ -22,7 +22,7 @@ class NEWS{
         }
         switch($_REQUEST["func"]){
             case "n_list"://最新消息列表
-                $this->ws_tpl_file = "templates/ws-news-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-news-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->news_list();
                 //page view record --ph_type,ph_type_id,m_id
@@ -30,7 +30,7 @@ class NEWS{
                 $this->ws_tpl_type=1;
                 break;
             case "n_show"://最新消息顯示
-                $this->ws_tpl_file = "templates/ws-news-show-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-news-show-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->news_show();
                 //page view record --ph_type,ph_type_id,m_id
@@ -38,7 +38,7 @@ class NEWS{
                 $this->ws_tpl_type=1;
                 break;
             default:    //最新消息列表
-                $this->ws_tpl_file = "templates/ws-news-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-news-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->news_list();
                 //page view record --ph_type,ph_type_id,m_id

@@ -1,0 +1,161 @@
+<div>
+<div class="cart_step" {TAG_DISPLAY}><img src="{TAG_THEME_PATH}cart_step1.png" /></div>    
+<div id="nodata">{MSG_CART_EMPTY}</div>
+<form  name="myform" id="formID" action="cart.php?func=c_finish" method="post">
+<!-- START BLOCK : SHOPPING_CART_ZONE -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cart_table"> 
+<tr>
+    <th width="5%"> No.</th>
+    <th width="15%"> {MSG_PRODUCT_IMAGE}</th>
+    <th width=""> {MSG_PRODUCT}</th>
+    <th width="12%"> {MSG_AMOUNT}</th>
+    <th width="12%"> {MSG_PRODUCT_SPECIAL_PRICE}{VALUE_P_DISCOUNT}</th>
+    <th width="12%"> {MSG_SUBTOTAL}</th>
+    <th width="7%"> {MSG_DEL}</th>
+</tr>
+<!-- START BLOCK : SHOPPING_CART_LIST -->
+<tr {TAG_TR_CLASS} class="line">
+    <td  class="no">{VALUE_P_SERIAL}</td>
+    <td><center><a href="{VALUE_P_SMALL_IMG}" rel="lightbox[roadtrip]" ><img src="{VALUE_P_SMALL_IMG}" width="60" alt="{VALUE_P_NAME}" border="0"/></a></center></td>
+    <td class="title"><a href="{VALUE_P_LINK}" target="_blank">{VALUE_P_NAME}</a></td>
+    <td><input type="text" name="shop_value[{VALUE_P_ID}]" value="{VALUE_P_AMOUNT}" size="2" class="spinner" readonly/></td>
+    <td><span class="up">{VALUE_P_SPECIAL_PRICE}</span></td>
+    <td><span class="sp">{VALUE_P_SUBTOTAL_PRICE}</span></td>
+    <td>
+        <a href="#" onClick="javascript:ConfirmMSG('{TAG_DELETE_CHECK_STR}','cart.php?func=c_del&p_id={VALUE_P_ID}');return false;">
+        <img src="{TAG_THEME_PATH}ws-table-delete.gif" border="0" /></a>
+    </td>
+</tr>
+<!-- END BLOCK : SHOPPING_CART_LIST -->
+<tr>
+    <td colspan="5">
+        <div align="right"> {MSG_SUBTOTAL}:&nbsp;
+        </div>
+    </td>
+    <td> <span id="sub_total_str">{VALUE_SUBTOTAL}</span></td>
+    <td></td>
+</tr> 
+<tr>
+    <td colspan="5">
+        <div align="right"> {MSG_SHIPPING_PRICE}:&nbsp;
+        </div>
+    </td>
+    <td> <span id="ship_price">{VALUE_SHIPPING_PRICE_STR}</span></td>
+    <td></td>
+</tr> 
+<tr>
+    <th colspan="5">
+        <div align="right"> {MSG_TOTAL}:&nbsp;
+        </div>
+    </th>
+    <th> <span id="total_str">{VALUE_TOTAL}</span>    </th>
+    <th></th>
+</tr> 
+</table>
+
+<div id="shipment_zone">
+    送貨區域:
+    <!-- START BLOCK : SHIPMENT_TYPE_RADIO -->
+    <label><input type="radio" name="shipment_type" id="shipment_type_{VALUE_SHIPMENT_TYPE_KEY}" value="{VALUE_SHIPMENT_TYPE_KEY}"/>{VALUE_SHIPMENT_TYPE_NAME}</label>
+    <!-- END BLOCK : SHIPMENT_TYPE_RADIO -->
+</div>
+    <div class="cart_btn">
+        <input type="image" src="{TAG_THEME_PATH}btn_prev.png" onclick="cart_continue(myform,'{LINK_CONTINUE}');return false;" />
+        <input type="image" src="{TAG_THEME_PATH}btn_next.png" id="btn_finish" />
+    </div>
+<br/>
+<div class="cart-finish-bottom">
+    {MSG_PAYMENT_TERM}
+</div>
+<div class="cart-finish-bottom">
+    {MSG_SHOPPING_TERM}
+</div>
+<script type="text/javascript">
+    jQuery(function($){
+       $(document).ready(function(){
+           var NO_SHIP_PRICE = {VALUE_SC_NO_SHIPPING_PRICE};
+           var MSG = [null,{VALUE_SC_SHIPPING_PRICE},{VALUE_SC_SHIPPING_PRICE2},"請洽支付寶網站"];
+           $("#btn_finish").click(function(evt){
+               evt.preventDefault();
+               if($(":radio:checked").size()==0){
+                   alert("請選擇送貨區域");
+                   return false;
+               }
+               var sz = $(":radio:checked").next().text();
+               var sz_other = [];
+               //未選擇的區域文字
+               $(":radio").each(function(){
+                   if(!this.checked){
+                       sz_other.push( $(this).next().text());
+                   }
+               });
+               $(this.form).trigger('submit');
+//               if(confirm("目前選擇的送貨區域是:"+sz+"\n若送貨地區為"+sz_other[0]+" \n請重新選擇送貨區域。\n確定結帳請按 送出，重新選擇請按 取消。")){
+//                   $(this.form).trigger('submit');
+//               }
+           });
+           $(":radio[name=shipment_type]").click(function(evt){
+                var dataStr = "func=ajax_show_ship_price&shipment_type="+$(this).val();
+                $.post("{TAG_ROOT_PATH}cart.php",dataStr,function(req){
+                    $("#sub_total_str").text(req.total_price);
+                    $("#ship_price").text(req.shipping_price);
+                    $("#o_subtotal_price").val(req.total_price);
+                    $("#o_plus_price").val(req.shipping_price);
+                    $("#formID").trigger("calculate");
+                },"json");
+           });
+           $("#formID").bind("calculate",function(evt){
+                this['o_total_price'].value = parseInt(this['o_subtotal_price'].value) + parseInt(this['o_plus_price'].value);
+                $("#total_str").text(this['o_total_price'].value);            
+           });
+           $("#btn_modify_amount").click(function(evt){
+               var serial_data = $("#formID").serialize();
+               serial_data += "&via_ajax=1";
+               $.post("cart.php?func=c_mod",serial_data,function(req){
+                   if(req=='1'){
+                      alert("已更新數量");
+                   }
+                   //location.href = "cart.php";
+               });
+           });
+            $(".spinner").spinner({
+                min: 1,
+                spin: function( event, ui ) {
+                    var cur = $(this).val();
+                    var elm = $(this);
+                    if($(":radio[name=shipment_type]:checked").size()==0){
+                        alert("請先選擇運送區域!");
+                        elm.val(cur);
+                        return false;
+                    }
+                    var data = "via_ajax=1&"+$(this).attr("name")+"="+ui.value+"&shipment_type="+$(":radio[name=shipment_type]:checked").val();
+                    if(cur != ui.value){
+                        $.post("{TAG_ROOT_PATH}cart.php?func=c_mod",data,function(req){
+                            if(req.code == '1'){
+                                var ans = parseInt(elm.parents('tr').find('.up').text()) * ui.value;
+                                elm.parents('tr').find('.sp').text(ans);
+                                $("#sub_total_str").text(req.sub_total_price);
+                                $("#ship_price").text(req.shipping_price);
+                                $("#o_subtotal_price").val(req.sub_total_price);
+                                $("#o_plus_price").val(req.shipping_price>=0?req.shipping_price:0);
+                                $("#formID").trigger("calculate");
+                            }else{
+                                alert('error occure!');
+                                elm.val(cur);
+                            }
+                        },'json');
+                    }
+                },
+                change: function( event, ui ) {
+                }            
+            });          
+       });
+    });
+</script>
+<input type="hidden" name="cart_type" value="shopping">
+<input type="hidden" name="o_plus_price" id="o_plus_price" value="{VALUE_SHIPPING_PRICE}">
+<input type="hidden" name="o_subtotal_price" id="o_subtotal_price" value="{VALUE_SUBTOTAL}">
+<input type="hidden" name="o_total_price" id="o_total_price" value="{VALUE_TOTAL}">
+<!-- END BLOCK : SHOPPING_CART_ZONE -->
+</form>
+</div>

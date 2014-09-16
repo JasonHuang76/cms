@@ -14,7 +14,7 @@ class PRODUCTS{
                 $this->ajax_get_p_name($_GET['term']);
                 break;
             case "p_list"://產品列表
-                $this->ws_tpl_file = "templates/ws-products-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->products_list("");
                 $this->ws_tpl_type=1;
@@ -22,32 +22,32 @@ class PRODUCTS{
             case "p_new"://最新產品列表
                 //需要會員權限,則顯示登入表單
                 if(empty($_SESSION[$cms_cfg["sess_cookie_name"]]["MEMBER_ID"]) && $cms_cfg["ws_module"]["ws_new_product_login"]==1){
-                    $this->ws_tpl_file = "templates/ws-login-form-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-login-form-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $tpl->assignGlobal( "MSG_MEMBER_LOGIN",$TPLMSG["MEMBER_LOGIN"]);
                     $tpl->assignGlobal( "MSG_LOGIN_NOTICE1",$TPLMSG['LOGIN_NOTICE1']);
                     App::getHelper('main')->header_footer("");
                 }else{
-                    $this->ws_tpl_file = "templates/ws-products-tpl.html";
+                    $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
                     $this->ws_load_tp($this->ws_tpl_file);
                     $this->products_list("p_new");
                 }
                 $this->ws_tpl_type=1;
                 break;
             case "p_pro"://促銷產品列表
-                $this->ws_tpl_file = "templates/ws-products-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->products_list("p_pro");
                 $this->ws_tpl_type=1;
                 break;
             case "p_hot"://熱門產品列表
-                $this->ws_tpl_file = "templates/ws-products-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->products_list("p_hot");
                 $this->ws_tpl_type=1;
                 break;
             case "p_detail"://產品詳細資料
-                //$this->ws_tpl_file = "templates/ws-products-detail-tpl.html";
+                //$this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-detail-tpl.html";
                 //$this->ws_load_tp($this->ws_tpl_file);
                 $this->load_product_detail_template();
                 $tpl->newBlock("JS_MAIN");
@@ -61,7 +61,7 @@ class PRODUCTS{
                 $this->ws_tpl_type=1;
                 break;
             case "search"://產品搜尋
-                $this->ws_tpl_file = "templates/ws-products-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $main->header_footer("",$TPLMSG["PRODUCTS"]);
                 $this->products_search();
@@ -69,7 +69,7 @@ class PRODUCTS{
                 break;
             default:    //產品分類列表
                 $this->p_homepage=1;
-                $this->ws_tpl_file = "templates/ws-products-tpl.html";
+                $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-tpl.html";
                 $this->ws_load_tp($this->ws_tpl_file);
                 $this->products_list("");
                 $this->ws_tpl_type=1;
@@ -99,8 +99,8 @@ class PRODUCTS{
         $tpl->assignInclude( "HEADER", $cms_cfg['base_header_tpl']); //頭檔title,meta,js,css
         $tpl->assignInclude( "LEFT", $cms_cfg['base_left_normal_tpl']); //左方一般表單
         $tpl->assignInclude( "MAIN", $ws_tpl_file); //主功能顯示區
-        $tpl->assignInclude( "AD_H", "templates/ws-fn-ad-h-tpl.html"); //橫式廣告模板
-        $tpl->assignInclude( "AD_V", "templates/ws-fn-ad-v-tpl.html"); //直式廣告模板        
+        $tpl->assignInclude( "AD_H", $cms_cfg['base_templates']."ws-fn-ad-h-tpl.html"); //橫式廣告模板
+        $tpl->assignInclude( "AD_V", $cms_cfg['base_templates']."ws-fn-ad-v-tpl.html"); //直式廣告模板        
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["PRODUCTS"]);
         $tpl->assignGlobal( "TAG_LAYER" , $this->top_layer_link);
@@ -128,7 +128,7 @@ class PRODUCTS{
         $selectrs = $db->query($sql);
         $row = $db->fetch_array($selectrs,1);
         $p_show_style=($row["p_show_style"])?$row["p_show_style"]:1;
-        $this->ws_tpl_file = "templates/ws-products-detail".$p_show_style."-tpl.html";
+        $this->ws_tpl_file = $cms_cfg['base_templates']."ws-products-detail".$p_show_style."-tpl.html";
         $this->ws_load_tp($this->ws_tpl_file);
     }
 //產品--列表================================================================
