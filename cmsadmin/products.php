@@ -1406,12 +1406,20 @@ class PRODUCTS{
             }
             if(!empty($pc_id)){
                 $pc_id_str = implode(",",$pc_id);
-                $sql="update ".$cms_cfg['tb_prefix']."_products set p_status=".$value." where pc_id in (".$pc_id_str.")";
+                $sql="update ".$cms_cfg['tb_prefix']."_products set ".
+                        "p_status='".$value."'".
+                        ",p_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'".
+                        ",p_modifydate='".date("Y-m-d H:i:s")."'".
+                        " where pc_id in (".$pc_id_str.")";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
                 if ( $db_msg == "" ) {
                     //狀態分類狀態
-                    $sql="update ".$cms_cfg['tb_prefix']."_products_cate set pc_status=".$value." where pc_id in (".$pc_id_str.")";
+                    $sql="update ".$cms_cfg['tb_prefix']."_products_cate set ".
+                            "pc_status='".$value."'".
+                            ",pc_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'".
+                            ",pc_modifydate='".date("Y-m-d H:i:s")."'".
+                            " where pc_id in (".$pc_id_str.")";
                     $rs = $db->query($sql);
                     $db_msg = $db->report();
                     if ( $db_msg == "" ) {
@@ -1433,7 +1441,11 @@ class PRODUCTS{
             }
             if(!empty($p_id)){
                 $p_id_str = implode(",",$p_id);
-                $sql="update ".$cms_cfg['tb_prefix']."_products set p_status=".$value." where p_id in (".$p_id_str.")";
+                $sql="update ".$cms_cfg['tb_prefix']."_products set ".
+                        "p_status='".$value."'".
+                        ",p_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'".
+                        ",p_modifydate='".date("Y-m-d H:i:s")."'".
+                        " where p_id in (".$p_id_str.")";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
                 if ( $db_msg == "" ) {
@@ -1452,7 +1464,11 @@ class PRODUCTS{
             }
             if(!empty($pa_id)){
                 $pa_id_str = implode(",",$pa_id);
-                $sql="update ".$cms_cfg['tb_prefix']."_products_application set pa_status=".$value." where pa_id in (".$pa_id_str.")";
+                $sql="update ".$cms_cfg['tb_prefix']."_products_application set ".
+                        "pa_status='".$value."'".
+                        ",pa_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'".
+                        ",pa_modifydate='".date("Y-m-d H:i:s")."'".
+                        " where pa_id in (".$pa_id_str.")";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
                 if ( $db_msg == "" ) {
@@ -1477,7 +1493,11 @@ class PRODUCTS{
             }
             if(!empty($pc_id)){
                 $pc_id_str = implode(",",$pc_id);
-                $sql="update ".$cms_cfg['tb_prefix']."_products_cate set pc_locked=".$value." where pc_id in (".$pc_id_str.")";
+                $sql="update ".$cms_cfg['tb_prefix']."_products_cate set ".
+                        "pc_locked='".$value."'".
+                        ",pc_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'".
+                        ",pc_modifydate='".date("Y-m-d H:i:s")."'".
+                        " where pc_id in (".$pc_id_str.")";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
                 if ( $db_msg == "" ) {
@@ -1498,7 +1518,11 @@ class PRODUCTS{
             }
             if(!empty($p_id)){
                 $p_id_str = implode(",",$p_id);
-                $sql="update ".$cms_cfg['tb_prefix']."_products set p_locked=".$value." where p_id in (".$p_id_str.")";
+                $sql="update ".$cms_cfg['tb_prefix']."_products set ".
+                        "p_locked='".$value."'".
+                        ",p_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'".
+                        ",p_modifydate='".date("Y-m-d H:i:s")."'".
+                        " where p_id in (".$p_id_str.")";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
                 if ( $db_msg == "" ) {
@@ -1526,11 +1550,11 @@ class PRODUCTS{
                 $table_name=$cms_cfg['tb_prefix']."_products_ca";
             }
             foreach($_REQUEST["id"] as $key => $value){
-                if($ws_table == "p_new" || $ws_table == "p_hot"  || $ws_table == "p_pro") {
-                    $sql="update ".$table_name." set ".$ws_table."_sort=".$_REQUEST["sort_value"][$value]." where  p_id='".$value."'";
-                }else{
-                    $sql="update ".$table_name." set ".$ws_table."_sort=".$_REQUEST["sort_value"][$value]." where ".$ws_table."_id='".$value."'";
-                }
+                $sql="update ".$table_name." set ".
+                        $ws_table."_sort='".$_REQUEST["sort_value"][$value]."'".
+                        ((in_array($ws_table,array('p','pc','pa')))?",".$ws_table."_modifyaccount='".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'":"").
+                        ",".$ws_table."_modifydate='".date("Y-m-d H:i:s")."'".
+                        " where ".$ws_table."_id='".$value."'";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
             }
@@ -1597,11 +1621,11 @@ class PRODUCTS{
                     '".$row["pc_show_style"]."',
                     '".$row["pc_cate_img"]."',
                     '".$row["pc_related_cate"]."',
-                    '".$row["pc_modifydate"]."',
+                    '".date("Y-m-d H:i:s")."',
                     ".$add_value_str."
                     '".$row["pc_cross_cate"]."',
                     '".$row["pc_locked"]."',
-                    '".$row["pc_modifyaccount"]."'
+                    '".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'
                 )";
                 $rs = $db->query($sql);
                 $db_msg = $db->report();
@@ -1711,11 +1735,11 @@ class PRODUCTS{
                     '".addslashes($p_desc_strip_str)."',
                     '".$row["p_attach_file1"]."',
                     '".$row["p_attach_file2"]."',
-                    '".$row["p_modifydate"]."',
+                    '".date("Y-m-d H:i:s")."',
                     ".$add_value_str."
                     '".$row["p_cross_cate"]."',
                     '".$row["p_locked"]."',
-                    '".$row["p_modifyaccount"]."'
+                    '".$_SESSION[$cms_cfg['sess_cookie_name']]["USER_ACCOUNT"]."'
                 )";
                 $rs = $db->query($sql);
                 $this->p_id=$db->get_insert_id();

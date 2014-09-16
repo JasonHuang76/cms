@@ -1,6 +1,6 @@
 <?php
 $ws_array = array();
-$ws_array["lang_version"]=array("cht"=>$TPLMSG["LANG_CHT"],"chs"=>$TPLMSG['LANG_CHS'],"eng"=>$TPLMSG["LANG_ENG"],"jap"=>$TPLMSG["LANG_JAP"],"spa"=>$TPLMSG['LANG_SPA'],'fre'=>$TPLMSG['LANG_FRE']);
+$ws_array["lang_version"]=array("cht"=>$TPLMSG["LANG_CHT"],"chs"=>$TPLMSG['LANG_CHS'],"eng"=>$TPLMSG["LANG_ENG"],"jap"=>$TPLMSG["LANG_JAP"],"spa"=>$TPLMSG['LANG_SPA'],'fre'=>$TPLMSG['LANG_FRE'],'ger'=>$TPLMSG['LANG_GER']);
 $ws_array["order_status"]=array(0=>$TPLMSG["ORDER_NEW"],1=>$TPLMSG["ORDER_DEALING"],2=>$TPLMSG["ORDER_PRODUCTS_SEND"],3=>$TPLMSG["ORDER_COMPLETED"],9=>$TPLMSG["ORDER_CANCEL"],10=>$TPLMSG["ORDER_REJECT"],20=>$TPLMSG['AUTHORIZE_TERMINATE'],21=>$TPLMSG['AUTHORIZE_FAILED']);
 $ws_array["inquiry_status"]=array(0=>$TPLMSG["REPLY_NO"],1=>$TPLMSG["REPLY_YES"]);
 $ws_array["contactus_status"]=array(0=>$TPLMSG["REPLY_NO"],1=>$TPLMSG["REPLY_YES"]);
