@@ -86,11 +86,9 @@ class CART{
                     $tpl->newBlock("JS_FORMVALID");
                     $tpl->newBlock("JQUERY_UI_SCRIPT");
                     $tpl->newBlock("DATEPICKER_SCRIPT_IN_CART");
-<<<<<<< HEAD
-                    if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->res_init("zone","box");
-=======
+
                     if($cms_cfg['ws_module']['ws_address_type']=='tw')$main->res_init("zone",'box');
->>>>>>> master
+
                     $this->cart_finish();
                 }
                 $this->ws_tpl_type=1;

@@ -7,7 +7,7 @@ if($_GET['sess']){
 }
 session_start();
 define('APP_ROOT_PATH', realpath(dirname(__FILE__).'/../') . DIRECTORY_SEPARATOR);
-include_once(APP_ROOT_PATH."libs/libs-lang.php");
+#include_once(APP_ROOT_PATH."libs/libs-lang.php");
 include_once(APP_ROOT_PATH."conf/config.inc.php");
 include_once(APP_ROOT_PATH."libs/libs-mysql.php");
 $db = new DB($cms_cfg['db_host'],$cms_cfg['db_user'],$cms_cfg['db_password'],$cms_cfg['db_name'],$cms_cfg['tb_prefix']);

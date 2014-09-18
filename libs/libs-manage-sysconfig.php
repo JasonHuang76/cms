@@ -1,6 +1,6 @@
 <?php
 ob_start("ob_gzhandler");
-include_once("../libs/libs-lang.php");
+#include_once("../libs/libs-lang.php");
 include_once("../libs/libs-mysql.php");
 include_once("../libs/libs-main.php");
 include_once("../TP/class.TemplatePower.inc.php");

@@ -1851,7 +1851,7 @@ class MAINFUNC{
     function contact_s_select_r($sid,$zone="CONTACT"){
         global $ws_array,$cms_cfg;
         $sw = $cms_cfg['ws_module']['ws_contactus_s_style'];
-        $tpl = new TemplatePower("templates/ws-fn-contact-s-style{$sw}-tpl.html");
+        $tpl = new TemplatePower(LANG::$templates."/ws-fn-contact-s-style{$sw}-tpl.html");
         $tpl->prepare();
         $tpl->newBlock($zone."_S_ZONE");
         foreach($ws_array["contactus_s"] as $id=>$sname){
@@ -2141,12 +2141,13 @@ class MAINFUNC{
     //載入mail樣版
     function get_mail_tpl($template){
         global $cms_cfg,$TPLMSG;
-        if(file_exists($_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/".$template.".html")){
-            $tpl = new TemplatePower( $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/template.html" );
-            $tpl->assignInclude( "MAIN", $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/".$template.".html"); //主功能顯示區
-            $tpl->assignInclude( "FOOTER", $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/mail/".$cms_cfg['language']."/footer.html"); //頁腳
+        if(file_exists(LANG::$real_root.LANG::$templates."/mail/".$template.".html")){
+            $tpl = new TemplatePower( LANG::$real_root.LANG::$templates."/mail/template.html" );
+            $tpl->assignInclude( "MAIN", LANG::$real_root.LANG::$templates."/mail/".$template.".html"); //主功能顯示區
+            $tpl->assignInclude( "FOOTER", LANG::$real_root.LANG::$templates."/mail/".$cms_cfg['language']."/footer.html"); //頁腳
             $tpl->prepare();
             //初始化重要樣版變數
+            
             $tpl->assignGlobal("MSG_HOME",$TPLMSG['HOME']);
             $tpl->assignGlobal("MSG_COMPANY",App::getHelper('session')->sc_company);
             $tpl->assignGlobal("TAG_THEME_PATH" , $cms_cfg['default_theme']);
@@ -2173,14 +2174,14 @@ class MAINFUNC{
         global $cms_cfg,$ws_array;
         include APP_ROOT_PATH."lang/".$cms_cfg['language']."-utf8.php";
         include APP_ROOT_PATH."conf/default-items.php";
-        if(file_exists($_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/epaper/".$template.".html")){
-            $tpl = new TemplatePower( $_SERVER['DOCUMENT_ROOT'].$cms_cfg['base_root']."templates/epaper/$template.html" );
+        if(file_exists(LANG::$real_root.LANG::$templates."/epaper/".$template.".html")){
+            $tpl = new TemplatePower( LANG::$real_root.LANG::$templates."/epaper/$template.html" );
             $tpl->prepare();
             //初始化重要樣版變數
             $tpl->assignGlobal("MSG_HOME",$TPLMSG['HOME']);
             $tpl->assignGlobal("MSG_COMPANY",App::getHelper('session')->sc_company);
             $tpl->assignGlobal("MSG_CONTACTUS",$TPLMSG['CONTACT_US']);
-            $tpl->assignGlobal("TAG_THEME_PATH" , $cms_cfg["base_url"]."templates/epaper/images/");
+            $tpl->assignGlobal("TAG_THEME_PATH" , $cms_cfg["base_url"].LANG::$templates."/epaper/images/");
             $tpl->assignGlobal("TAG_ROOT_PATH" , $cms_cfg['base_root']);
             $tpl->assignGlobal("TAG_FILE_ROOT" , $cms_cfg['file_root']);
             $tpl->assignGlobal("TAG_BASE_URL" ,$cms_cfg["base_url"]);

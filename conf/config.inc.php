@@ -9,20 +9,20 @@ $cms_cfg["manage_page"] = "index.php";
 
 $cms_cfg['base_root']	= "/cms/";
 
-# 語系切換功能 #
+# 設定全部語系 #
 $cms_cfg["lang_array"] = array( // language => tb_prefix
 	"eng" => "eng",
 	"cht" => "cht",
-	"chs" => "chs",
-	"jap" => "jap",
-	"rus" => "rus",
+	//"chs" => "chs",
+	//"jap" => "jap",
+	//"rus" => "rus",
 );
 
+# 語系切換功能 #
 include_once(dirname(__FILE__)."/../libs/libs-lang.php");
 $lang = new LANG($cms_cfg["base_root"],$cms_cfg["lang_array"]);
 
-##############
-
+# 帶入設定 #
 $cms_cfg['language'] = $lang->language;
 $cms_cfg['tb_prefix'] = $lang->tb_prefix;
 
@@ -184,7 +184,7 @@ $cms_cfg['extra_dd_menu'] = array();
 //管理者通知信主旨
 $cms_cfg['admin_subject'] = " from ".$_SERVER["HTTP_HOST"]."--[For Administrator]";
 //電子報產品敘述文字長度限制
-$cms_cfg['epaper_product_desc_limit'] = 150;    
+$cms_cfg['epaper_product_desc_limit'] = 150;
 
 include_once("config.auth.php");
 

@@ -14,7 +14,7 @@ $cms_cfg["ws_module"]=array(
         "ws_video"=>0,            //youtube影片
         "ws_blog"=>0,               //部落格管理(留言版)
         "ws_contactus" =>1,          //聯絡我們
-        "ws_contactus_s_style" =>1,  //聯絡我們稱謂樣式1為西式(尊稱在前)，2為中式(尊稱在後)
+        //"ws_contactus_s_style" =>1,  //聯絡我們稱謂樣式1為西式(尊稱在前)，2為中式(尊稱在後)
         "ws_contactus_form_style" =>1,  //聯絡我們表單樣式:1為單欄，2為雙欄
         "ws_contactus_upfiles" =>0,  //聯絡我們表單可附檔上傳
         "ws_contactus_ipmap"   =>0,    //聯絡我們表單記錄ip國家對映
@@ -116,5 +116,20 @@ $cms_cfg["ws_module"]=array(
         "ws_seo"=>1,                //0=>取消rewrite , 1=>啟用rewrite
         "ws_version"=>"ips",        //系統版本:IPS,IPB,IPC
         "ws_wysiwyg"=>"tinymce"     //tinymce 編輯器
-)
+);
+
+########################################################
+
+//聯絡我們稱謂樣式1為西式(尊稱在前)，2為中式(尊稱在後)
+//配合語系切換設定
+
+switch($cms_cfg['language']){
+	default:
+		$cms_cfg["ws_module"]["ws_contactus_s_style"] = 1;
+	break;
+	case "cht":
+	case "chs":
+		$cms_cfg["ws_module"]["ws_contactus_s_style"] = 2;
+	break;
+}
 ?>
