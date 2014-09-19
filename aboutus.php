@@ -111,7 +111,9 @@ class ABOUTUS{
                 }
             }
         }
-        App::getHelper('main')->new_left_menu($left_menu);
+        if($left_menu){
+            App::getHelper('main')->new_left_menu($left_menu);
+        }
         return $current_row;
     }
     //取得aboutus連結

@@ -134,6 +134,8 @@ class APPLICATON{
                 );
                 $seo_H1=(trim($app_row["pa_seo_h1"]))?$app_row["pa_seo_h1"]:$app_row["pa_name"];
                 $main->header_footer($meta_array,$seo_H1);
+                //layer link
+                $this->layer_link($app_row);                
                 if($app_row['pa_custom_status']){
                     $tpl->newBlock("PRODUCTS_CATE_CUSTOM");
                     $tpl->assign("VALUE_PC_CUSTOM",$main->content_file_str_replace($app_row["pa_custom"],'out'));
@@ -171,8 +173,6 @@ class APPLICATON{
                                              "VALUE_PC_SERIAL" => $i,
                         ));
                     }
-                    //layer link
-                    $this->layer_link($app_row);
                     if($cms_cfg['ws_module']['ws_application_cates']){  //應用領域產品分類
                         //分類列表
                         $sql="select * from ".$cms_cfg['tb_prefix']."_products_cate where pc_id in (select pc_id from ".$cms_cfg['tb_prefix']."_products_cate_application_map where pa_id='".$app_row['pa_id']."' and checked='1')";

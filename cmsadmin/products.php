@@ -474,7 +474,6 @@ class PRODUCTS{
                                           "VALUE_PC_SORT"  => $row["pc_sort"],
                                           "VALUE_PC_NAME" => $row["pc_name"],
                                           "VALUE_PC_NAME_ALIAS" => $row["pc_name_alias"],
-                                          "VALUE_PC_CUSTOM" => $row["pc_custom"],
                                           "NOW_PC_LEVEL" => $row["pc_level"],
                                           "VALUE_PC_CATE_IMG" => (trim($row["pc_cate_img"])=="")?"":$cms_cfg["file_root"].$row["pc_cate_img"],
                                           "VALUE_PIC_PREVIEW1" => (trim($row["pc_cate_img"])=="")?$cms_cfg['default_preview_pic']:$cms_cfg["file_root"].$row["pc_cate_img"],
@@ -489,7 +488,7 @@ class PRODUCTS{
                                           "STR_PC_CUSTOM_STATUS_CK0" => ($row["pc_custom_status"]==0)?"checked":"",
                                           "STR_PC_CUSTOM_STATUS_DISPLAY" => ($row["pc_custom_status"]==1)?" ":"none",
                                           "MSG_MODE" => $TPLMSG['MODIFY'],
-                                          "VALUE_PC_DESC" => $row['pc_desc'],
+                                          "VALUE_PC_DESC" => $main->content_file_str_replace($row['pc_desc'],'out'),
                                           "VALUE_PC_REDIRECT_URL" => $row['pc_redirect_url'],
                 ));
                 if($this->seo){
@@ -518,7 +517,7 @@ class PRODUCTS{
         $tpl->assignGlobal("TAG_SELECT_PRODUCTS_CATE" ,$this->products_cate_select_option);
         if($cms_cfg["ws_module"]["ws_wysiwyg"]=="tinymce"){
             $tpl->newBlock("WYSIWYG_TINYMCE1");
-            $tpl->assign( "VALUE_PC_CUSTOM" , $row["pc_custom"] );
+            $tpl->assign( "VALUE_PC_CUSTOM" , $main->content_file_str_replace($row["pc_custom"],'out') );
         }
         if($cms_cfg["ws_module"]['ws_products_application'] && $cms_cfg["ws_module"]['ws_application_cates']){
             $this->application_checkbox($row["pc_id"],true);

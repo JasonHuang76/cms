@@ -374,13 +374,14 @@ class MEMBER{
         }
         if(!empty($sql)){
             $rs = $db->query($sql);
-            $db_msg = $db->report();          
+            $this->m_id = $db->get_insert_id();
+            $db_msg = $db->report();
             if ( $db_msg == "" ) {
                 if($_REQUEST["action_mode"]=="add"){
                     unset($_SESSION[$cms_cfg['sess_cookie_name']]['JOIN_MEMBER']);
                     //已有購物或詢價時直接登入
                     if(!empty($_SESSION[$cms_cfg['sess_cookie_name']]["CART_PID"])){
-                        $_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_ID"]=$db->get_insert_id();
+                        $_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_ID"]=$this->m_id;
                         $_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_ACCOUNT"]=$_REQUEST["m_account"];
                         $_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_NAME"]=$_REQUEST["m_name"];
                         $_SESSION[$cms_cfg['sess_cookie_name']]["MEMBER_CATE"]="";
@@ -443,8 +444,7 @@ class MEMBER{
                     if(!empty($cms_cfg["ws_module"]['ws_member_join_validation'])){
                         switch($cms_cfg["ws_module"]['ws_member_join_validation']){
                             case "email"://帳號啟用連結
-                                $m_id = $db->get_insert_id();
-                                $act_link = $this->get_activate_link($_POST['m_account'],$m_id);      
+                                $act_link = $this->get_activate_link($_POST['m_account'],$this->m_id);      
                                 $mtpl->newBlock("MEMBER_JOIN_VALIDATION_EMAIL_NOTIFICATION");
                                 $mtpl->assign(array(
                                     "MSG_MEMBER_JOIN_VALIDATION_EMAIL" => $TPLMSG['MEMBER_JOIN_VALIDATE_EMAIL'],
