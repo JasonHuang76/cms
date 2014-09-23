@@ -41,7 +41,7 @@ class MAINDEFAULT{
         $tpl->prepare();
         $tpl->assignGlobal( "TAG_MAIN_FUNC" , $TPLMSG["PRODUCTS"]);
         $tpl->assignGlobal( "TAG_INDEX_CURRENT" , "class='current'");
-        $main->header_footer("");
+        $main->header_footer("index");
         $main->google_code(); //google analystics code , google sitemap code
 //        $main->left_fix_cate_list();
         $this->nivo_slider();

@@ -56,7 +56,8 @@ if($cms_cfg['ws_module']['ws_shopping_cart_module']){
 $ws_array["deliery_timesec"]=array( 0 =>"不指定",1 =>"中午前",2=>"12時-17時",3=>"17時-20時");
 $ws_array['week_day'] = array($TPLMSG['W_SUNDAY'] ,$TPLMSG['W_MONDAY'],$TPLMSG['W_TUESDAY'],$TPLMSG['W_WEDNESDAY'],$TPLMSG['W_THRUSDAY'],$TPLMSG['W_FRIDAY'],$TPLMSG['W_SATURDAY']);
 $ws_array['week_day_short'] = array($TPLMSG['W_SUN'],$TPLMSG['W_MON'],$TPLMSG['W_TUE'],$TPLMSG['W_WED'],$TPLMSG['W_THR'],$TPLMSG['W_FRI'],$TPLMSG['W_SAT'] );
-$ws_array["main"]=array("aboutus" => $TPLMSG["ABOUT_US"],
+$ws_array["main"]=array("index" => $TPLMSG['HOME'],
+                        "aboutus" => $TPLMSG["ABOUT_US"],
                         "products" => $TPLMSG["PRODUCTS"],
                         "application" => $TPLMSG["APPLICATION"],
                         "ebook" => $TPLMSG["EBOOK"],

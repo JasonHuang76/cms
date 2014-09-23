@@ -1127,7 +1127,7 @@ class MAINFUNC{
                     '{TAG_ROOT_PATH}$2',
                     '{TAG_FILE_ROOT}$2',
                     '$1{TAG_FILE_ROOT}$3',
-                    '$1{TAG_ROOT_PATH}$2',
+                    '$1{TAG_ROOT_PATH}$3',
                 )
             ),
             'out' => array(
@@ -1138,7 +1138,7 @@ class MAINFUNC{
                     '%{TAG_SCHEME}%',
                     '%{TAG_SECURE_SCHEME}%',
                     '%(["\'])(\.\./)*(upload_files/[^"\']+)%i',
-                    '%(["\'])(images/[^"\']+)%i',
+                    '%(["\'])(\.\./)*(images/[^"\']+)%i',
                 ),
                 'replace' => array(
                     $cms_cfg['base_root'],
@@ -1147,7 +1147,7 @@ class MAINFUNC{
                     "http://",
                     "https://",
                     '$1'.$cms_cfg['file_root'].'$3',
-                    '$1'.$cms_cfg['base_root'].'$2',
+                    '$1'.$cms_cfg['base_root'].'$3',
                 )
             )
         );
