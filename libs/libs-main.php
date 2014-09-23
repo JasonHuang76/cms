@@ -2273,6 +2273,10 @@ class MAINFUNC{
 		}
 		
 		if(count($$res_title)){
+			// 利用翻轉刪除重複的值
+			$$res_title = array_flip($$res_title);
+			$$res_title = array_flip($$res_title);
+			
 			foreach($$res_title as $key => $value){
 				
 				switch($res_type){
