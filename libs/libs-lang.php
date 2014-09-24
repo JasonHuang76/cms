@@ -16,7 +16,7 @@
 			if(count($lang_array) > 0){
 				$lang_array = $lang_array;
 			}else{				
-				$lang_array = array_merge(self::$lang_array);
+				$lang_array = self::$lang_array;
 			}
 			
 			$uri_no_base = str_replace($base_root, '', $_SERVER["REQUEST_URI"]); // 去除根目錄

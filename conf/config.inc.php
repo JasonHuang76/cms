@@ -9,7 +9,7 @@ $cms_cfg["manage_page"] = "index.php";
 
 $cms_cfg['base_root']	= "/cms/";
 
-# 設定全部語系 #
+# 設定全部語系與樣板 #
 $cms_cfg["lang_array"] = array( // templates => language|tb_prefix
 	"eng" => "eng|eng",
 	"cht" => "cht|cht",
@@ -36,8 +36,8 @@ $cms_cfg['base_templates'] = $lang->base_templates."/";
 
 $cms_cfg['base_url']	= "http://".$cms_cfg['server_name'].$cms_cfg['base_root'];
 $cms_cfg['req_uri']	= "http://".$cms_cfg['server_name'].$_SERVER['REQUEST_URI'];
-$cms_cfg['computer_url'] = "/cms/";
-$cms_cfg['mobile_url']	= "/cms/mobile/";
+$cms_cfg['computer_url'] = $cms_cfg["base_root"];
+$cms_cfg['mobile_url']	= $cms_cfg["base_root"]."mobile/";
 $cms_cfg['base_css']	= $cms_cfg['base_root']."css/";
 $cms_cfg['base_images']	= $cms_cfg['base_root']."images/";
 #$cms_cfg['base_templates']	= "templates/";
