@@ -1,0 +1,37 @@
+<div id="privacy_dialog" title="友綠生活-隱私權政策">{MSG_PRIVACY_TERM}</div>
+<script type="text/javascript">
+    jQuery(function($){
+        $(document).ready(function(){
+            $("#privacy_dialog").dialog({
+               autoOpen:false,
+               modal:true,
+               resizable:false,
+               draggable:false,
+               width:600,
+               height:500,
+               buttons:{
+                   "同意":function(){
+                        $(this).dialog("close");
+                        var relatedForm = $(this).data("relatedForm");
+                        relatedForm.trigger("submit");
+                   },
+                   "不同意":function(){
+                       $(this).dialog("close");
+                       $("#privacy_dialog").data('displayed',0);
+                   }        
+               }
+            });
+            $(":submit,#continue").click(function(evt){
+                evt.preventDefault();
+                //本頁還沒顯示過隱私權內容就顯示隱私權dialog
+                if(!$("#privacy_dialog").data('displayed')){
+                    $("#privacy_dialog").dialog("open");
+                    $("#privacy_dialog").data('displayed',1);
+                    $("#privacy_dialog").data("relatedForm",$("#formID"));
+                }else{//若已顯示過則直接觸發表單的submit事件
+                    $("#formID").trigger('submit');                    
+                }
+            });
+        });
+    });
+</script>

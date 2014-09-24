@@ -1,0 +1,45 @@
+        {MSG_LOGIN_NOTICE1}
+        <div class="member_login">
+            <form name="myform" method="post" action="{TAG_ROOT_PATH}login.php?func=check_data" id="formID" class="formular">
+                <table>
+                  <tr>
+                    <td class="cart_title_icon">{MSG_MEMBER_LOGIN}</td>
+                  </tr>
+                  <tr>
+                    <td><input class="ipt1 iptbox" name="mm_account" id="mm_account" class="validate[required]" type="text" placeholder="{MSG_LOGIN_ACCOUNT}"></td>
+                  </tr>
+                  <tr>
+                    <td><input class="ipt1 iptbox" name="mm_password" id="mm_password" class="validate[required]" type="password" placeholder="{MSG_LOGIN_PASSWORD}"></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <input class="ipt2 iptbox"  name="security" maxlength="4" size="4" type="text" placeholder="{MSG_LOGIN_SECURITY}"> {TAG_IMAGE_SECURITY_IMAGE}<br/><font color="#ff0000">{MSG_ERROR_MESSAGE}</font>             
+                    </td>
+                  </tr>
+                  <tr>
+                      <td class="fg_pw"><a href="{TAG_ROOT_PATH}member.php?func=m_forget">{MSG_LOGIN_FORGOT_PASSWORD}</a> <a href="#" onclick="myform.submit();return false;"><img src="{TAG_THEME_PATH}btn_login.png"></a></td>
+                  </tr>
+                </table>
+                <input type="hidden" name="callback" value="1">
+                <input type="hidden" name="return_url" value="{TAG_ROOT_PATH}cart.php?func=c_finish"/>
+            </form>            
+        </div>
+
+
+
+        <div class="login_first">
+            <form name="fsfrm" action="{TAG_ROOT_PATH}cart.php?func=c_finish" method="post">
+                <table>
+                  <tr>
+                    <td class="cart_title_icon">{TAG_FS_SHOPPING}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                  </tr>
+                </table>
+                <input type="hidden" name="shop_and_register" value="1"/>
+                <div class="cart-login_f_btn">
+                    <a href="#" id="first" onclick="fsfrm.submit();"><img style="padding-top: 20px;" src="{TAG_THEME_PATH}/btn_firstbuy.png"></a>
+                </div>
+            </form>            
+        </div>

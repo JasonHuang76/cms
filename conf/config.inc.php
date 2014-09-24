@@ -10,9 +10,11 @@ $cms_cfg["manage_page"] = "index.php";
 $cms_cfg['base_root']	= "/cms/";
 
 # 設定全部語系 #
-$cms_cfg["lang_array"] = array( // language => tb_prefix
-	"eng" => "eng",
-	"cht" => "cht",
+$cms_cfg["lang_array"] = array( // templates => language|tb_prefix
+	"eng" => "eng|eng",
+	"cht" => "cht|cht",
+	"mobile" => "eng|eng",
+	
 	//"chs" => "chs",
 	//"jap" => "jap",
 	//"rus" => "rus",
